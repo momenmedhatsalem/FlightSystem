@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAFlight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAFlight.Designer.cs">
+      <DependentUpon>AddAFlight.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddAirCraftForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddAFlight.resx">
+      <DependentUpon>AddAFlight.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddAirCraftForm.resx">
       <DependentUpon>AddAirCraftForm.cs</DependentUpon>
     </EmbeddedResource>
