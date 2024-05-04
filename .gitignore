@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/FlightSystem/AddAFlight.Designer.cs
+/FlightSystem/Program.cs
+/FlightSystem/UserSignup.cs
+/FlightSystem/UserSignup.Designer.cs
+/FlightSystem/UserSignup.resx
