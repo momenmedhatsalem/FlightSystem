@@ -24,33 +24,21 @@ namespace FlightSystem
 
 // Events
         
-        private void fnameBox_Leave(object sender, EventArgs e)
+        private void nameBox_Change(object sender, EventArgs e)
         {
+            TextBox obj = (TextBox)sender;
             if (Matches("^[a-zA-Z'-]+$", this.fnameBox.Text))
             {
-                this.fnameBox.BackColor = Color.LightGreen;
+                obj.BackColor = Color.LightGreen;
             }
             else
             {
-                this.fnameBox.BackColor = Color.OrangeRed;
+                obj.BackColor = Color.OrangeRed;
             }
             this.checkState();
         }
 
-        private void lnameBox_Leave(object sender, EventArgs e)
-        {
-            if (Matches("^[a-zA-Z'-]+$", this.lnameBox.Text))
-            {
-                this.lnameBox.BackColor = Color.LightGreen;
-            }
-            else
-            {
-                this.lnameBox.BackColor = Color.OrangeRed;
-            }
-            this.checkState();
-        }
-
-        private void emailBox_Leave(object sender, EventArgs e)
+        private void emailBox_Change(object sender, EventArgs e)
         {
             if (Matches(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", this.emailBox.Text))
             {
@@ -63,7 +51,7 @@ namespace FlightSystem
             this.checkState();
         }
 
-        private void phoneBox_Leave(object sender, EventArgs e)
+        private void phoneBox_Change(object sender, EventArgs e)
         {
             if (Matches(@"^\+2\d{11}$", this.phoneBox.Text))
             {
@@ -76,7 +64,7 @@ namespace FlightSystem
             this.checkState();
         }
 
-        private void pass_Leave(object sender, EventArgs e)
+        private void pass_Change(object sender, EventArgs e)
         {
             if (this.passBox.Text == this.confirmpassBox.Text && this.passBox.Text.Length != 0)
             {
