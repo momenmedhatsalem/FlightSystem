@@ -47,7 +47,7 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.headerLabel, 0, 0);
@@ -64,18 +64,17 @@
             this.tableLayoutPanel1.Controls.Add(this.confirmpassBox, 2, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 123F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(685, 386);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(514, 314);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // headerLabel
@@ -84,10 +83,9 @@
             this.headerLabel.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.headerLabel, 3);
             this.headerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.headerLabel.Location = new System.Drawing.Point(255, 46);
-            this.headerLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.headerLabel.Location = new System.Drawing.Point(186, 37);
             this.headerLabel.Name = "headerLabel";
-            this.headerLabel.Size = new System.Drawing.Size(174, 31);
+            this.headerLabel.Size = new System.Drawing.Size(141, 25);
             this.headerLabel.TabIndex = 0;
             this.headerLabel.Text = "User Signup";
             // 
@@ -96,10 +94,9 @@
             this.fullnameLabel.AutoSize = true;
             this.fullnameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fullnameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fullnameLabel.Location = new System.Drawing.Point(24, 123);
-            this.fullnameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.fullnameLabel.Location = new System.Drawing.Point(18, 100);
             this.fullnameLabel.Name = "fullnameLabel";
-            this.fullnameLabel.Size = new System.Drawing.Size(125, 52);
+            this.fullnameLabel.Size = new System.Drawing.Size(94, 42);
             this.fullnameLabel.TabIndex = 1;
             this.fullnameLabel.Text = "Full name";
             // 
@@ -108,10 +105,9 @@
             this.emailLabel.AutoSize = true;
             this.emailLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.emailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailLabel.Location = new System.Drawing.Point(24, 175);
-            this.emailLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.emailLabel.Location = new System.Drawing.Point(18, 142);
             this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(125, 52);
+            this.emailLabel.Size = new System.Drawing.Size(94, 42);
             this.emailLabel.TabIndex = 2;
             this.emailLabel.Text = "Email";
             // 
@@ -120,10 +116,9 @@
             this.phoneLabel.AutoSize = true;
             this.phoneLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.phoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneLabel.Location = new System.Drawing.Point(24, 227);
-            this.phoneLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.phoneLabel.Location = new System.Drawing.Point(18, 184);
             this.phoneLabel.Name = "phoneLabel";
-            this.phoneLabel.Size = new System.Drawing.Size(125, 52);
+            this.phoneLabel.Size = new System.Drawing.Size(94, 42);
             this.phoneLabel.TabIndex = 3;
             this.phoneLabel.Text = "Phone";
             // 
@@ -132,10 +127,9 @@
             this.passLabel.AutoSize = true;
             this.passLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.passLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passLabel.Location = new System.Drawing.Point(24, 279);
-            this.passLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.passLabel.Location = new System.Drawing.Point(18, 226);
             this.passLabel.Name = "passLabel";
-            this.passLabel.Size = new System.Drawing.Size(125, 52);
+            this.passLabel.Size = new System.Drawing.Size(94, 42);
             this.passLabel.TabIndex = 4;
             this.passLabel.Text = "Password";
             // 
@@ -145,10 +139,9 @@
             this.tableLayoutPanel1.SetColumnSpan(this.submitBtn, 3);
             this.submitBtn.Enabled = false;
             this.submitBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.submitBtn.Location = new System.Drawing.Point(242, 343);
-            this.submitBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.submitBtn.Location = new System.Drawing.Point(182, 278);
             this.submitBtn.Name = "submitBtn";
-            this.submitBtn.Size = new System.Drawing.Size(200, 31);
+            this.submitBtn.Size = new System.Drawing.Size(150, 25);
             this.submitBtn.TabIndex = 5;
             this.submitBtn.Text = "Submit";
             this.submitBtn.UseVisualStyleBackColor = true;
@@ -158,10 +151,9 @@
             // 
             this.fnameBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fnameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fnameBox.Location = new System.Drawing.Point(157, 127);
-            this.fnameBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fnameBox.Location = new System.Drawing.Point(118, 103);
             this.fnameBox.Name = "fnameBox";
-            this.fnameBox.Size = new System.Drawing.Size(248, 29);
+            this.fnameBox.Size = new System.Drawing.Size(186, 24);
             this.fnameBox.TabIndex = 7;
             this.fnameBox.Leave += new System.EventHandler(this.fnameBox_Leave);
             // 
@@ -169,10 +161,9 @@
             // 
             this.lnameBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lnameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnameBox.Location = new System.Drawing.Point(413, 127);
-            this.lnameBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lnameBox.Location = new System.Drawing.Point(310, 103);
             this.lnameBox.Name = "lnameBox";
-            this.lnameBox.Size = new System.Drawing.Size(248, 29);
+            this.lnameBox.Size = new System.Drawing.Size(186, 24);
             this.lnameBox.TabIndex = 8;
             this.lnameBox.Leave += new System.EventHandler(this.lnameBox_Leave);
             // 
@@ -181,10 +172,9 @@
             this.tableLayoutPanel1.SetColumnSpan(this.emailBox, 2);
             this.emailBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.emailBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailBox.Location = new System.Drawing.Point(157, 179);
-            this.emailBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.emailBox.Location = new System.Drawing.Point(118, 145);
             this.emailBox.Name = "emailBox";
-            this.emailBox.Size = new System.Drawing.Size(504, 29);
+            this.emailBox.Size = new System.Drawing.Size(378, 24);
             this.emailBox.TabIndex = 9;
             this.emailBox.Leave += new System.EventHandler(this.emailBox_Leave);
             // 
@@ -193,10 +183,9 @@
             this.tableLayoutPanel1.SetColumnSpan(this.phoneBox, 2);
             this.phoneBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.phoneBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneBox.Location = new System.Drawing.Point(157, 231);
-            this.phoneBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.phoneBox.Location = new System.Drawing.Point(118, 187);
             this.phoneBox.Name = "phoneBox";
-            this.phoneBox.Size = new System.Drawing.Size(504, 29);
+            this.phoneBox.Size = new System.Drawing.Size(378, 24);
             this.phoneBox.TabIndex = 10;
             this.phoneBox.Leave += new System.EventHandler(this.phoneBox_Leave);
             // 
@@ -204,11 +193,10 @@
             // 
             this.passBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.passBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passBox.Location = new System.Drawing.Point(157, 283);
-            this.passBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.passBox.Location = new System.Drawing.Point(118, 229);
             this.passBox.Name = "passBox";
             this.passBox.PasswordChar = '*';
-            this.passBox.Size = new System.Drawing.Size(248, 29);
+            this.passBox.Size = new System.Drawing.Size(186, 24);
             this.passBox.TabIndex = 11;
             this.passBox.Leave += new System.EventHandler(this.pass_Leave);
             // 
@@ -216,22 +204,20 @@
             // 
             this.confirmpassBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.confirmpassBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirmpassBox.Location = new System.Drawing.Point(413, 283);
-            this.confirmpassBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.confirmpassBox.Location = new System.Drawing.Point(310, 229);
             this.confirmpassBox.Name = "confirmpassBox";
             this.confirmpassBox.PasswordChar = '*';
-            this.confirmpassBox.Size = new System.Drawing.Size(248, 29);
+            this.confirmpassBox.Size = new System.Drawing.Size(186, 24);
             this.confirmpassBox.TabIndex = 12;
             this.confirmpassBox.Leave += new System.EventHandler(this.pass_Leave);
             // 
             // UserSignup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(685, 386);
+            this.ClientSize = new System.Drawing.Size(514, 314);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MinimumSize = new System.Drawing.Size(661, 358);
+            this.MinimumSize = new System.Drawing.Size(500, 298);
             this.Name = "UserSignup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Signup";
