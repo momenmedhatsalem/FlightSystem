@@ -1,9 +1,23 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2022                    */
-/* Created on:     03/05/2024 2:23:48 PM                        */
+/* Created on:     04/05/2024 5:32:27 PM                        */
 /*==============================================================*/
 
-use Flight
+use FlightDB
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('BOARDING') and o.name = 'FK_BOARDING_BOARDING_FLIGHT')
+alter table BOARDING
+   drop constraint FK_BOARDING_BOARDING_FLIGHT
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('BOARDING') and o.name = 'FK_BOARDING_BOARDING2_PASSENGE')
+alter table BOARDING
+   drop constraint FK_BOARDING_BOARDING2_PASSENGE
+go
+
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('BOOKING') and o.name = 'FK_BOOKING_MANAGES_USER')
@@ -69,6 +83,31 @@ go
 
 if exists (select 1
             from  sysindexes
+           where  id    = object_id('BOARDING')
+            and   name  = 'BOARDING2_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index BOARDING.BOARDING2_FK
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('BOARDING')
+            and   name  = 'BOARDING_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index BOARDING.BOARDING_FK
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('BOARDING')
+            and   type = 'U')
+   drop table BOARDING
+go
+
+if exists (select 1
+            from  sysindexes
            where  id    = object_id('BOOKING')
             and   name  = 'MANAGES_FK'
             and   indid > 0
@@ -115,6 +154,13 @@ if exists (select 1
            where  id = object_id('SCHEMA_1.FLIGHT')
             and   type = 'U')
    drop table SCHEMA_1.FLIGHT
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('PASSENGER')
+            and   type = 'U')
+   drop table PASSENGER
 go
 
 if exists (select 1
@@ -178,7 +224,7 @@ go
 /* Table: AIRCRAFT                                              */
 /*==============================================================*/
 create table AIRCRAFT (
-   AIRCRAFTID           int                  IDENTITY(1,1) not null,
+   AIRCRAFTID           int                  IDENTITY(1,1)   not null,
    AIRCRAFTNAME         varchar(40)          not null,
    MANUFACTURER         varchar(40)          not null,
    CAPACITY             int                  not null,
@@ -201,10 +247,40 @@ create table AIRPORT (
 go
 
 /*==============================================================*/
+/* Table: BOARDING                                              */
+/*==============================================================*/
+create table BOARDING (
+   FLI_FLIGHTID         int                  not null,
+   PAS_PASSENGERID      int                  not null,
+   constraint PK_BOARDING primary key (FLI_FLIGHTID, PAS_PASSENGERID)
+)
+go
+
+/*==============================================================*/
+/* Index: BOARDING_FK                                           */
+/*==============================================================*/
+
+
+
+
+create nonclustered index BOARDING_FK on BOARDING (FLI_FLIGHTID ASC)
+go
+
+/*==============================================================*/
+/* Index: BOARDING2_FK                                          */
+/*==============================================================*/
+
+
+
+
+create nonclustered index BOARDING2_FK on BOARDING (PAS_PASSENGERID ASC)
+go
+
+/*==============================================================*/
 /* Table: BOOKING                                               */
 /*==============================================================*/
 create table BOOKING (
-   BOOKINGID            int                  IDENTITY(1,1)   not null,
+   BOOKINGID            int                  IDENTITY(1,1)    not null,
    USE_USERID           int                  not null,
    BOOKINGSTATUS        varchar(40)          not null,
    BOOKINGTIME          datetime             not null,
@@ -226,7 +302,7 @@ go
 /* Table: FLIGHT                                                */
 /*==============================================================*/
 create table SCHEMA_1.FLIGHT (
-   FLIGHTID             int                  IDENTITY(1,1)  not null,
+   FLIGHTID             int                  IDENTITY(1,1)    not null,
    AIR_AIRCRAFTID       int                  not null,
    DEPARTURE_AIRPORTID2 int                  not null,
    ARRIVAL_AIRPORTID2   int                  not null,
@@ -266,6 +342,18 @@ go
 
 
 create nonclustered index TO_FK on SCHEMA_1.FLIGHT (ARRIVAL_AIRPORTID2 ASC)
+go
+
+/*==============================================================*/
+/* Table: PASSENGER                                             */
+/*==============================================================*/
+create table PASSENGER (
+   PASSENGERID          int                  IDENTITY(1,1)  not null,
+   FIRSTNAME            varchar(25)          not null,
+   LASTNAME             varchar(25)          not null,
+   PHONE                varchar(16)          not null,
+   constraint PK_PASSENGER primary key (PASSENGERID)
+)
 go
 
 /*==============================================================*/
@@ -323,7 +411,7 @@ go
 /* Table: "USER"                                                */
 /*==============================================================*/
 create table "USER" (
-   USERID               int                  IDENTITY(1,1) not null,
+   USERID               int                  IDENTITY(1,1)    not null,
    EMAIL                varchar(40)          not null,
    FIRSTNAME            varchar(25)          not null,
    LASTNAME             varchar(25)          not null,
@@ -332,6 +420,16 @@ create table "USER" (
    PHONE                varchar(16)          null,
    constraint PK_USER primary key (USERID)
 )
+go
+
+alter table BOARDING
+   add constraint FK_BOARDING_BOARDING_FLIGHT foreign key (FLI_FLIGHTID)
+      references SCHEMA_1.FLIGHT (FLIGHTID)
+go
+
+alter table BOARDING
+   add constraint FK_BOARDING_BOARDING2_PASSENGE foreign key (PAS_PASSENGERID)
+      references PASSENGER (PASSENGERID)
 go
 
 alter table BOOKING
