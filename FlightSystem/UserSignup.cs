@@ -187,5 +187,10 @@ namespace FlightSystem
             if (cnt == 5) this.submitBtn.Enabled = true;
             else this.submitBtn.Enabled = false;
         }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

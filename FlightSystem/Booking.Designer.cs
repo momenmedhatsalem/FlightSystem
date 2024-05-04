@@ -1,6 +1,6 @@
 ﻿namespace FlightSystem
 {
-    partial class Form1
+    partial class Booking
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.lbl_booking = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxDeparture = new System.Windows.Forms.ComboBox();
+            this.comboBoxDestination = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -51,39 +51,23 @@
             this.lbl_booking.Text = "Book a Flight";
             this.lbl_booking.Click += new System.EventHandler(this.label1_Click);
             // 
-            // comboBox1
+            // comboBoxDeparture
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Alexandria",
-            "Barcelona",
-            "Cairo",
-            "Paris",
-            "Stockholm"});
-            this.comboBox1.Location = new System.Drawing.Point(50, 81);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.Sorted = true;
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.Text = "From";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBoxDeparture.FormattingEnabled = true;
+            this.comboBoxDeparture.Location = new System.Drawing.Point(50, 81);
+            this.comboBoxDeparture.Name = "comboBoxDeparture";
+            this.comboBoxDeparture.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxDeparture.TabIndex = 1;
+            this.comboBoxDeparture.SelectedIndexChanged += new System.EventHandler(this.comboBoxDeparture_SelectedIndexChanged);
             // 
-            // comboBox2
+            // comboBoxDestination
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Alexandria",
-            "Barcelona",
-            "Cairo",
-            "Paris",
-            "Stockholm"});
-            this.comboBox2.Location = new System.Drawing.Point(50, 122);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.Sorted = true;
-            this.comboBox2.TabIndex = 2;
-            this.comboBox2.Text = "To";
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.comboBoxDestination.FormattingEnabled = true;
+            this.comboBoxDestination.Location = new System.Drawing.Point(50, 122);
+            this.comboBoxDestination.Name = "comboBoxDestination";
+            this.comboBoxDestination.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxDestination.TabIndex = 2;
+            this.comboBoxDestination.SelectedIndexChanged += new System.EventHandler(this.comboBoxDestination_SelectedIndexChanged);
             // 
             // dateTimePicker1
             // 
@@ -91,6 +75,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 3;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // dateTimePicker2
             // 
@@ -163,7 +148,7 @@
             this.radioButton2.Text = "Return";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // Booking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -175,12 +160,12 @@
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxDestination);
+            this.Controls.Add(this.comboBoxDeparture);
             this.Controls.Add(this.lbl_booking);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "Booking";
+            this.Text = "Booking";
+            this.Load += new System.EventHandler(this.Booking_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,8 +174,8 @@
         #endregion
 
         private System.Windows.Forms.Label lbl_booking;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBoxDeparture;
+        private System.Windows.Forms.ComboBox comboBoxDestination;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.ComboBox comboBox3;
