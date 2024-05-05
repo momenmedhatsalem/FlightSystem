@@ -163,6 +163,12 @@
     <Compile Include="AddAirCraftForm.Designer.cs">
       <DependentUpon>AddAirCraftForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminSignup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminSignup.Designer.cs">
+      <DependentUpon>AdminSignup.cs</DependentUpon>
+    </Compile>
     <Compile Include="BookingManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddAirCraftForm.resx">
       <DependentUpon>AddAirCraftForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminSignup.resx">
+      <DependentUpon>AdminSignup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BookingManagement.resx">
       <DependentUpon>BookingManagement.cs</DependentUpon>

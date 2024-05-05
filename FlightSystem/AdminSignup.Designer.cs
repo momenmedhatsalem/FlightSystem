@@ -1,6 +1,6 @@
 ﻿namespace FlightSystem
 {
-    partial class UserSignup
+    partial class AdminSignup
     {
         /// <summary>
         /// Required designer variable.
@@ -43,11 +43,7 @@
             this.passLabel = new System.Windows.Forms.Label();
             this.confirmpassLabel = new System.Windows.Forms.Label();
             this.submitBtn = new System.Windows.Forms.Button();
-            this.adminForwardPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.questionLabel = new System.Windows.Forms.Label();
-            this.adminSignupBtn = new System.Windows.Forms.Button();
             this.rootPanel.SuspendLayout();
-            this.adminForwardPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // rootPanel
@@ -69,12 +65,11 @@
             this.rootPanel.Controls.Add(this.passLabel, 0, 7);
             this.rootPanel.Controls.Add(this.confirmpassLabel, 1, 7);
             this.rootPanel.Controls.Add(this.submitBtn, 0, 9);
-            this.rootPanel.Controls.Add(this.adminForwardPanel, 0, 10);
             this.rootPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rootPanel.Location = new System.Drawing.Point(10, 0);
             this.rootPanel.Name = "rootPanel";
             this.rootPanel.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.rootPanel.RowCount = 11;
+            this.rootPanel.RowCount = 10;
             this.rootPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.rootPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.rootPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -85,9 +80,9 @@
             this.rootPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.rootPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.rootPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.rootPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.rootPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.rootPanel.Size = new System.Drawing.Size(464, 361);
-            this.rootPanel.TabIndex = 0;
+            this.rootPanel.TabIndex = 1;
             // 
             // fnameBox
             // 
@@ -114,7 +109,7 @@
             this.rootPanel.SetColumnSpan(this.emailBox, 2);
             this.emailBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.emailBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailBox.Location = new System.Drawing.Point(18, 150);
+            this.emailBox.Location = new System.Drawing.Point(18, 158);
             this.emailBox.Name = "emailBox";
             this.emailBox.Size = new System.Drawing.Size(428, 24);
             this.emailBox.TabIndex = 9;
@@ -125,7 +120,7 @@
             this.rootPanel.SetColumnSpan(this.phoneBox, 2);
             this.phoneBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.phoneBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneBox.Location = new System.Drawing.Point(18, 197);
+            this.phoneBox.Location = new System.Drawing.Point(18, 213);
             this.phoneBox.Name = "phoneBox";
             this.phoneBox.Size = new System.Drawing.Size(428, 24);
             this.phoneBox.TabIndex = 10;
@@ -135,7 +130,7 @@
             // 
             this.passBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.passBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passBox.Location = new System.Drawing.Point(18, 244);
+            this.passBox.Location = new System.Drawing.Point(18, 268);
             this.passBox.Name = "passBox";
             this.passBox.Size = new System.Drawing.Size(211, 24);
             this.passBox.TabIndex = 11;
@@ -146,7 +141,7 @@
             // 
             this.confirmpassBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.confirmpassBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirmpassBox.Location = new System.Drawing.Point(235, 244);
+            this.confirmpassBox.Location = new System.Drawing.Point(235, 268);
             this.confirmpassBox.Name = "confirmpassBox";
             this.confirmpassBox.Size = new System.Drawing.Size(211, 24);
             this.confirmpassBox.TabIndex = 12;
@@ -159,11 +154,11 @@
             this.headerLabel.AutoSize = true;
             this.rootPanel.SetColumnSpan(this.headerLabel, 2);
             this.headerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.headerLabel.Location = new System.Drawing.Point(161, 27);
+            this.headerLabel.Location = new System.Drawing.Point(153, 27);
             this.headerLabel.Name = "headerLabel";
-            this.headerLabel.Size = new System.Drawing.Size(141, 25);
+            this.headerLabel.Size = new System.Drawing.Size(157, 25);
             this.headerLabel.TabIndex = 13;
-            this.headerLabel.Text = "User Signup";
+            this.headerLabel.Text = "Admin Signup";
             this.headerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // firstnameLabel
@@ -193,7 +188,7 @@
             this.emailLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.emailLabel.AutoSize = true;
             this.emailLabel.ForeColor = System.Drawing.Color.DimGray;
-            this.emailLabel.Location = new System.Drawing.Point(18, 130);
+            this.emailLabel.Location = new System.Drawing.Point(18, 138);
             this.emailLabel.Name = "emailLabel";
             this.emailLabel.Size = new System.Drawing.Size(32, 13);
             this.emailLabel.TabIndex = 16;
@@ -204,7 +199,7 @@
             this.phoneLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.phoneLabel.AutoSize = true;
             this.phoneLabel.ForeColor = System.Drawing.Color.DimGray;
-            this.phoneLabel.Location = new System.Drawing.Point(18, 177);
+            this.phoneLabel.Location = new System.Drawing.Point(18, 193);
             this.phoneLabel.Name = "phoneLabel";
             this.phoneLabel.Size = new System.Drawing.Size(38, 13);
             this.phoneLabel.TabIndex = 18;
@@ -215,7 +210,7 @@
             this.passLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.passLabel.AutoSize = true;
             this.passLabel.ForeColor = System.Drawing.Color.DimGray;
-            this.passLabel.Location = new System.Drawing.Point(18, 224);
+            this.passLabel.Location = new System.Drawing.Point(18, 248);
             this.passLabel.Name = "passLabel";
             this.passLabel.Size = new System.Drawing.Size(53, 13);
             this.passLabel.TabIndex = 20;
@@ -226,7 +221,7 @@
             this.confirmpassLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.confirmpassLabel.AutoSize = true;
             this.confirmpassLabel.ForeColor = System.Drawing.Color.DimGray;
-            this.confirmpassLabel.Location = new System.Drawing.Point(235, 224);
+            this.confirmpassLabel.Location = new System.Drawing.Point(235, 248);
             this.confirmpassLabel.Name = "confirmpassLabel";
             this.confirmpassLabel.Size = new System.Drawing.Size(90, 13);
             this.confirmpassLabel.TabIndex = 19;
@@ -239,7 +234,7 @@
             this.submitBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.submitBtn.Enabled = false;
             this.submitBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.submitBtn.Location = new System.Drawing.Point(178, 283);
+            this.submitBtn.Location = new System.Drawing.Point(178, 315);
             this.submitBtn.Name = "submitBtn";
             this.submitBtn.Padding = new System.Windows.Forms.Padding(3);
             this.submitBtn.Size = new System.Drawing.Size(108, 30);
@@ -248,60 +243,19 @@
             this.submitBtn.UseVisualStyleBackColor = true;
             this.submitBtn.Click += new System.EventHandler(this.submitBtn_Clicked);
             // 
-            // adminForwardPanel
-            // 
-            this.adminForwardPanel.BackColor = System.Drawing.Color.Transparent;
-            this.adminForwardPanel.Controls.Add(this.questionLabel);
-            this.adminForwardPanel.Controls.Add(this.adminSignupBtn);
-            this.adminForwardPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.adminForwardPanel.Location = new System.Drawing.Point(18, 331);
-            this.adminForwardPanel.Name = "adminForwardPanel";
-            this.adminForwardPanel.Size = new System.Drawing.Size(211, 27);
-            this.adminForwardPanel.TabIndex = 22;
-            // 
-            // questionLabel
-            // 
-            this.questionLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.questionLabel.AutoSize = true;
-            this.questionLabel.Location = new System.Drawing.Point(3, 7);
-            this.questionLabel.Name = "questionLabel";
-            this.questionLabel.Size = new System.Drawing.Size(95, 13);
-            this.questionLabel.TabIndex = 23;
-            this.questionLabel.Text = "Are you an admin?";
-            this.questionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // adminSignupBtn
-            // 
-            this.adminSignupBtn.BackColor = System.Drawing.Color.Transparent;
-            this.adminSignupBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.adminSignupBtn.FlatAppearance.BorderSize = 0;
-            this.adminSignupBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.adminSignupBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.adminSignupBtn.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.adminSignupBtn.Location = new System.Drawing.Point(104, 3);
-            this.adminSignupBtn.Name = "adminSignupBtn";
-            this.adminSignupBtn.Size = new System.Drawing.Size(95, 22);
-            this.adminSignupBtn.TabIndex = 14;
-            this.adminSignupBtn.Text = "Signup as admin";
-            this.adminSignupBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.adminSignupBtn.UseVisualStyleBackColor = false;
-            this.adminSignupBtn.Click += new System.EventHandler(this.adminSignupBtn_Click);
-            // 
-            // UserSignup
+            // AdminSignup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 361);
             this.Controls.Add(this.rootPanel);
             this.MinimumSize = new System.Drawing.Size(500, 400);
-            this.Name = "UserSignup";
+            this.Name = "AdminSignup";
             this.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User signup";
+            this.Text = "Admin signup";
             this.rootPanel.ResumeLayout(false);
             this.rootPanel.PerformLayout();
-            this.adminForwardPanel.ResumeLayout(false);
-            this.adminForwardPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -323,8 +277,5 @@
         private System.Windows.Forms.Label passLabel;
         private System.Windows.Forms.Label confirmpassLabel;
         private System.Windows.Forms.Button submitBtn;
-        private System.Windows.Forms.FlowLayoutPanel adminForwardPanel;
-        private System.Windows.Forms.Label questionLabel;
-        private System.Windows.Forms.Button adminSignupBtn;
     }
 }

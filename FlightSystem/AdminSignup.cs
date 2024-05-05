@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,15 +14,13 @@ using System.Windows.Forms;
 
 namespace FlightSystem
 {
-    public partial class UserSignup : Form
+    public partial class AdminSignup : Form
     {
-        public UserSignup()
+        public AdminSignup()
         {
             InitializeComponent();
         }
 
-// Events
-        
         private void nameBox_TextChanged(object sender, EventArgs e)
         {
             TextBox obj = (TextBox)sender;
@@ -85,7 +82,7 @@ namespace FlightSystem
                 string connString = "Server=WINDOWS;Database=FlightDB;Integrated Security=True";
 
                 // SQl Query
-                string query = $"Insert into [user] (email, firstname, lastname, password, phone, isadmin) values (@mail, @fname, @lname, @password, @phone, 0);";
+                string query = $"Insert into [user] (email, firstname, lastname, password, phone, isadmin) values (@mail, @fname, @lname, @password, @phone, 1);";
 
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
@@ -120,7 +117,7 @@ namespace FlightSystem
             }
         }
 
-// Funcs
+        // Funcs
         private string passwordHash()
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -186,11 +183,6 @@ namespace FlightSystem
 
             if (cnt == 5) this.submitBtn.Enabled = true;
             else this.submitBtn.Enabled = false;
-        }
-
-        private void adminSignupBtn_Click(object sender, EventArgs e)
-        {
-            // Empty for now
         }
     }
 }
