@@ -13,7 +13,7 @@ namespace FlightSystem
 {
     public partial class EditFlight : Form
     {
-        private const string connString = "Server=LAPTOP-9K4RMR73;Database=FlightDB;Integrated Security=True";
+        private const string connString = "Server=OMC-MEDHAT;Database=Flight;Integrated Security=True";
 
         public EditFlight()
         {
@@ -61,6 +61,11 @@ namespace FlightSystem
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
+        }
+
+        private void EditFlight_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
