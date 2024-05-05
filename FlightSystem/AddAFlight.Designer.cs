@@ -169,7 +169,6 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(58, 20);
             this.textBox1.TabIndex = 13;
-
             // 
             // button1
             // 
