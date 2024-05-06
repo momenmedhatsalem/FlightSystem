@@ -88,6 +88,7 @@
             this.rootPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.rootPanel.Size = new System.Drawing.Size(464, 361);
             this.rootPanel.TabIndex = 0;
+            this.rootPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.rootPanel_Paint);
             // 
             // fnameBox
             // 

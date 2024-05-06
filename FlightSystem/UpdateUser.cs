@@ -66,13 +66,13 @@ namespace FlightSystem
 
         private void pass_Change(object sender, EventArgs e)
         {
-            if (this.passBox.Text == this.confirmpassBox.Text && this.passBox.Text.Length != 0)
+            if (this.passBox.Text.Length != 0)
             {
-                this.passBox.BackColor = this.confirmpassBox.BackColor = Color.LightGreen;
+                this.passBox.BackColor = Color.LightGreen;
             }
             else
             {
-                this.passBox.BackColor = this.confirmpassBox.BackColor = Color.OrangeRed;
+                this.passBox.BackColor = Color.OrangeRed;
             }
             this.checkState();
         }

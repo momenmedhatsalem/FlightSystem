@@ -84,6 +84,9 @@ namespace FlightSystem
                             // User authenticated
                             MessageBox.Show("Login successful.", "Success");
                             // Add code to navigate to the next form or perform other actions after successful login
+                            this.Close();
+
+
                         }
                         else
                         {
@@ -97,6 +100,7 @@ namespace FlightSystem
                     }
                 }
             }
+
         }
 
 
@@ -176,6 +180,19 @@ namespace FlightSystem
         private void headerLabel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void passBox_TextChanged(object sender, EventArgs e)
+        {
+            if (this.passBox.Text.Length != 0)
+            {
+                this.passBox.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                this.passBox.BackColor = Color.OrangeRed;
+            }
+            this.checkState();
         }
     }
 }

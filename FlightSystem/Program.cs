@@ -16,7 +16,8 @@ namespace FlightSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UserSignup());
+            Application.Run(new UserLogin());
+            
         }
     }
 }

@@ -136,6 +136,7 @@
             this.passBox.PasswordChar = '*';
             this.passBox.Size = new System.Drawing.Size(186, 24);
             this.passBox.TabIndex = 11;
+            this.passBox.TextChanged += new System.EventHandler(this.passBox_TextChanged);
             this.passBox.Leave += new System.EventHandler(this.pass_Leave);
             // 
             // UserLogin

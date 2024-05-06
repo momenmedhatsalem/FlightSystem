@@ -82,7 +82,7 @@ namespace FlightSystem
             if (validateInfo())
             {
                 // Connection
-                string connString = "Server=WINDOWS;Database=FlightDB;Integrated Security=True";
+                string connString = "Server=OMC-MEDHAT;Database=Flight;Integrated Security=True";
 
                 // SQl Query
                 string query = $"Insert into [user] (email, firstname, lastname, password, phone, isadmin) values (@mail, @fname, @lname, @password, @phone, 0);";
@@ -141,7 +141,7 @@ namespace FlightSystem
         private bool validateInfo()
         {
             // email validation
-            using (SqlConnection connection = new SqlConnection("Server=WINDOWS;Database=FlightDB;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection("Server=OMC-MEDHAT;Database=Flight;Integrated Security=True"))
             {
                 // Create SqlCommand with query and connection
                 using (SqlCommand command = new SqlCommand("SELECT * FROM [user] where email=@email", connection))
@@ -191,6 +191,11 @@ namespace FlightSystem
         private void adminSignupBtn_Click(object sender, EventArgs e)
         {
             // Empty for now
+        }
+
+        private void rootPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
