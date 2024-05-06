@@ -66,7 +66,12 @@ namespace FlightSystem
 
         private void pass_Change(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             if (this.passBox.Text.Length != 0)
+=======
+            /*
+            if (this.passBox.Text == this.confirmpassBox.Text && this.passBox.Text.Length != 0)
+>>>>>>> 069f047 (I Finish Edit Flight and AirCraft Info)
             {
                 this.passBox.BackColor = Color.LightGreen;
             }
@@ -74,7 +79,7 @@ namespace FlightSystem
             {
                 this.passBox.BackColor = Color.OrangeRed;
             }
-            this.checkState();
+            this.checkState();*/
         }
 
         private void submitBtn_Click(object sender, EventArgs e)

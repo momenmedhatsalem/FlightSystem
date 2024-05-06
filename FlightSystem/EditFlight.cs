@@ -49,6 +49,7 @@ namespace FlightSystem
                 Console.WriteLine("Error: " + ex.Message);
             }
         }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -67,6 +68,19 @@ namespace FlightSystem
         private void EditFlight_Load_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(comboBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select Flight ID first");
+            }
+            else
+            {
+                EditFlight_Info next = new EditFlight_Info(comboBox1.Text);
+                next.Show();
+            }
         }
     }
 }

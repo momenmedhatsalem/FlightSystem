@@ -16,8 +16,12 @@ namespace FlightSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
             Application.Run(new UserLogin());
             
+=======
+            Application.Run(new EditFlight_Info());
+>>>>>>> 069f047 (I Finish Edit Flight and AirCraft Info)
         }
     }
 }

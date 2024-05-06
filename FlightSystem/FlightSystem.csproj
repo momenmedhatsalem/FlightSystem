@@ -193,6 +193,18 @@
     <Compile Include="Booking.Designer.cs">
       <DependentUpon>Booking.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditFlight_Info.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditFlight_Info.Designer.cs">
+      <DependentUpon>EditFlight_Info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditAircraft_Info.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditAircraft_Info.Designer.cs">
+      <DependentUpon>EditAircraft_Info.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserLogin.cs">
@@ -225,8 +237,14 @@
     <EmbeddedResource Include="BookingManagement.resx">
       <DependentUpon>BookingManagement.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditAircraft_Info.resx">
+      <DependentUpon>EditAircraft_Info.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditFlight.resx">
       <DependentUpon>EditFlight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditFlight_Info.resx">
+      <DependentUpon>EditFlight_Info.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FlightSelection.resx">
       <DependentUpon>FlightSelection.cs</DependentUpon>
