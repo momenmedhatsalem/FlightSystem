@@ -20,6 +20,7 @@ namespace FlightSystem
         public UserLogin()
         {
             InitializeComponent();
+            
         }
 
 // Events
@@ -84,7 +85,10 @@ namespace FlightSystem
                             // User authenticated
                             MessageBox.Show("Login successful.", "Success");
                             // Add code to navigate to the next form or perform other actions after successful login
-                            this.Close();
+                            UserSignup f = new UserSignup();
+                            f.Show();
+
+                            this.Hide();
 
 
                         }
