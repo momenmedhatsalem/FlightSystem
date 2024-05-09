@@ -26,5 +26,10 @@ namespace FlightSystem
         {
 
         }
+
+        private void FlightSelection_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

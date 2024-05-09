@@ -184,5 +184,10 @@ namespace FlightSystem
             if (cnt == 5) this.submitBtn.Enabled = true;
             else this.submitBtn.Enabled = false;
         }
+
+        private void rootPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

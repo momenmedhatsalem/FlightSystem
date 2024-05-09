@@ -65,6 +65,7 @@
             this.Controls.Add(this.comboBox1);
             this.Name = "FlightSelection";
             this.Text = "FlightSelection";
+            this.Load += new System.EventHandler(this.FlightSelection_Load);
             this.ResumeLayout(false);
 
         }

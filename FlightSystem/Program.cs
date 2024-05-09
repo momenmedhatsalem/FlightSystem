@@ -19,8 +19,13 @@ namespace FlightSystem
 
             //Application.Run(new UserLogin());
 
-            Application.Run(new AddAFlight());
+            Application.Run(new UpdateUser());
 
         }
+        public static class AppGlobals
+        {
+            public static int UserId { get; set; } = 1;
+        }
+
     }
 }

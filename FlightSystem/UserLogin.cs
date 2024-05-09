@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static FlightSystem.Program;
 
 namespace FlightSystem
 {
@@ -60,8 +61,8 @@ namespace FlightSystem
             // Connection
             string connString = "Server=OMC-MEDHAT;Database=Flight;Integrated Security=True";
 
-            // SQl Query
-            string query = "SELECT COUNT(*) FROM [user] WHERE email = @mail AND password = @password";
+            // SQL Query
+            string query = "SELECT UserId FROM [user] WHERE email = @mail AND password = @password";
 
             using (SqlConnection connection = new SqlConnection(connString))
             {
@@ -76,21 +77,21 @@ namespace FlightSystem
                     {
                         connection.Open();
 
-                        // Execute the query and get the count
-                        int count = (int)sqlcmd.ExecuteScalar();
+                        // Execute the query to retrieve UserId
+                        object result = sqlcmd.ExecuteScalar();
 
                         // Check if a user with the provided email and password exists
-                        if (count > 0)
+                        if (result != null)
                         {
-                            // User authenticated
+                            // User authenticated, save UserId
+                            AppGlobals.UserId = Convert.ToInt32(result);
+
                             MessageBox.Show("Login successful.", "Success");
                             // Add code to navigate to the next form or perform other actions after successful login
-                            UserSignup f = new UserSignup();
+                            UpdateUser f = new UpdateUser();
                             f.Show();
 
                             this.Hide();
-
-
                         }
                         else
                         {
@@ -104,8 +105,8 @@ namespace FlightSystem
                     }
                 }
             }
-
         }
+
 
 
         // Funcs

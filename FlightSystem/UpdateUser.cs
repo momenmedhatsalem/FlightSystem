@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static FlightSystem.Program;
 
 namespace FlightSystem
 {
@@ -20,6 +21,31 @@ namespace FlightSystem
         public UpdateUser()
         {
             InitializeComponent();
+            // Pre-fill the input fields with data from the current logged-in user
+            if (AppGlobals.UserId != 0)
+            {
+                string connString = "Server=OMC-MEDHAT;Database=Flight;Integrated Security=True";
+                string query = "SELECT email, firstname, lastname, phone FROM [user] WHERE UserId = @userId";
+
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", AppGlobals.UserId);
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            // Set the text properties of the input fields
+                            emailBox.Text = reader["email"].ToString();
+                            fnameBox.Text = reader["firstname"].ToString();
+                            lnameBox.Text = reader["lastname"].ToString();
+                            phoneBox.Text = reader["phone"].ToString();
+                        }
+                        reader.Close();
+                    }
+                }
+            }
         }
 
 // Events
@@ -81,48 +107,57 @@ namespace FlightSystem
 
         private void submitBtn_Click(object sender, EventArgs e)
         {
-            if (validateInfo())
-            {
+            
+            
                 // Connection
-                string connString = "Server=WINDOWS;Database=FlightDB;Integrated Security=True";
+                string connString2 = "Server=OMC-MEDHAT;Database=Flight;Integrated Security=True";
 
-                // SQl Query
-                string query = $"Insert into [user] (email, firstname, lastname, password, phone, isadmin) values (@mail, @fname, @lname, @password, @phone, 0);";
+                // SQL Query to update the user's record
+                string updateQuery = $"UPDATE [user] SET email = @mail, firstname = @fname, lastname = @lname, phone = @phone WHERE UserId = @userId AND password = @password";
 
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(connString2))
                 {
-                    // Creating command
-                    using (SqlCommand sqlcmd = new SqlCommand(query, connection))
+                    using (SqlCommand updateCmd = new SqlCommand(updateQuery, connection))
                     {
                         // Giving values to parameters
-                        sqlcmd.Parameters.AddWithValue("mail", this.emailBox.Text.ToLower().Trim());
-                        sqlcmd.Parameters.AddWithValue("fname", this.fnameBox.Text.Trim());
-                        sqlcmd.Parameters.AddWithValue("lname", this.lnameBox.Text.Trim());
-                        sqlcmd.Parameters.AddWithValue("password", this.passwordHash());
-                        sqlcmd.Parameters.AddWithValue("phone", this.phoneBox.Text.Trim());
+                        updateCmd.Parameters.AddWithValue("@userId", AppGlobals.UserId);
+                        updateCmd.Parameters.AddWithValue("@mail", this.emailBox.Text.ToLower().Trim());
+                        updateCmd.Parameters.AddWithValue("@fname", this.fnameBox.Text.Trim());
+                        updateCmd.Parameters.AddWithValue("@lname", this.lnameBox.Text.Trim());
+                        updateCmd.Parameters.AddWithValue("@phone", this.phoneBox.Text.Trim());
+                        updateCmd.Parameters.AddWithValue("@password", this.passwordHash()); // Assuming this is the current password
 
                         try
                         {
                             connection.Open();
 
-                            // Execute query
-                            sqlcmd.ExecuteNonQuery();
+                            // Execute update query
+                            int rowsAffected = updateCmd.ExecuteNonQuery();
 
-                            // Acknowledgement
-                            SystemSounds.Beep.Play();
-                            MessageBox.Show($"User {this.fnameBox.Text} has been created successfully.", "Success");
-
+                            if (rowsAffected > 0)
+                            {
+                                // Acknowledgement
+                                SystemSounds.Beep.Play();
+                                MessageBox.Show($"User {this.fnameBox.Text} has been updated successfully.", "Success");
+                            }
+                            else
+                            {
+                                // No rows updated, show error
+                                MessageBox.Show("Failed to update user details. Please check if the provided password is correct.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show($"{ex.ToString()}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
-            }
+            
         }
 
-// Funcs
+
+
+        // Funcs
         private string passwordHash()
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -140,33 +175,7 @@ namespace FlightSystem
             }
         }
 
-        private bool validateInfo()
-        {
-            // email validation
-            using (SqlConnection connection = new SqlConnection("Server=WINDOWS;Database=FlightDB;Integrated Security=True"))
-            {
-                // Create SqlCommand with query and connection
-                using (SqlCommand command = new SqlCommand("SELECT * FROM [user] where email=@email", connection))
-                {
-                    command.Parameters.AddWithValue("email", this.emailBox.Text.ToLower().Trim());
 
-                    connection.Open();
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        // Check if there are rows
-                        if (reader.HasRows)
-                        {
-                            MessageBox.Show("This mail is already in use", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return false;
-                        }
-                    }
-                }
-            }
-
-            return true;
-        }
 
         private bool Matches(string pattern, string text)
         {
@@ -179,20 +188,17 @@ namespace FlightSystem
 
         private void checkState()
         {
-            int cnt = 0;
-            if (this.fnameBox.BackColor == Color.LightGreen) cnt++;
-            if (this.lnameBox.BackColor == Color.LightGreen) cnt++;
-            if (this.emailBox.BackColor == Color.LightGreen) cnt++;
-            if (this.phoneBox.BackColor == Color.LightGreen) cnt++;
-            if (this.passBox.BackColor == Color.LightGreen) cnt++;
 
-            if (cnt == 5) this.submitBtn.Enabled = true;
+
+            if (this.passBox.BackColor == Color.LightGreen && this.emailBox.BackColor == Color.LightGreen && this.fnameBox.BackColor == Color.LightGreen
+                && this.lnameBox.BackColor == Color.LightGreen
+                && this.phoneBox.BackColor == Color.LightGreen) this.submitBtn.Enabled = true;
             else this.submitBtn.Enabled = false;
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-            //hhhh
+           
         }
 
         private void UpdateUser_Load(object sender, EventArgs e)
