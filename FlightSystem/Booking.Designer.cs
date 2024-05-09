@@ -33,8 +33,8 @@
             this.comboBoxDestination = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.numberOfPassengersBox = new System.Windows.Forms.ComboBox();
+            this.flightClassBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.radioBooking = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -84,10 +84,10 @@
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker2.TabIndex = 4;
             // 
-            // comboBox3
+            // numberOfPassengersBox
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.numberOfPassengersBox.FormattingEnabled = true;
+            this.numberOfPassengersBox.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
@@ -95,26 +95,26 @@
             "5",
             "6",
             "7"});
-            this.comboBox3.Location = new System.Drawing.Point(50, 245);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.Sorted = true;
-            this.comboBox3.TabIndex = 5;
-            this.comboBox3.Text = "Passengers";
+            this.numberOfPassengersBox.Location = new System.Drawing.Point(50, 245);
+            this.numberOfPassengersBox.Name = "numberOfPassengersBox";
+            this.numberOfPassengersBox.Size = new System.Drawing.Size(121, 21);
+            this.numberOfPassengersBox.Sorted = true;
+            this.numberOfPassengersBox.TabIndex = 5;
+            this.numberOfPassengersBox.Text = "Passengers";
             // 
-            // comboBox4
+            // flightClassBox
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this.flightClassBox.FormattingEnabled = true;
+            this.flightClassBox.Items.AddRange(new object[] {
             "Business",
             "Economy",
             "First"});
-            this.comboBox4.Location = new System.Drawing.Point(50, 272);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.Sorted = true;
-            this.comboBox4.TabIndex = 6;
-            this.comboBox4.Text = "Class";
+            this.flightClassBox.Location = new System.Drawing.Point(50, 272);
+            this.flightClassBox.Name = "flightClassBox";
+            this.flightClassBox.Size = new System.Drawing.Size(121, 21);
+            this.flightClassBox.Sorted = true;
+            this.flightClassBox.TabIndex = 6;
+            this.flightClassBox.Text = "Class";
             // 
             // button1
             // 
@@ -156,8 +156,8 @@
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioBooking);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox4);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.flightClassBox);
+            this.Controls.Add(this.numberOfPassengersBox);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.comboBoxDestination);
@@ -178,8 +178,8 @@
         private System.Windows.Forms.ComboBox comboBoxDestination;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox numberOfPassengersBox;
+        private System.Windows.Forms.ComboBox flightClassBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RadioButton radioBooking;
         private System.Windows.Forms.RadioButton radioButton2;

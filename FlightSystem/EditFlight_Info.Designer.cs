@@ -209,7 +209,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Name = "EditFlight_Info";
-            this.Text = "Form1";
+            this.Text = "EditFlight";
             this.Load += new System.EventHandler(this.EditFlight_Info_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

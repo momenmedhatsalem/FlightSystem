@@ -174,6 +174,7 @@
             this.Controls.Add(this.listBox1);
             this.Name = "BookingManagement";
             this.Text = "BookingManagement";
+            this.Load += new System.EventHandler(this.BookingManagement_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

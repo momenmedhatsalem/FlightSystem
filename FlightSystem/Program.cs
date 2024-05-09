@@ -19,7 +19,7 @@ namespace FlightSystem
 
             //Application.Run(new UserLogin());
 
-            Application.Run(new UpdateUser());
+            Application.Run(new AddAFlight());
 
         }
         public static class AppGlobals

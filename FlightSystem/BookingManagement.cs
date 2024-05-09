@@ -16,5 +16,10 @@ namespace FlightSystem
         {
             InitializeComponent();
         }
+
+        private void BookingManagement_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

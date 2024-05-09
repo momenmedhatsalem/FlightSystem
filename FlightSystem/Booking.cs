@@ -86,7 +86,12 @@ namespace FlightSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            string departure = comboBoxDeparture.SelectedItem.ToString();
+            string destination = comboBoxDestination.SelectedItem.ToString();
+            DateTime departureDate = dateTimePicker1.Value;
+            DateTime returnDate = dateTimePicker2.Value;
+            int numberOfPassengers = Convert.ToInt32(numberOfPassengersBox.SelectedItem);
+            string flightClass = flightClassBox.SelectedItem.ToString();
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

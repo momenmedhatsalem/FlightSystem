@@ -12,7 +12,9 @@ namespace FlightSystem
 {
     public partial class FlightSelection : Form
     {
-        public FlightSelection()
+        public FlightSelection(string departure, string destination,
+            DateTime departureDate, DateTime returnDate,
+            int numberOfPassengers, string flightClass)
         {
             InitializeComponent();
         }
