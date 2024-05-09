@@ -13,7 +13,7 @@ namespace FlightSystem
 {
     public partial class EditFlight : Form
     {
-        private const string connString = "Server=LAPTOP-9K4RMR73;Database=FlightDB;Integrated Security=True";
+        private const string connString = "Server=DESKTOP-B78KPU7;Database=FlightDB;Integrated Security=True";
 
         public EditFlight()
         {
@@ -90,6 +90,9 @@ namespace FlightSystem
             }
         }
 
+        private void EditFlight_Load_1(object sender, EventArgs e)
+        {
 
+        }
     }
 }

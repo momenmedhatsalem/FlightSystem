@@ -29,7 +29,7 @@ namespace FlightSystem
 
             // Create an instance of FlightSelection form with test data
             FlightSelection flightSelectionForm = new FlightSelection(departure, destination, departureDate, returnDate, numberOfPassengers, flightClass);
-            Application.Run(flightSelectionForm);
+            Application.Run(new EditFlight());
         }
         public static class AppGlobals
         {

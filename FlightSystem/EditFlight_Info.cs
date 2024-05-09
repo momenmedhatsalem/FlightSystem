@@ -28,7 +28,8 @@ namespace FlightSystem
             FlightID = int.Parse(idx);
             this.Load += new System.EventHandler(this.Show_Data);
         }
-        private const string connString = "Server=LAPTOP-9K4RMR73;Database=FlightDB;Integrated Security=True";
+        private const string connString = "Server=DESKTOP-B78KPU7;Database=FlightDB;Integrated Security=True";
+
 
 
 
@@ -172,15 +173,7 @@ namespace FlightSystem
             int numberOFSeats;
             numberOFSeats = int.Parse(AvailableSeats.Text); // Convert to int
 
-
-            if (DepatureIDs.SelectedIndex == -1 || ArrivalIDs.SelectedIndex == -1)
-            {
-                DepatureIDs.BackColor = Color.OrangeRed;
-                ArrivalIDs.BackColor = Color.OrangeRed;
-                MessageBox.Show("Arrival and Depature Airport id Should be selected");
-                
-                return false;
-            }else if (AvailableSeats.Text == "")
+            if (AvailableSeats.Text == "")
             {
                 AvailableSeats.BackColor = Color.OrangeRed;
                 MessageBox.Show("Define the number of seats");
