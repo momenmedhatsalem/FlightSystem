@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
-            this.homeBtn = new System.Windows.Forms.Button();
             this.flightsBtn = new System.Windows.Forms.Button();
-            this.aircraftsBtn = new System.Windows.Forms.Button();
             this.bookingBtn = new System.Windows.Forms.Button();
             this.signoutBtn = new System.Windows.Forms.Button();
             this.profileBtn = new System.Windows.Forms.Button();
@@ -39,33 +37,15 @@
             this.logoPanel = new System.Windows.Forms.Panel();
             this.logo = new System.Windows.Forms.Panel();
             this.menuBtn = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.headerLabel = new System.Windows.Forms.Label();
             this.homePanel = new System.Windows.Forms.Panel();
+            this.userstatusLabel = new System.Windows.Forms.Label();
+            this.signupBtn = new System.Windows.Forms.Button();
+            this.loginBtn = new System.Windows.Forms.Button();
+            this.welcomeLabel = new System.Windows.Forms.Label();
             this.menuPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.homePanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // homeBtn
-            // 
-            this.homeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.homeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.homeBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.homeBtn.FlatAppearance.BorderSize = 0;
-            this.homeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.homeBtn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeBtn.ForeColor = System.Drawing.Color.White;
-            this.homeBtn.Image = ((System.Drawing.Image)(resources.GetObject("homeBtn.Image")));
-            this.homeBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.homeBtn.Location = new System.Drawing.Point(3, 144);
-            this.homeBtn.Name = "homeBtn";
-            this.homeBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.homeBtn.Size = new System.Drawing.Size(194, 44);
-            this.homeBtn.TabIndex = 1;
-            this.homeBtn.Tag = "Home";
-            this.homeBtn.Text = "Home";
-            this.homeBtn.UseVisualStyleBackColor = true;
             // 
             // flightsBtn
             // 
@@ -78,7 +58,7 @@
             this.flightsBtn.ForeColor = System.Drawing.Color.White;
             this.flightsBtn.Image = ((System.Drawing.Image)(resources.GetObject("flightsBtn.Image")));
             this.flightsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.flightsBtn.Location = new System.Drawing.Point(3, 194);
+            this.flightsBtn.Location = new System.Drawing.Point(3, 168);
             this.flightsBtn.Name = "flightsBtn";
             this.flightsBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.flightsBtn.Size = new System.Drawing.Size(194, 44);
@@ -86,26 +66,6 @@
             this.flightsBtn.Tag = "Flights";
             this.flightsBtn.Text = "Flights";
             this.flightsBtn.UseVisualStyleBackColor = true;
-            // 
-            // aircraftsBtn
-            // 
-            this.aircraftsBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.aircraftsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.aircraftsBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.aircraftsBtn.FlatAppearance.BorderSize = 0;
-            this.aircraftsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.aircraftsBtn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aircraftsBtn.ForeColor = System.Drawing.Color.White;
-            this.aircraftsBtn.Image = ((System.Drawing.Image)(resources.GetObject("aircraftsBtn.Image")));
-            this.aircraftsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.aircraftsBtn.Location = new System.Drawing.Point(3, 244);
-            this.aircraftsBtn.Name = "aircraftsBtn";
-            this.aircraftsBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.aircraftsBtn.Size = new System.Drawing.Size(194, 44);
-            this.aircraftsBtn.TabIndex = 3;
-            this.aircraftsBtn.Tag = "Aircrafts";
-            this.aircraftsBtn.Text = "Aircrafts";
-            this.aircraftsBtn.UseVisualStyleBackColor = true;
             // 
             // bookingBtn
             // 
@@ -118,7 +78,7 @@
             this.bookingBtn.ForeColor = System.Drawing.Color.White;
             this.bookingBtn.Image = ((System.Drawing.Image)(resources.GetObject("bookingBtn.Image")));
             this.bookingBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bookingBtn.Location = new System.Drawing.Point(3, 294);
+            this.bookingBtn.Location = new System.Drawing.Point(3, 218);
             this.bookingBtn.Name = "bookingBtn";
             this.bookingBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.bookingBtn.Size = new System.Drawing.Size(194, 44);
@@ -126,6 +86,7 @@
             this.bookingBtn.Tag = "Booking";
             this.bookingBtn.Text = "Booking";
             this.bookingBtn.UseVisualStyleBackColor = true;
+            this.bookingBtn.Click += new System.EventHandler(this.bookingBtn_Click);
             // 
             // signoutBtn
             // 
@@ -138,7 +99,7 @@
             this.signoutBtn.ForeColor = System.Drawing.Color.White;
             this.signoutBtn.Image = ((System.Drawing.Image)(resources.GetObject("signoutBtn.Image")));
             this.signoutBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.signoutBtn.Location = new System.Drawing.Point(3, 485);
+            this.signoutBtn.Location = new System.Drawing.Point(3, 433);
             this.signoutBtn.Name = "signoutBtn";
             this.signoutBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.signoutBtn.Size = new System.Drawing.Size(194, 44);
@@ -146,6 +107,7 @@
             this.signoutBtn.Tag = "Exit";
             this.signoutBtn.Text = "Exit";
             this.signoutBtn.UseVisualStyleBackColor = true;
+            this.signoutBtn.Click += new System.EventHandler(this.signoutBtn_Click);
             // 
             // profileBtn
             // 
@@ -158,7 +120,7 @@
             this.profileBtn.ForeColor = System.Drawing.Color.White;
             this.profileBtn.Image = ((System.Drawing.Image)(resources.GetObject("profileBtn.Image")));
             this.profileBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.profileBtn.Location = new System.Drawing.Point(3, 435);
+            this.profileBtn.Location = new System.Drawing.Point(3, 383);
             this.profileBtn.Name = "profileBtn";
             this.profileBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.profileBtn.Size = new System.Drawing.Size(194, 44);
@@ -166,6 +128,7 @@
             this.profileBtn.Tag = "Profile";
             this.profileBtn.Text = "Profile";
             this.profileBtn.UseVisualStyleBackColor = true;
+            this.profileBtn.Click += new System.EventHandler(this.profileBtn_Click);
             // 
             // menuPanel
             // 
@@ -173,26 +136,23 @@
             this.menuPanel.ColumnCount = 1;
             this.menuPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.menuPanel.Controls.Add(this.logoPanel, 0, 0);
-            this.menuPanel.Controls.Add(this.signoutBtn, 0, 8);
-            this.menuPanel.Controls.Add(this.profileBtn, 0, 7);
-            this.menuPanel.Controls.Add(this.homeBtn, 0, 2);
-            this.menuPanel.Controls.Add(this.bookingBtn, 0, 5);
-            this.menuPanel.Controls.Add(this.flightsBtn, 0, 3);
-            this.menuPanel.Controls.Add(this.aircraftsBtn, 0, 4);
+            this.menuPanel.Controls.Add(this.signoutBtn, 0, 6);
+            this.menuPanel.Controls.Add(this.profileBtn, 0, 5);
+            this.menuPanel.Controls.Add(this.bookingBtn, 0, 3);
+            this.menuPanel.Controls.Add(this.flightsBtn, 0, 2);
             this.menuPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.menuPanel.Location = new System.Drawing.Point(0, 0);
             this.menuPanel.Name = "menuPanel";
-            this.menuPanel.RowCount = 9;
+            this.menuPanel.RowCount = 7;
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.menuPanel.Size = new System.Drawing.Size(200, 532);
+            this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.menuPanel.Size = new System.Drawing.Size(200, 480);
             this.menuPanel.TabIndex = 3;
             // 
             // logoPanel
@@ -230,54 +190,90 @@
             this.menuBtn.UseVisualStyleBackColor = true;
             this.menuBtn.Click += new System.EventHandler(this.menuBtn_Click);
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.headerLabel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(200, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(678, 50);
-            this.panel1.TabIndex = 4;
-            // 
-            // headerLabel
-            // 
-            this.headerLabel.AutoSize = true;
-            this.headerLabel.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.headerLabel.Location = new System.Drawing.Point(22, 13);
-            this.headerLabel.Name = "headerLabel";
-            this.headerLabel.Size = new System.Drawing.Size(76, 25);
-            this.headerLabel.TabIndex = 0;
-            this.headerLabel.Text = "HOME";
-            this.headerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // homePanel
             // 
-            this.homePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(242)))), ((int)(((byte)(252)))));
-            this.homePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.homePanel.Enabled = false;
-            this.homePanel.Location = new System.Drawing.Point(200, 50);
+            this.homePanel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.homePanel.BackColor = System.Drawing.Color.White;
+            this.homePanel.Controls.Add(this.userstatusLabel);
+            this.homePanel.Controls.Add(this.signupBtn);
+            this.homePanel.Controls.Add(this.loginBtn);
+            this.homePanel.Controls.Add(this.welcomeLabel);
+            this.homePanel.Location = new System.Drawing.Point(239, 78);
             this.homePanel.Name = "homePanel";
-            this.homePanel.Size = new System.Drawing.Size(678, 482);
-            this.homePanel.TabIndex = 5;
+            this.homePanel.Size = new System.Drawing.Size(563, 330);
+            this.homePanel.TabIndex = 7;
+            // 
+            // userstatusLabel
+            // 
+            this.userstatusLabel.AutoSize = true;
+            this.userstatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userstatusLabel.Location = new System.Drawing.Point(60, 141);
+            this.userstatusLabel.MaximumSize = new System.Drawing.Size(450, 0);
+            this.userstatusLabel.Name = "userstatusLabel";
+            this.userstatusLabel.Size = new System.Drawing.Size(416, 40);
+            this.userstatusLabel.TabIndex = 10;
+            this.userstatusLabel.Text = "You\'re NOT logged in\r\nPlease consider logging in or signing up for a new account";
+            this.userstatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // signupBtn
+            // 
+            this.signupBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
+            this.signupBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.signupBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.signupBtn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.signupBtn.ForeColor = System.Drawing.Color.White;
+            this.signupBtn.Location = new System.Drawing.Point(309, 227);
+            this.signupBtn.Name = "signupBtn";
+            this.signupBtn.Size = new System.Drawing.Size(97, 33);
+            this.signupBtn.TabIndex = 9;
+            this.signupBtn.Text = "Signup";
+            this.signupBtn.UseVisualStyleBackColor = false;
+            this.signupBtn.Click += new System.EventHandler(this.signupBtn_Click);
+            // 
+            // loginBtn
+            // 
+            this.loginBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
+            this.loginBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.loginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.loginBtn.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginBtn.ForeColor = System.Drawing.Color.White;
+            this.loginBtn.Location = new System.Drawing.Point(125, 227);
+            this.loginBtn.Name = "loginBtn";
+            this.loginBtn.Size = new System.Drawing.Size(97, 33);
+            this.loginBtn.TabIndex = 8;
+            this.loginBtn.Text = "Login";
+            this.loginBtn.UseVisualStyleBackColor = false;
+            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
+            // 
+            // welcomeLabel
+            // 
+            this.welcomeLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.welcomeLabel.AutoSize = true;
+            this.welcomeLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.welcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcomeLabel.Location = new System.Drawing.Point(128, 68);
+            this.welcomeLabel.Name = "welcomeLabel";
+            this.welcomeLabel.Size = new System.Drawing.Size(288, 37);
+            this.welcomeLabel.TabIndex = 7;
+            this.welcomeLabel.Text = "Welcome Back 👋";
+            this.welcomeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(878, 532);
-            this.Controls.Add(this.homePanel);
-            this.Controls.Add(this.panel1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(242)))), ((int)(((byte)(252)))));
+            this.ClientSize = new System.Drawing.Size(951, 480);
             this.Controls.Add(this.menuPanel);
+            this.Controls.Add(this.homePanel);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.menuPanel.ResumeLayout(false);
             this.logoPanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.homePanel.ResumeLayout(false);
+            this.homePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -286,15 +282,15 @@
         private System.Windows.Forms.Button profileBtn;
         private System.Windows.Forms.Button signoutBtn;
         private System.Windows.Forms.Button bookingBtn;
-        private System.Windows.Forms.Button aircraftsBtn;
         private System.Windows.Forms.Button flightsBtn;
-        private System.Windows.Forms.Button homeBtn;
         private System.Windows.Forms.TableLayoutPanel menuPanel;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label headerLabel;
-        private System.Windows.Forms.Panel homePanel;
         private System.Windows.Forms.Panel logoPanel;
         private System.Windows.Forms.Button menuBtn;
         private System.Windows.Forms.Panel logo;
+        private System.Windows.Forms.Panel homePanel;
+        private System.Windows.Forms.Label welcomeLabel;
+        private System.Windows.Forms.Button loginBtn;
+        private System.Windows.Forms.Label userstatusLabel;
+        private System.Windows.Forms.Button signupBtn;
     }
 }
