@@ -33,7 +33,7 @@ namespace FlightSystem
         }
         public static class AppGlobals
         {
-            public static int UserId { get; set; } = 1;
+            public static int UserId { get; set; } = 0;
         }
 
     }
