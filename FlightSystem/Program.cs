@@ -19,8 +19,17 @@ namespace FlightSystem
 
             //Application.Run(new UserLogin());
 
-            Application.Run(new AddAFlight());
+            // Create test data
+            string departure = "New York";
+            string destination = "Los Angeles";
+            DateTime departureDate = DateTime.Now.Date;
+            DateTime returnDate = DateTime.Now.Date.AddDays(7);
+            int numberOfPassengers = 2;
+            string flightClass = "Business";
 
+            // Create an instance of FlightSelection form with test data
+            FlightSelection flightSelectionForm = new FlightSelection(departure, destination, departureDate, returnDate, numberOfPassengers, flightClass);
+            Application.Run(flightSelectionForm);
         }
         public static class AppGlobals
         {
