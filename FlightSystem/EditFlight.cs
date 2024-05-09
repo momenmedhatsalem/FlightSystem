@@ -13,7 +13,7 @@ namespace FlightSystem
 {
     public partial class EditFlight : Form
     {
-        private const string connString = "Server=OMC-MEDHAT;Database=Flight;Integrated Security=True";
+        private const string connString = "Server=LAPTOP-9K4RMR73;Database=FlightDB;Integrated Security=True";
 
         public EditFlight()
         {
@@ -29,7 +29,15 @@ namespace FlightSystem
                 {
                     connection.Open();
 
-                    string query = "SELECT FLIGHTID FROM SCHEMA_1.FLIGHT";
+                    string query = @"SELECT 
+                                F.FLIGHTID, 
+                                CONCAT(F.FLIGHTID, ' - ', Airp.AirportName, ' to ', Airpo.AirportName) AS FlightInfo
+                            FROM 
+                                SCHEMA_1.FLIGHT F
+                            INNER JOIN 
+                                AIRPORT Airp ON F.Departure_AirportiD2 = Airp.AIRPORTID
+                            INNER JOIN 
+                                AIRPORT Airpo ON F.Arrival_AirportID2 = Airpo.AIRPORTID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -37,8 +45,8 @@ namespace FlightSystem
                         {
                             while (reader.Read())
                             {
-                                string flightId = reader["FLIGHTID"].ToString();
-                                comboBox1.Items.Add(flightId);
+                                string flightInfo = reader["FlightInfo"].ToString();
+                                comboBox1.Items.Add(flightInfo);
                             }
                         }
                     }
@@ -46,7 +54,7 @@ namespace FlightSystem
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -65,22 +73,23 @@ namespace FlightSystem
             
         }
 
-        private void EditFlight_Load_1(object sender, EventArgs e)
-        {
 
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(comboBox1.SelectedIndex == -1)
+            if (comboBox1.SelectedIndex == -1)
             {
                 MessageBox.Show("Select Flight ID first");
             }
             else
             {
-                EditFlight_Info next = new EditFlight_Info(comboBox1.Text);
+                string selectedItem = comboBox1.SelectedItem.ToString();
+                string flightId = selectedItem.Split(' ')[0]; // Assuming Flight ID is the first part before a space
+                EditFlight_Info next = new EditFlight_Info(flightId);
                 next.Show();
             }
         }
+
+
     }
 }

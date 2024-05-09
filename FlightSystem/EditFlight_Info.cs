@@ -22,12 +22,13 @@ namespace FlightSystem
         }
 
         public EditFlight_Info(string idx)
+
         {
-            FlightID  = int.Parse(idx);
-            this.Load += new System.EventHandler(this.Show_Data);
             InitializeComponent();
+            FlightID = int.Parse(idx);
+            this.Load += new System.EventHandler(this.Show_Data);
         }
-        private const string connString = "Server=DESKTOP-B78KPU7;Database=FlightDB;Integrated Security=True";
+        private const string connString = "Server=LAPTOP-9K4RMR73;Database=FlightDB;Integrated Security=True";
 
 
 
@@ -40,6 +41,7 @@ namespace FlightSystem
         {
             try
             {
+
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     connection.Open();
@@ -55,19 +57,23 @@ namespace FlightSystem
                         {
                             if (reader.HasRows)
                             {
-                                string departureAirportID = reader["DEPARTURE_AIRPORTID2"].ToString();
-                                string arrivalAirportID = reader["ARRIVAL_AIRPORTID2"].ToString();
-                                DateTime departureDate = (DateTime)reader["DEPARTUREDATE"];
-                                DateTime arrivalDate = (DateTime)reader["ARRIVALDATE"];
-                                int availableSeats = (int)reader["AVAIABLESEATS"];
+                                while (reader.Read())
+                                {
+                                    string departureAirportID = reader["DEPARTURE_AIRPORTID2"].ToString();
+                                    string arrivalAirportID = reader["ARRIVAL_AIRPORTID2"].ToString();
+                                    DateTime departureDate = (DateTime)reader["DEPARTUREDATE"];
+                                    DateTime arrivalDate = (DateTime)reader["ARRIVALDATE"];
+                                    int availableSeats = (int)reader["AVAIABLESEATS"];
 
-                                DepatureDate.Value = departureDate;
-                                ArrivalDate.Value = arrivalDate;
-                                DepatureID.Text = departureAirportID;
-                                ArrivalID.Text = arrivalAirportID;
-                                AvailableSeats.Text = availableSeats.ToString();
+                                    DepatureDate.Value = departureDate;
+                                    ArrivalDate.Value = arrivalDate;
+                                    DepatureIDs.Text = departureAirportID;
+                                    ArrivalIDs.Text = arrivalAirportID;
+                                    AvailableSeats.Text = availableSeats.ToString();
+                                }
                             }
                         }
+
                     }
                     query = "SELECT AIRPORTID FROM AIRPORT";
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -106,7 +112,7 @@ namespace FlightSystem
                         ArrivalID = int.Parse(ArrivalIDs.SelectedValue.ToString());
                         DateTime depatureDate = DepatureDate.Value;
                         DateTime Arrivaldate = ArrivalDate.Value;
-                        AvailableSeats  = int.Parse(this.ArrivalID.Text );
+                        AvailableSeats  = int.Parse(this.ArrivalIDs.Text );
 
                         string query = "UPDATE SCHEMA_1.FLIGHT " +
                                        "set DEPARTURE_AIRPORTID2 = @departureID, ARRIVAL_AIRPORTID2 =@ArrivalID , DEPARTUREDATE = @depatureDate, " +
@@ -202,7 +208,29 @@ namespace FlightSystem
 
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DepatureDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ArrivalIDs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AvailableSeats_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
