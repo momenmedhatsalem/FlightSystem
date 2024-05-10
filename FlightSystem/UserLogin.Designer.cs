@@ -129,12 +129,13 @@
             // 
             // passBox
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.passBox, 2);
             this.passBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.passBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passBox.Location = new System.Drawing.Point(118, 229);
             this.passBox.Name = "passBox";
             this.passBox.PasswordChar = '*';
-            this.passBox.Size = new System.Drawing.Size(186, 24);
+            this.passBox.Size = new System.Drawing.Size(378, 24);
             this.passBox.TabIndex = 11;
             this.passBox.TextChanged += new System.EventHandler(this.passBox_TextChanged);
             this.passBox.Leave += new System.EventHandler(this.pass_Leave);

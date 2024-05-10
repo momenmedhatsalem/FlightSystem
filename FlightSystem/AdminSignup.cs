@@ -11,6 +11,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static FlightSystem.Program;
+
 
 namespace FlightSystem
 {
@@ -78,13 +80,11 @@ namespace FlightSystem
         {
             if (validateInfo())
             {
-                // Connection
-                string connString = "Server=WINDOWS;Database=FlightDB;Integrated Security=True";
 
                 // SQl Query
                 string query = $"Insert into [user] (email, firstname, lastname, password, phone, isadmin) values (@mail, @fname, @lname, @password, @phone, 1);";
 
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     // Creating command
                     using (SqlCommand sqlcmd = new SqlCommand(query, connection))
@@ -105,7 +105,13 @@ namespace FlightSystem
 
                             // Acknowledgement
                             SystemSounds.Beep.Play();
-                            MessageBox.Show($"User {this.fnameBox.Text} has been created successfully.", "Success");
+                            MessageBox.Show($"Admin {this.fnameBox.Text} has been created successfully.", "Success");
+
+                            // Forwarding to Login
+                            UserLogin login = new UserLogin();
+                            login.Show();
+
+                            this.Hide();
 
                         }
                         catch (Exception ex)
@@ -138,7 +144,7 @@ namespace FlightSystem
         private bool validateInfo()
         {
             // email validation
-            using (SqlConnection connection = new SqlConnection("Server=WINDOWS;Database=FlightDB;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
             {
                 // Create SqlCommand with query and connection
                 using (SqlCommand command = new SqlCommand("SELECT * FROM [user] where email=@email", connection))

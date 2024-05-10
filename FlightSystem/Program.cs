@@ -34,6 +34,7 @@ namespace FlightSystem
         public static class AppGlobals
         {
             public static int UserId { get; set; } = 0;
+            public static string connString { get; set; } = "Server=WINDOWS;Database=FlightDB;Integrated Security=True";
         }
 
     }
