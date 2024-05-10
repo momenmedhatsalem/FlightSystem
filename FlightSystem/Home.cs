@@ -64,7 +64,7 @@ namespace FlightSystem
             // Work from here
             if (AppGlobals.UserId != 0)
             {
-                using (SqlConnection connection = new SqlConnection("Server=WINDOWS;Database=FlightDB;Integrated Security=True"))
+                using (SqlConnection connection = new SqlConnection("Server=OMC-MEDHAT;Database=Flight;Integrated Security=True"))
                 {
                     // Create SqlCommand with query and connection
                     using (SqlCommand command = new SqlCommand("SELECT * FROM [user] where userid=@id", connection))
@@ -156,6 +156,11 @@ namespace FlightSystem
                 Console.WriteLine("Hello");
                 this.Hide();
             }
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

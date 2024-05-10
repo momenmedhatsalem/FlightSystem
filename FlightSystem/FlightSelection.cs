@@ -14,7 +14,7 @@ namespace FlightSystem
     {
         public FlightSelection(string departure, string destination,
             DateTime departureDate, DateTime returnDate,
-            int numberOfPassengers, string flightClass)
+            int numberOfPassengers, string flightClass, bool Return)
         {
             InitializeComponent();
         }

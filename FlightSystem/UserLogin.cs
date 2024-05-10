@@ -88,7 +88,7 @@ namespace FlightSystem
 
                             MessageBox.Show("Login successful.", "Success");
                             // Add code to navigate to the next form or perform other actions after successful login
-                            UpdateUser f = new UpdateUser();
+                            Home f = new Home();
                             f.Show();
 
                             this.Hide();

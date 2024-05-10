@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using System.Data.SqlClient;
+using System.Windows.Controls;
 
 namespace FlightSystem
 {
@@ -17,7 +18,7 @@ namespace FlightSystem
         public Booking()
         {
             InitializeComponent();
-            radioBooking.Checked = true;
+            rdioOneWay.Checked = true;
             
 
         }
@@ -86,17 +87,91 @@ namespace FlightSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Validate information first
+            if (!validateInfo())
+            {
+                
+                return;
+            }
+
+            // If all information is completed, proceed
             string departure = comboBoxDeparture.SelectedItem.ToString();
             string destination = comboBoxDestination.SelectedItem.ToString();
             DateTime departureDate = dateTimePicker1.Value;
             DateTime returnDate = dateTimePicker2.Value;
             int numberOfPassengers = Convert.ToInt32(numberOfPassengersBox.SelectedItem);
             string flightClass = flightClassBox.SelectedItem.ToString();
+            bool Return = rdioTwoWay.Checked;
+
+            FlightSelection f = new FlightSelection(departure, destination,
+                departureDate, returnDate,
+                numberOfPassengers, flightClass, Return);
+            f.Show();
+            this.Hide();
         }
+
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
         }
+
+        private void radioBooking_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        private bool validateInfo()
+        {
+            // Check if departure is selected
+            if (comboBoxDeparture.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a departure location.");
+                return false;
+            }
+
+            // Check if destination is selected
+            if (comboBoxDestination.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a destination location.");
+                return false;
+            }
+
+            // Check if departure date is selected
+            if (dateTimePicker1.Value == null)
+            {
+                MessageBox.Show("Please select a departure date.");
+                return false;
+            }
+
+            // Check if return date is selected
+            if (dateTimePicker2.Value == null)
+            {
+                MessageBox.Show("Please select a return date.");
+                return false;
+            }
+
+            // Check if number of passengers is selected
+            if (numberOfPassengersBox.SelectedItem == null)
+            {
+                MessageBox.Show("Please select the number of passengers.");
+                return false;
+            }
+
+            // Check if flight class is selected
+            if (flightClassBox.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a flight class.");
+                return false;
+            }
+
+            // If all checks pass, return true
+            return true;
+        }
+
     }
 }

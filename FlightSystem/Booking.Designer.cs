@@ -36,8 +36,8 @@
             this.numberOfPassengersBox = new System.Windows.Forms.ComboBox();
             this.flightClassBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.radioBooking = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rdioOneWay = new System.Windows.Forms.RadioButton();
+            this.rdioTwoWay = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // lbl_booking
@@ -126,35 +126,37 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // radioBooking
+            // rdioOneWay
             // 
-            this.radioBooking.AutoSize = true;
-            this.radioBooking.Location = new System.Drawing.Point(240, 249);
-            this.radioBooking.Name = "radioBooking";
-            this.radioBooking.Size = new System.Drawing.Size(70, 17);
-            this.radioBooking.TabIndex = 8;
-            this.radioBooking.TabStop = true;
-            this.radioBooking.Text = "One Way";
-            this.radioBooking.UseVisualStyleBackColor = true;
+            this.rdioOneWay.AutoSize = true;
+            this.rdioOneWay.Location = new System.Drawing.Point(240, 249);
+            this.rdioOneWay.Name = "rdioOneWay";
+            this.rdioOneWay.Size = new System.Drawing.Size(70, 17);
+            this.rdioOneWay.TabIndex = 8;
+            this.rdioOneWay.TabStop = true;
+            this.rdioOneWay.Text = "One Way";
+            this.rdioOneWay.UseVisualStyleBackColor = true;
+            this.rdioOneWay.CheckedChanged += new System.EventHandler(this.radioBooking_CheckedChanged);
             // 
-            // radioButton2
+            // rdioTwoWay
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(240, 272);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(57, 17);
-            this.radioButton2.TabIndex = 9;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Return";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rdioTwoWay.AutoSize = true;
+            this.rdioTwoWay.Location = new System.Drawing.Point(240, 272);
+            this.rdioTwoWay.Name = "rdioTwoWay";
+            this.rdioTwoWay.Size = new System.Drawing.Size(57, 17);
+            this.rdioTwoWay.TabIndex = 9;
+            this.rdioTwoWay.TabStop = true;
+            this.rdioTwoWay.Text = "Return";
+            this.rdioTwoWay.UseVisualStyleBackColor = true;
+            this.rdioTwoWay.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // Booking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 450);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioBooking);
+            this.Controls.Add(this.rdioTwoWay);
+            this.Controls.Add(this.rdioOneWay);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.flightClassBox);
             this.Controls.Add(this.numberOfPassengersBox);
@@ -181,8 +183,8 @@
         private System.Windows.Forms.ComboBox numberOfPassengersBox;
         private System.Windows.Forms.ComboBox flightClassBox;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RadioButton radioBooking;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rdioOneWay;
+        private System.Windows.Forms.RadioButton rdioTwoWay;
     }
 }
 
