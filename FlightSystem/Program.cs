@@ -20,8 +20,8 @@ namespace FlightSystem
             //Application.Run(new UserLogin());
 
             // Create test data
-            string departure = "New York";
-            string destination = "Los Angeles";
+            int departure = 1;
+            int destination = 2;
             DateTime departureDate = DateTime.Now.Date;
             DateTime returnDate = DateTime.Now.Date.AddDays(7);
             int numberOfPassengers = 2;
@@ -33,7 +33,7 @@ namespace FlightSystem
         }
         public static class AppGlobals
         {
-            public static int UserId { get; set; } = 0;
+            public static int UserId { get; set; } = 1;
             public static string connString { get; set; } = "Server=WINDOWS;Database=FlightDB;Integrated Security=True";
         }
 

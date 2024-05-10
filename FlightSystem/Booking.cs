@@ -95,15 +95,28 @@ namespace FlightSystem
             }
 
             // If all information is completed, proceed
-            string departure = comboBoxDeparture.SelectedItem.ToString();
-            string destination = comboBoxDestination.SelectedItem.ToString();
+            int departureAirportID = 0;
+            if (comboBoxDeparture.SelectedItem != null)
+            {
+                KeyValuePair<string, int> selectedDepartureAirport = (KeyValuePair<string, int>)comboBoxDeparture.SelectedItem;
+                departureAirportID = selectedDepartureAirport.Value;
+            }
+
+            // Get the selected destination airport ID
+            int destinationAirportID = 0;
+            if (comboBoxDestination.SelectedItem != null)
+            {
+                KeyValuePair<string, int> selectedDestinationAirport = (KeyValuePair<string, int>)comboBoxDestination.SelectedItem;
+                destinationAirportID = selectedDestinationAirport.Value;
+            }
+
             DateTime departureDate = dateTimePicker1.Value;
             DateTime returnDate = dateTimePicker2.Value;
             int numberOfPassengers = Convert.ToInt32(numberOfPassengersBox.SelectedItem);
             string flightClass = flightClassBox.SelectedItem.ToString();
             bool Return = rdioTwoWay.Checked;
 
-            FlightSelection f = new FlightSelection(departure, destination,
+            FlightSelection f = new FlightSelection(departureAirportID, destinationAirportID,
                 departureDate, returnDate,
                 numberOfPassengers, flightClass, Return);
             f.Show();
@@ -140,7 +153,15 @@ namespace FlightSystem
                 MessageBox.Show("Please select a destination location.");
                 return false;
             }
+            // Check if departure and destination are the same
+            KeyValuePair<string, int> selectedDeparture = (KeyValuePair<string, int>)comboBoxDeparture.SelectedItem;
+            KeyValuePair<string, int> selectedDestination = (KeyValuePair<string, int>)comboBoxDestination.SelectedItem;
 
+            if (selectedDeparture.Value == selectedDestination.Value)
+            {
+                MessageBox.Show("Departure and destination airports cannot be the same.");
+                return false;
+            }
             // Check if departure date is selected
             if (dateTimePicker1.Value == null)
             {
