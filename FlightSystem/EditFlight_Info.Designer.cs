@@ -46,8 +46,9 @@
             this.AvailableSeats.Location = new System.Drawing.Point(341, 228);
             this.AvailableSeats.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AvailableSeats.Name = "AvailableSeats";
-            this.AvailableSeats.Size = new System.Drawing.Size(58, 20);
+            this.AvailableSeats.Size = new System.Drawing.Size(70, 20);
             this.AvailableSeats.TabIndex = 40;
+            this.AvailableSeats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label8
             // 
@@ -78,14 +79,14 @@
             this.button1.TabIndex = 37;
             this.button1.Text = "Save Changes";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Update_Data);
+            this.button1.MouseCaptureChanged += new System.EventHandler(this.Update_Data);
             // 
             // ArrivalDate
             // 
             this.ArrivalDate.Location = new System.Drawing.Point(341, 188);
             this.ArrivalDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ArrivalDate.Name = "ArrivalDate";
-            this.ArrivalDate.Size = new System.Drawing.Size(151, 20);
+            this.ArrivalDate.Size = new System.Drawing.Size(195, 20);
             this.ArrivalDate.TabIndex = 36;
             // 
             // DepatureDate
@@ -93,25 +94,25 @@
             this.DepatureDate.Location = new System.Drawing.Point(341, 148);
             this.DepatureDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DepatureDate.Name = "DepatureDate";
-            this.DepatureDate.Size = new System.Drawing.Size(151, 20);
+            this.DepatureDate.Size = new System.Drawing.Size(195, 20);
             this.DepatureDate.TabIndex = 35;
             // 
             // ArrivalIDs
             // 
             this.ArrivalIDs.FormattingEnabled = true;
-            this.ArrivalIDs.Location = new System.Drawing.Point(359, 108);
+            this.ArrivalIDs.Location = new System.Drawing.Point(341, 108);
             this.ArrivalIDs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ArrivalIDs.Name = "ArrivalIDs";
-            this.ArrivalIDs.Size = new System.Drawing.Size(92, 21);
+            this.ArrivalIDs.Size = new System.Drawing.Size(195, 21);
             this.ArrivalIDs.TabIndex = 34;
             // 
             // DepatureIDs
             // 
             this.DepatureIDs.FormattingEnabled = true;
-            this.DepatureIDs.Location = new System.Drawing.Point(359, 59);
+            this.DepatureIDs.Location = new System.Drawing.Point(341, 59);
             this.DepatureIDs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DepatureIDs.Name = "DepatureIDs";
-            this.DepatureIDs.Size = new System.Drawing.Size(92, 21);
+            this.DepatureIDs.Size = new System.Drawing.Size(195, 21);
             this.DepatureIDs.TabIndex = 33;
             // 
             // label7

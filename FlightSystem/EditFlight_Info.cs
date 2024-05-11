@@ -187,7 +187,11 @@ namespace FlightSystem
                             if (affectedRows > 0)
                             {
                                 MessageBox.Show("The Flight Date Has Been Updated Successfully :)");
+                                EditFlight editFlight = new EditFlight();
+                                editFlight.Show();
+                                this.Hide();
                             }
+                            
 
                         }
                     }
