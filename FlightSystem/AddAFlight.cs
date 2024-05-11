@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static FlightSystem.Program;
 
 namespace FlightSystem
 {
     public partial class AddAFlight : Form
     {
-        private const string connString = "Server=LAPTOP-9K4RMR73;Database=FlightDB;Integrated Security=True";
 
         public AddAFlight()
         {
@@ -25,7 +25,7 @@ namespace FlightSystem
             try
             {
                 // Populate comboBox1 with aircraft IDs
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     connection.Open();
 
@@ -46,7 +46,7 @@ namespace FlightSystem
                 }
 
                 // Populate comboBox2 and comboBox3 with airport IDs and names
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     connection.Open();
 
@@ -99,7 +99,7 @@ namespace FlightSystem
 
                 string query = "SELECT Capacity FROM Aircraft WHERE AIRCRAFTID = @AircraftId";
 
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     connection.Open();
 
@@ -131,6 +131,8 @@ namespace FlightSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!validateInfo())
+                {return;}
             try
             {
                 KeyValuePair<string, string> selectedAircraftId = (KeyValuePair<string, string>)comboBox1.SelectedItem;
@@ -145,7 +147,7 @@ namespace FlightSystem
             INSERT INTO [SCHEMA_1].[FLIGHT] (AIR_AIRCRAFTID, DEPARTURE_AIRPORTID2, ARRIVAL_AIRPORTID2, AVAIABLESEATS, ARRIVALDATE, DEPARTUREDATE)
             VALUES (@AircraftId, @DepartureAirportId, @DestinationAirportId, @AvailableSeats, @ArrivalDate, @DepartureDate)";
 
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     connection.Open();
 
@@ -202,6 +204,54 @@ namespace FlightSystem
         {
 
         }
+        private bool validateInfo()
+        {
+            // Check if aircraft is selected
+            if (comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Please select an aircraft.");
+                return false;
+            }
+
+            // Check if departure airport is selected
+            if (comboBox2.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a departure airport.");
+                return false;
+            }
+
+            // Check if arrival airport is selected
+            if (comboBox3.SelectedItem == null)
+            {
+                MessageBox.Show("Please select an arrival airport.");
+                return false;
+            }
+
+            // Check if available seats is provided
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Please enter the available seats.");
+                return false;
+            }
+
+            // Check if departure date is selected
+            if (dateTimePicker1.Value.Date < DateTime.Today)
+            {
+                MessageBox.Show("Departure date cannot be in the past.");
+                return false;
+            }
+
+            // Check if arrival date is selected and after departure date
+            if (dateTimePicker2.Value.Date <= dateTimePicker1.Value.Date)
+            {
+                MessageBox.Show("Arrival date must be after departure date.");
+                return false;
+            }
+
+            // If all checks pass, return true
+            return true;
+        }
+
     }
 
 

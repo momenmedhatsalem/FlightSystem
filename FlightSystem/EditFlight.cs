@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static FlightSystem.Program;
 
 namespace FlightSystem
 {
     public partial class EditFlight : Form
     {
-        private const string connString = "Server=DESKTOP-B78KPU7;Database=FlightDB;Integrated Security=True";
 
         public EditFlight()
         {
@@ -25,7 +25,7 @@ namespace FlightSystem
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     connection.Open();
 
