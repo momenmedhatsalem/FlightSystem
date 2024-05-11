@@ -14,35 +14,50 @@ namespace FlightSystem
 {
     public partial class Report : Form
     {
+        private System.Windows.Forms.Label[] records;
         public Report()
         {
             InitializeComponent();
-            InitializeGrid();
+            InitializeCards();
         }
 
-        private void InitializeGrid()
+        private void InitializeCards()
         {
-            this.dataGrid.ReadOnly = true;
-            this.dataGrid.Rows.Add(2);
+            records = new System.Windows.Forms.Label[6];
 
-            // Column resize
-            this.dataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            // Rows
-            this.dataGrid.Rows[0].Cells[0].Value = "Most frequent aircrafts";
-            this.dataGrid.Rows[1].Cells[0].Value = "Most frequent airport";
-            this.dataGrid.Rows[2].Cells[0].Value = "Most visited citeis";
+            // Adding labels
+            this.addLabel(this.panel1, 0);
+            this.addLabel(this.panel2, 1);
+            this.addLabel(this.panel3, 2);
+            this.addLabel(this.panel4, 3);
+            this.addLabel(this.panel5, 4);
+            this.addLabel(this.panel6, 5);
 
             // Data
             pushData();
             
         }
 
+        private void addLabel(System.Windows.Forms.Panel panel, int i)
+        {
+            records[i] = new System.Windows.Forms.Label();
+            this.records[i].Dock = System.Windows.Forms.DockStyle.Fill;
+            this.records[i].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.records[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.records[i].Location = new System.Drawing.Point(5, 5);
+            this.records[i].Name = "record" + i;
+            this.records[i].Size = new System.Drawing.Size(181, 18);
+            this.records[i].TabIndex = 0;
+            this.records[i].Text = "0";
+            this.records[i].TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            panel.Controls.Add(records[i]);
+        }
+
         // Don't forget to close reader
         private void pushData()
         {
             // Queries
-            string[] queries = new string[3];
+            string[] queries = new string[6];
             queries[0] = @"
                 select top 1 AIRCRAFTNAME
                 from dbo.AIRCRAFT left outer join SCHEMA_1.FLIGHT
@@ -77,10 +92,23 @@ namespace FlightSystem
 	                order by count(PAS_PASSENGERID) desc
                 );
              ";
+            queries[3] = @"
+                select cast(count(aircraftid) AS NVARCHAR(10))
+                from dbo.AIRCRAFT;
+            ";
+            queries[4] = @"
+                select cast(count(AIRPORT.AIRPORTID) AS NVARCHAR(10))
+                from dbo.AIRPORT;
+            ";
+            queries[5] = @"
+                SELECT CAST(COUNT(SCHEMA_1.FLIGHT.FLIGHTID) AS NVARCHAR(10))
+                FROM SCHEMA_1.FLIGHT
+                WHERE CAST(DEPARTUREDATE AS DATE) >= CAST(GETDATE() AS DATE);
+            ";
             using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
             {
                 connection.Open();
-                for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < 6; ++i)
                 {
                     // Create SqlCommand with query and connection
                     using (SqlCommand command = new SqlCommand(queries[i], connection))
@@ -89,11 +117,11 @@ namespace FlightSystem
                         if (reader.HasRows)
                         {
                             reader.Read();
-                            this.dataGrid.Rows[i].Cells[1].Value = reader.GetString(0);
+                            this.records[i].Text = reader.GetString(0);
                         }
                         else
                         {
-                            this.dataGrid.Rows[i].Cells[1].Value = "No records found";
+                            this.records[i].Text = "No record";
                         }
                     }
                 }
