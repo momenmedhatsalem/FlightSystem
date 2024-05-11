@@ -87,6 +87,7 @@ namespace FlightSystem
                 string flightId = selectedItem.Split(' ')[0]; // Assuming Flight ID is the first part before a space
                 EditFlight_Info next = new EditFlight_Info(flightId);
                 next.Show();
+                this.Hide();
             }
         }
 

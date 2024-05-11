@@ -29,12 +29,12 @@ namespace FlightSystem
             bool Return = false;
             // Create an instance of FlightSelection form with test data
             FlightSelection flightSelectionForm = new FlightSelection(departure, destination, departureDate, returnDate, numberOfPassengers, flightClass, Return);
-            Application.Run(new PassengersInfo(2, 1, 0));
+            Application.Run(new EditFlight());
         }
         public static class AppGlobals
         {
             public static int UserId { get; set; } = 2;
-            public static string connString { get; set; } = "Server=OMC-MEDHAT;Database=Flight;Integrated Security=True";
+            public static string connString { get; set; } = "Server=DESKTOP-B78KPU7;Database=FlightDB;Integrated Security=True";
         }
 
     }
