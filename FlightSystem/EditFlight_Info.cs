@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static FlightSystem.Program;
 
 namespace FlightSystem
 {
@@ -28,7 +29,6 @@ namespace FlightSystem
             FlightID = int.Parse(idx);
             this.Load += new System.EventHandler(this.Show_Data);
         }
-        private const string connString = "Server=DESKTOP-B78KPU7;Database=FlightDB;Integrated Security=True";
 
 
 
@@ -43,7 +43,7 @@ namespace FlightSystem
             try
             {
 
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     connection.Open();
                     string query = "SELECT DEPARTURE_AIRPORTID2, ARRIVAL_AIRPORTID2, DEPARTUREDATE, ARRIVALDATE, AVAIABLESEATS " +
@@ -105,7 +105,7 @@ namespace FlightSystem
             {
                 try
                 {
-                    using (SqlConnection connection = new SqlConnection(connString))
+                    using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                     {
                         connection.Open();
                         int departureID, ArrivalID, AvailableSeats;
