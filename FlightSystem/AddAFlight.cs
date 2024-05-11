@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static FlightSystem.Program;
 
 namespace FlightSystem
 {
     public partial class AddAFlight : Form
     {
-        private const string connString = "Server=LAPTOP-9K4RMR73;Database=FlightDB;Integrated Security=True";
 
         public AddAFlight()
         {
@@ -25,7 +25,7 @@ namespace FlightSystem
             try
             {
                 // Populate comboBox1 with aircraft IDs
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     connection.Open();
 
@@ -46,7 +46,7 @@ namespace FlightSystem
                 }
 
                 // Populate comboBox2 and comboBox3 with airport IDs and names
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     connection.Open();
 
@@ -99,7 +99,7 @@ namespace FlightSystem
 
                 string query = "SELECT Capacity FROM Aircraft WHERE AIRCRAFTID = @AircraftId";
 
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     connection.Open();
 
@@ -145,7 +145,7 @@ namespace FlightSystem
             INSERT INTO [SCHEMA_1].[FLIGHT] (AIR_AIRCRAFTID, DEPARTURE_AIRPORTID2, ARRIVAL_AIRPORTID2, AVAIABLESEATS, ARRIVALDATE, DEPARTUREDATE)
             VALUES (@AircraftId, @DepartureAirportId, @DestinationAirportId, @AvailableSeats, @ArrivalDate, @DepartureDate)";
 
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     connection.Open();
 

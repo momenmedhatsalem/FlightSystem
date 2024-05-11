@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static FlightSystem.Program;
 
 namespace FlightSystem
 {
     public partial class AdminHome : Form
     {
-        private const string connString = "Server=LAPTOP-9K4RMR73;Database=FlightDB;Integrated Security=True";
 
         public AdminHome()
         {
@@ -28,7 +28,7 @@ namespace FlightSystem
             {
                 string query = "SELECT FirstName FROM [USER] WHERE UserId = @UserId";
 
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@UserId", UserId);
@@ -79,6 +79,11 @@ namespace FlightSystem
             EditFlight newForm = new EditFlight();
             newForm.Show();
             this.Hide();
+        }
+
+        private void AdminHome_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 

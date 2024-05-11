@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using static FlightSystem.Program;
 
 namespace FlightSystem
 {
     public partial class AddAirCraftForm : Form
     {
-        private const string connString = "Server=LAPTOP-9K4RMR73;Database=FlightDB;Integrated Security=True";
 
         public AddAirCraftForm()
         {
@@ -60,7 +60,7 @@ namespace FlightSystem
 
             string query = "INSERT INTO Aircraft (AircraftName, Manufacturer, Capacity, Model) VALUES (@AircraftName, @Manufacturer, @Capacity, @Model)";
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 // command.Parameters.AddWithValue("@AircraftID", AircraftID);
@@ -100,6 +100,11 @@ namespace FlightSystem
         }
 
         private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddAirCraftForm_Load(object sender, EventArgs e)
         {
 
         }
