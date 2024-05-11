@@ -52,6 +52,7 @@ namespace FlightSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!validateInfo()) { return; }
             
             string AircraftName= textBox2.Text;
             string Manufacturer= textBox3.Text;
@@ -108,5 +109,40 @@ namespace FlightSystem
         {
 
         }
+
+        private bool validateInfo()
+        {
+            // Check if Aircraft name is provided
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Please enter the aircraft name.");
+                return false;
+            }
+
+            // Check if Manufacturer is provided
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Please enter the manufacturer.");
+                return false;
+            }
+
+            // Check if Model is provided
+            if (string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                MessageBox.Show("Please enter the model.");
+                return false;
+            }
+
+            // Check if Capacity is provided and greater than 0
+            if (!int.TryParse(maskedTextBox1.Text, out int capacity) || capacity <= 0)
+            {
+                MessageBox.Show("Please enter a valid capacity greater than 0.");
+                return false;
+            }
+
+            // If all checks pass, return true
+            return true;
+        }
+
     }
 }
