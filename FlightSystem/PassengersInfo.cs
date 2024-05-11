@@ -98,6 +98,10 @@ namespace FlightSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!ValidateInfo())
+            {
+                return;
+            }
             // Create a new booking for the current user
             string insertBookingQuery = "INSERT INTO BOOKING (USE_USERID, BOOKINGSTATUS, BOOKINGTIME) VALUES (@UserId, 'Confirmed', GETDATE()); SELECT SCOPE_IDENTITY();";
             int bookingId;
@@ -151,7 +155,35 @@ namespace FlightSystem
 
             MessageBox.Show("Booking and passengers created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        private bool ValidateInfo()
+        {
+            for (int i = 0; i < numberOfPassengers; i++)
+            {
+                TextBox txtFirstName = (TextBox)this.Controls[$"txtFirstName{i + 1}"];
+                if (string.IsNullOrEmpty(txtFirstName.Text))
+                {
+                    MessageBox.Show($"Please enter the first name for Passenger {i + 1}.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
 
-        // Other methods for handling user input and saving passenger information...
+                TextBox txtLastName = (TextBox)this.Controls[$"txtLastName{i + 1}"];
+                if (string.IsNullOrEmpty(txtLastName.Text))
+                {
+                    MessageBox.Show($"Please enter the last name for Passenger {i + 1}.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                TextBox txtPhone = (TextBox)this.Controls[$"txtPhone{i + 1}"];
+                if (string.IsNullOrEmpty(txtPhone.Text))
+                {
+                    MessageBox.Show($"Please enter the phone number for Passenger {i + 1}.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+
     }
 }
