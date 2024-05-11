@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static FlightSystem.Program;
 
 namespace FlightSystem
@@ -16,81 +15,106 @@ namespace FlightSystem
     public partial class EditFlight_Info : Form
     {
         private int FlightID;
-        public EditFlight_Info()
+        public EditFlight_Info(string Flight_ID)
         {
+            this.FlightID = int.Parse(Flight_ID);
             InitializeComponent();
-
-        }
-
-        public EditFlight_Info(string idx)
-
-        {
-            InitializeComponent();
-            FlightID = int.Parse(idx);
-            this.Load += new System.EventHandler(this.Show_Data);
         }
 
 
-
-
-
-        /*----------------------------------------------------------------
-         numberOFSeats = int.Parse(AvailableSeats.Text); // Convert string to int
-         -----------------------------------------------------------------*/
-
-        private void Show_Data(object sender, EventArgs e)
+        private void EditFlight_Info_Load(object sender, EventArgs e)
         {
             try
             {
 
+                // Arrival and Depature Arport ( Name & ID )
                 using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     connection.Open();
-                    string query = "SELECT DEPARTURE_AIRPORTID2, ARRIVAL_AIRPORTID2, DEPARTUREDATE, ARRIVALDATE, AVAIABLESEATS " +
-                                   "FROM SCHEMA_1.FLIGHT " +
-                                   "WHERE FLIGHTID = @FlightIndex ";
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    string airportQuery = "SELECT AirportID, AirportName FROM Airport";
+
+                    using (SqlCommand airportCommand = new SqlCommand(airportQuery, connection))
                     {
-                        command.Parameters.AddWithValue("@FlightIndex", FlightID);
-
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        using (SqlDataReader airportReader = airportCommand.ExecuteReader())
                         {
-                            if (reader.HasRows)
-                            {
-                                while (reader.Read())
+                            if(airportReader.HasRows){
+                                while (airportReader.Read())
                                 {
-                                    string departureAirportID = reader["DEPARTURE_AIRPORTID2"].ToString();
-                                    string arrivalAirportID = reader["ARRIVAL_AIRPORTID2"].ToString();
-                                    DateTime departureDate = (DateTime)reader["DEPARTUREDATE"];
-                                    DateTime arrivalDate = (DateTime)reader["ARRIVALDATE"];
-                                    int availableSeats = (int)reader["AVAIABLESEATS"];
-
-                                    DepatureDate.Value = departureDate;
-                                    ArrivalDate.Value = arrivalDate;
-                                    DepatureIDs.Text = departureAirportID;
-                                    ArrivalIDs.Text = arrivalAirportID;
-                                    AvailableSeats.Text = availableSeats.ToString();
+                                    string AirportId = airportReader["AirportID"].ToString();
+                                    string AirportName = airportReader["AirportName"].ToString();
+                                    ArrivalIDs.Items.Add(new KeyValuePair<string, string>(AirportId, AirportName));
+                                    DepatureIDs.Items.Add(new KeyValuePair<string, string>(AirportId, AirportName));
                                 }
-                            }
-                        }
-
-                    }
-                    query = "SELECT AIRPORTID FROM AIRPORT";
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                string airportID = reader["AIRPORTID"].ToString();
-                                DepatureIDs.Items.Add(airportID);
-                                ArrivalIDs.Items.Add(airportID);
                             }
                         }
                     }
                 }
+
+                
+                /*Get the id to get the name of the airport to set it */
+                int ArrivalAirportID = 0 , DepatureAirportID  = 0; // initial value
+
+
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
+                {
+                    connection.Open();
+
+                    string FlightDataQuery = "SELECT * FROM SCHEMA_1.FLIGHT " +
+                                            " WHERE FLIGHTID = @FightID";
+
+                    using (SqlCommand FlightCommand = new SqlCommand(FlightDataQuery, connection))
+                    {
+                        FlightCommand.Parameters.AddWithValue("@FightID", this.FlightID);
+                        using (SqlDataReader FlightReader = FlightCommand.ExecuteReader())
+                        {
+                            if (FlightReader.HasRows)
+                            {
+                                while (FlightReader.Read())
+                                {
+                                    ArrivalAirportID = (int) FlightReader["ARRIVAL_AIRPORTID2"]; 
+                                    DepatureAirportID = (int)FlightReader["DEPARTURE_AIRPORTID2"];
+                                    ArrivalDate.Text = (FlightReader["ARRIVALDATE"].ToString());
+                                    DepatureDate.Text = (FlightReader["DEPARTUREDATE"].ToString());
+                                    AvailableSeats.Text =  FlightReader["AVAIABLESEATS"].ToString();
+                                }
+                            }
+                        }
+                    }
+                }
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
+                {
+                    connection.Open();
+
+                    string AirportNameAndIDQuery = "SELECT AIRPORTID, AIRPORTNAME" +
+                                                    " FROM AIRPORT" +
+                                                    " WHERE AIRPORTID = @ArrivalID OR AIRPORTID = @DepatureID";
+
+                    using (SqlCommand AirportCommand = new SqlCommand(AirportNameAndIDQuery, connection))
+                    {
+                        AirportCommand.Parameters.AddWithValue("@ArrivalID", ArrivalAirportID);
+                        AirportCommand.Parameters.AddWithValue("@DepatureID", DepatureAirportID);
+
+                        using (SqlDataReader AirportReader = AirportCommand.ExecuteReader())
+                        {
+                            while (AirportReader.Read())
+                            {
+                                int airportID = (int) AirportReader["AIRPORTID"];
+                                string airportName = AirportReader["AIRPORTNAME"].ToString();
+
+                                if (airportID == ArrivalAirportID)
+                                {
+                                    ArrivalIDs.Text = airportID + " - " + airportName;
+                                }
+                                    if (airportID == DepatureAirportID)
+                                {
+                                    DepatureIDs.Text = airportID + " - " + airportName;
+                                }
+                            }
+                        }
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -98,51 +122,80 @@ namespace FlightSystem
             }
         }
 
-        private void Save_Changes_Button(object sender, EventArgs e)
+        private void Update_Data(object sender, EventArgs e)
         {
-
-            if (check_State())
-            {
+           if(DataStatus()) {
                 try
                 {
+                    // Get The Data From The Window Form
+                    string part = "" , DepText = DepatureIDs.Text;
+                    for(int i = 0; i < DepText.Length; i++)
+                    {
+                        if (DepText[i] > '0' && DepText[i] <= '9')
+                        {
+                            while (DepText[i] > '0' && DepText[i] <= '9')
+                            {
+                                part += DepText[i];
+                                i++;
+                            }
+                            break;
+                        }
+                    }
+                    
+                    
+                    string part1 = "", ArrText = ArrivalIDs.Text;
+                    for (int i = 0; i < ArrText.Length; i++)
+                    {
+                        if (ArrText[i] > '0' && ArrText[i] <= '9')
+                        {
+                            while (ArrText[i] > '0' && ArrText[i] <= '9')
+                            {
+                                part1 += ArrText[i];
+                                i++;
+                            }
+                            break;
+                        }
+                    }
+
+                    int Depature = int.Parse(part);
+                    int Arrival = int.Parse(part1);
+                    int Seats = int.Parse(AvailableSeats.Text);
+                    DateTime departureDate = DepatureDate.Value.Date;
+                    DateTime arrivalDate = ArrivalDate.Value.Date;
+
+
+
                     using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                     {
                         connection.Open();
-                        int departureID, ArrivalID, AvailableSeats;
-                        departureID = int.Parse(DepatureIDs.SelectedValue.ToString());
-                        ArrivalID = int.Parse(ArrivalIDs.SelectedValue.ToString());
-                        DateTime depatureDate = DepatureDate.Value;
-                        DateTime Arrivaldate = ArrivalDate.Value;
-                        AvailableSeats  = int.Parse(this.ArrivalIDs.Text );
+                        string UpdateQuery = "UPDATE SCHEMA_1.FLIGHT " +
+                                             "SET DEPARTURE_AIRPORTID2 = @Depature, ARRIVAL_AIRPORTID2 = @Arrival, " +
+                                             "ARRIVALDATE = @arrivalDate, DEPARTUREDATE = @departureDate, " +
+                                             "AVAIABLESEATS = @Seats " +
+                                             "WHERE FLIGHTID = @FlightID";
 
-                        string query = "UPDATE SCHEMA_1.FLIGHT " +
-                                       "set DEPARTURE_AIRPORTID2 = @departureID, ARRIVAL_AIRPORTID2 =@ArrivalID , DEPARTUREDATE = @depatureDate, " +
-                                       " ARRIVALDATE = @ArrivalDate , AVAIABLESEATS = @AvailableSeats " +
-                                       
-                                       "WHERE FLIGHTID = @FlightIndex ";
-
-                        using (SqlCommand command = new SqlCommand(query, connection))
+                        using (SqlCommand UpdateCommand = new SqlCommand(UpdateQuery, connection))
                         {
-                            command.Parameters.AddWithValue("@DepartureAirportID", departureID);
-                            command.Parameters.AddWithValue("@ArrivalAirportID", ArrivalID);
-                            command.Parameters.AddWithValue("@DepartureDate", depatureDate);
-                            command.Parameters.AddWithValue("@ArrivalDate", Arrivaldate);
-                            command.Parameters.AddWithValue("@AvailableSeats", AvailableSeats);
-                            command.Parameters.AddWithValue("@FlightIndex", FlightID);
+                            UpdateCommand.Parameters.AddWithValue("@Depature", Depature);
+                            UpdateCommand.Parameters.AddWithValue("@Arrival", Arrival);
+                            UpdateCommand.Parameters.AddWithValue("@arrivalDate", arrivalDate);
+                            UpdateCommand.Parameters.AddWithValue("@departureDate", departureDate);
+                            UpdateCommand.Parameters.AddWithValue("@Seats", Seats);
+                            UpdateCommand.Parameters.AddWithValue("@FlightID", FlightID);
 
-                            int rowsAffected = command.ExecuteNonQuery();
+                            int affectedRows = UpdateCommand.ExecuteNonQuery();
+                            if (affectedRows > 0)
+                            {
+                                MessageBox.Show("The Flight Date Has Been Updated Successfully :)");
+                                EditFlight editFlight = new EditFlight();
+                                editFlight.Show();
+                                this.Hide();
+                            }
+                            
 
-                            if (rowsAffected > 0)
-                            {
-                                MessageBox.Show("Rows updated successfully.");
-                            }
-                            else
-                            {
-                                MessageBox.Show("No rows were updated.");
-                            }
                         }
-
                     }
+
                 }
                 catch (Exception ex)
                 {
@@ -150,82 +203,41 @@ namespace FlightSystem
                 }
             }
         }
-
-        private void Check_days()
+        private bool DataStatus()
         {
-            DateTime depature = DepatureDate.Value;
-            DateTime arrival = ArrivalDate.Value;
-            DateTime today = DateTime.Now;
-            if (depature < today || arrival < today)
-            {
-                DepatureDate.CalendarForeColor = Color.OrangeRed;
-                ArrivalDate.CalendarForeColor = Color.OrangeRed;
-                MessageBox.Show("The Day Should be At lest today");
-            }
-            else if (depature > arrival)
-            {
-                ArrivalDate.CalendarForeColor= Color.OrangeRed;
-                MessageBox.Show("You select the depature day After arrival day Which is not valid");
-            }
-        }
-        private bool check_State()
-        {
-            int numberOFSeats;
-            numberOFSeats = int.Parse(AvailableSeats.Text); // Convert to int
+            DateTime today = DateTime.Today; 
 
-            if (AvailableSeats.Text == "")
+            DateTime departure = DepatureDate.Value.Date; 
+            DateTime arrival = ArrivalDate.Value.Date;
+
+            if (today > departure || today > arrival)
             {
-                AvailableSeats.BackColor = Color.OrangeRed;
-                MessageBox.Show("Define the number of seats");
-                return false;
-            }else if(numberOFSeats == 0)
-            {
-                AvailableSeats.BackColor= Color.OrangeRed;
-                MessageBox.Show("At least the number of seats is: 1");
+                MessageBox.Show("Oops! the day at least should be to day :( \ntoday date is: "+ today);
                 return false;
             }
-            else if(DepatureIDs.Text == ArrivalIDs.Text ){
-                MessageBox.Show("The Depature and Arrival ariportd should be different");
+            if( departure  > arrival)
+            {
+                MessageBox.Show("Oops! the depature date should be before arrival date :(");
                 return false;
             }
-            Check_days();
-            return true;
+            if(AvailableSeats.Text == "" || AvailableSeats.Text == "0")
+            {
+                MessageBox.Show("Oops! Avilable Seats at least one seat :(");
+                return false;
+            }
+            if(CheckIfDepatureDiffertoArrival(DepatureIDs.Text, ArrivalIDs.Text))
+            {
+                MessageBox.Show("Oops! The Depature and Arrivale Airport Should be Different :)");
+                return false;
+            }else
+            {
+                return true;
+            }
+            
         }
-        private void EditFlight_Info_Load(object sender, EventArgs e)
+        private bool CheckIfDepatureDiffertoArrival(string Depater , string Arrival)
         {
-
-        }
-
-        private void DispatureAirport(object sender, EventArgs e)
-        {
-
-        }
-
-        
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DepatureDate_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ArrivalIDs_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AvailableSeats_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            return Depater.Equals(Arrival);
         }
     }
 }
