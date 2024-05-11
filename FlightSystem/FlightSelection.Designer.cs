@@ -35,11 +35,6 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Liverpool    Madrid    2/2/2024      200",
-            "Liverpool    Cairo       15/2/2024    150",
-            "Liverpool    Paris        20/2/2024    20",
-            "Liverpool    Berlin      24/2/2024    80"});
             this.comboBox1.Location = new System.Drawing.Point(24, 65);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(379, 21);
