@@ -34,8 +34,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.ArrivalDate = new System.Windows.Forms.DateTimePicker();
             this.DepatureDate = new System.Windows.Forms.DateTimePicker();
-            this.ArrivalIDs = new System.Windows.Forms.ComboBox();
-            this.DepatureIDs = new System.Windows.Forms.ComboBox();
+            this.ArrivalID = new System.Windows.Forms.ComboBox();
+            this.DepatureID = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -79,7 +79,7 @@
             this.button1.TabIndex = 37;
             this.button1.Text = "Save Changes";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.MouseCaptureChanged += new System.EventHandler(this.Update_Data);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ArrivalDate
             // 
@@ -97,23 +97,24 @@
             this.DepatureDate.Size = new System.Drawing.Size(195, 20);
             this.DepatureDate.TabIndex = 35;
             // 
-            // ArrivalIDs
+            // ArrivalID
             // 
-            this.ArrivalIDs.FormattingEnabled = true;
-            this.ArrivalIDs.Location = new System.Drawing.Point(341, 108);
-            this.ArrivalIDs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ArrivalIDs.Name = "ArrivalIDs";
-            this.ArrivalIDs.Size = new System.Drawing.Size(195, 21);
-            this.ArrivalIDs.TabIndex = 34;
+            this.ArrivalID.FormattingEnabled = true;
+            this.ArrivalID.Location = new System.Drawing.Point(341, 108);
+            this.ArrivalID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ArrivalID.Name = "ArrivalID";
+            this.ArrivalID.Size = new System.Drawing.Size(195, 21);
+            this.ArrivalID.TabIndex = 34;
             // 
-            // DepatureIDs
+            // DepatureID
             // 
-            this.DepatureIDs.FormattingEnabled = true;
-            this.DepatureIDs.Location = new System.Drawing.Point(341, 59);
-            this.DepatureIDs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.DepatureIDs.Name = "DepatureIDs";
-            this.DepatureIDs.Size = new System.Drawing.Size(195, 21);
-            this.DepatureIDs.TabIndex = 33;
+            this.DepatureID.FormattingEnabled = true;
+            this.DepatureID.Location = new System.Drawing.Point(341, 59);
+            this.DepatureID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DepatureID.Name = "DepatureID";
+            this.DepatureID.Size = new System.Drawing.Size(195, 21);
+            this.DepatureID.TabIndex = 33;
+            this.DepatureID.SelectedIndexChanged += new System.EventHandler(this.DepatureIDs_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -156,8 +157,8 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ArrivalDate);
             this.Controls.Add(this.DepatureDate);
-            this.Controls.Add(this.ArrivalIDs);
-            this.Controls.Add(this.DepatureIDs);
+            this.Controls.Add(this.ArrivalID);
+            this.Controls.Add(this.DepatureID);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -177,8 +178,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DateTimePicker ArrivalDate;
         private System.Windows.Forms.DateTimePicker DepatureDate;
-        private System.Windows.Forms.ComboBox ArrivalIDs;
-        private System.Windows.Forms.ComboBox DepatureIDs;
+        private System.Windows.Forms.ComboBox ArrivalID;
+        private System.Windows.Forms.ComboBox DepatureID;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;

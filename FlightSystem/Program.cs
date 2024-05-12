@@ -28,13 +28,14 @@ namespace FlightSystem
             string flightClass = "Business";
             bool Return = false;
             // Create an instance of FlightSelection form with test data
+            EditFlight f = new EditFlight();
             FlightSelection flightSelectionForm = new FlightSelection(departure, destination, departureDate, returnDate, numberOfPassengers, flightClass, Return);
-            Application.Run(flightSelectionForm);
+            Application.Run(f);
         }
         public static class AppGlobals
         {
             public static int UserId { get; set; } = 2;
-            public static string connString { get; set; } = "Server=DESKTOP-IG4DDK3;Database=FlightDB;Integrated Security=True";
+            public static string connString { get; set; } = "Server=OMC-MEDHAT;Database=Flight;Integrated Security=True";
         }
 
     }
