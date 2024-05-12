@@ -22,7 +22,8 @@ namespace FlightSystem
         private bool Return;
         private DateTime departureDate;
         private DateTime returnDate;
-        private int[] id;
+        KeyValuePair<string, int> selectedDepartureFlight;
+        KeyValuePair<string, int> selectedDestinationFlight;
         public FlightSelection(int departure, int destination,
             DateTime departureDate, DateTime returnDate,
             int numberOfPassengers, string flightClass, bool Return)
@@ -86,14 +87,14 @@ namespace FlightSystem
                         Command.Parameters.AddWithValue("returnDate", returnDate);
                         using (SqlDataReader Reader = Command.ExecuteReader())
                         {
-                            
+
                             while (Reader.Read())
                             {
                                 string row = Reader["departure"].ToString() + "\t";
                                 row += Reader["destination"].ToString() + "\t";
                                 row += Reader["DEPARTUREDATE"].ToString() + "\t";
                                 row += Reader["ARRIVALDATE"].ToString();
-                               
+
                                 comboBox1.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["FLIGHTID"])));
                                 Console.WriteLine(row);
                             }
@@ -102,52 +103,7 @@ namespace FlightSystem
                         }
                     }
                 }
-                if (Return)
-                {
-                    // Populate comboBox1 with aircraft IDs
-                    using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
-                    {
-                        connection.Open();
 
-                        string Query = @"
-                            SELECT 
-								Airp.AirportName AS departure, Airpo.AirportName AS destination, F.DEPARTUREDATE, F.ARRIVALDATE
-                            FROM 
-                                SCHEMA_1.FLIGHT F
-                            INNER JOIN 
-                                AIRPORT Airp ON F.Departure_AirportiD2 = Airp.AIRPORTID
-                            INNER JOIN 
-                                AIRPORT Airpo ON F.Arrival_AirportID2 = Airpo.AIRPORTID
-                            WHERE
-								Airp.AIRPORTID = @destination AND Airpo.AIRPORTID = @departure AND  
-                                AVAIABLESEATS >= @numberOfPassengers AND F.DEPARTUREDATE = @returnDate";
-
-                        using (SqlCommand Command = new SqlCommand(Query, connection))
-
-                        {
-                            Command.Parameters.AddWithValue("departure", departure);
-                            Command.Parameters.AddWithValue("destination", destination);
-                            Command.Parameters.AddWithValue("numberOfPassengers", numberOfPassengers);
-                            Command.Parameters.AddWithValue("departureDate", departureDate);
-                            Command.Parameters.AddWithValue("returnDate", returnDate);
-                            using (SqlDataReader Reader = Command.ExecuteReader())
-                            {
-
-                                while (Reader.Read())
-                                {
-                                    id.Append((int)Reader["I"]);
-                                    string row = Reader["departure"].ToString() + "\t";
-                                    row += Reader["destination"].ToString() + "\t";
-                                    row += Reader["DEPARTUREDATE"].ToString() + "\t";
-                                    row += Reader["ARRIVALDATE"].ToString();
-                                    comboBox1.Items.Add(row);
-                                    Console.WriteLine(row);
-                                }
-                            }
-                        }
-                    }
-                }
-                
             }
             catch (Exception ex)
             {
@@ -159,8 +115,82 @@ namespace FlightSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            KeyValuePair<string, int> selectedDepartureFlight = (KeyValuePair<string, int>)comboBox1.SelectedItem;
-            PassengersInfo p = new PassengersInfo(numberOfPassengers, selectedDepartureFlight.Value, 0);
+            if (comboBox1.SelectedIndex < 0)
+            {
+                MessageBox.Show("Select a fight First");
+                return;
+            }
+            selectedDepartureFlight = (KeyValuePair<string, int>)comboBox1.SelectedItem;
+            if (Return)
+            {
+                // Populate comboBox1 with aircraft IDs
+                comboBox1.Items.Clear();
+                button1.Enabled = false;
+                button1.Hide();
+                button2.Enabled = true;
+                button2.Show();
+                MessageBox.Show("Now choose the return flight");
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
+                {
+                    connection.Open();
+
+                    string Query = @"
+                            SELECT 
+								Airp.AirportName AS departure, Airpo.AirportName AS destination, F.DEPARTUREDATE, F.ARRIVALDATE, F.FLIGHTID
+                            FROM 
+                                SCHEMA_1.FLIGHT F
+                            INNER JOIN 
+                                AIRPORT Airp ON F.Departure_AirportiD2 = Airp.AIRPORTID
+                            INNER JOIN 
+                                AIRPORT Airpo ON F.Arrival_AirportID2 = Airpo.AIRPORTID
+                            WHERE
+								Airp.AIRPORTID = @destination AND Airpo.AIRPORTID = @departure AND  
+                                AVAIABLESEATS >= @numberOfPassengers  AND ABS(DATEDIFF(day, DEPARTUREDATE, @returnDate)) <= 3";
+
+                    using (SqlCommand Command = new SqlCommand(Query, connection))
+
+                    {
+                        Command.Parameters.AddWithValue("departure", departure);
+                        Command.Parameters.AddWithValue("destination", destination);
+                        Command.Parameters.AddWithValue("numberOfPassengers", numberOfPassengers);
+                        Command.Parameters.AddWithValue("departureDate", departureDate);
+                        Command.Parameters.AddWithValue("returnDate", returnDate);
+                        using (SqlDataReader Reader = Command.ExecuteReader())
+                        {
+
+                            while (Reader.Read())
+                            {
+                                string row = Reader["departure"].ToString() + "\t";
+                                row += Reader["destination"].ToString() + "\t";
+                                row += Reader["DEPARTUREDATE"].ToString() + "\t";
+                                row += Reader["ARRIVALDATE"].ToString();
+
+                                comboBox1.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["FLIGHTID"])));
+                                Console.WriteLine(row);
+                            }
+                            comboBox1.DisplayMember = "Key";
+                            comboBox1.ValueMember = "Value";
+                        }
+                    }
+                }
+            }
+            else
+            {
+                PassengersInfo p = new PassengersInfo(numberOfPassengers, selectedDepartureFlight.Value, 0);
+                p.Show();
+                this.Hide();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex < 0)
+            {
+                MessageBox.Show("Select a fight First.");
+                return;
+            }
+            selectedDestinationFlight = (KeyValuePair<string, int>)comboBox1.SelectedItem;
+            PassengersInfo p = new PassengersInfo(numberOfPassengers, selectedDepartureFlight.Value, selectedDestinationFlight.Value);
             p.Show();
             this.Hide();
         }
