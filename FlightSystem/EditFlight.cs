@@ -31,7 +31,7 @@ namespace FlightSystem
 
                     string query = @"SELECT 
                                 F.FLIGHTID, 
-                                CONCAT(F.FLIGHTID, ' - ', Airp.AirportName, ' to ', Airpo.AirportName) AS FlightInfo
+                                CONCAT(F.FLIGHTID, ' - ', Airp.AirportName, ' to ', Airpo.AirportName,' | ', F.DepartureDate,' | ', F.ArrivalDate) AS FlightInfo
                             FROM 
                                 SCHEMA_1.FLIGHT F
                             INNER JOIN 
