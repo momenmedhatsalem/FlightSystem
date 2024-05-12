@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,7 +65,7 @@ namespace FlightSystem
             // Work from here
             if (AppGlobals.UserId != 0)
             {
-                using (SqlConnection connection = new SqlConnection("Server=OMC-MEDHAT;Database=Flight;Integrated Security=True"))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     // Create SqlCommand with query and connection
                     using (SqlCommand command = new SqlCommand("SELECT * FROM [user] where userid=@id", connection))
@@ -98,7 +99,18 @@ namespace FlightSystem
 
         private void signoutBtn_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            if (AppGlobals.UserId == 0)
+            {
+                SystemSounds.Beep.Play();
+                MessageBox.Show("You're already logged out Ya Maaan !!", "Logout");
+            }
+            else
+            {
+                AppGlobals.UserId = 0;
+                SystemSounds.Beep.Play();
+                MessageBox.Show("You have logged out successfully Ya Brooo !", "Logout");
+                this.authorizeUser();
+            }
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
@@ -158,9 +170,10 @@ namespace FlightSystem
             }
         }
 
-        private void Home_Load(object sender, EventArgs e)
+        private void reportButton_Click(object sender, EventArgs e)
         {
-
+            Report report = new Report();
+            report.Show();
         }
     }
 }

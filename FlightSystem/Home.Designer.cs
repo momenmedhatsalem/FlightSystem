@@ -31,9 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.flightsBtn = new System.Windows.Forms.Button();
             this.bookingBtn = new System.Windows.Forms.Button();
-            this.signoutBtn = new System.Windows.Forms.Button();
             this.profileBtn = new System.Windows.Forms.Button();
             this.menuPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.reportButton = new System.Windows.Forms.Button();
+            this.signoutBtn = new System.Windows.Forms.Button();
             this.logoPanel = new System.Windows.Forms.Panel();
             this.logo = new System.Windows.Forms.Panel();
             this.menuBtn = new System.Windows.Forms.Button();
@@ -58,7 +59,7 @@
             this.flightsBtn.ForeColor = System.Drawing.Color.White;
             this.flightsBtn.Image = ((System.Drawing.Image)(resources.GetObject("flightsBtn.Image")));
             this.flightsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.flightsBtn.Location = new System.Drawing.Point(3, 168);
+            this.flightsBtn.Location = new System.Drawing.Point(3, 136);
             this.flightsBtn.Name = "flightsBtn";
             this.flightsBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.flightsBtn.Size = new System.Drawing.Size(194, 44);
@@ -78,7 +79,7 @@
             this.bookingBtn.ForeColor = System.Drawing.Color.White;
             this.bookingBtn.Image = ((System.Drawing.Image)(resources.GetObject("bookingBtn.Image")));
             this.bookingBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bookingBtn.Location = new System.Drawing.Point(3, 218);
+            this.bookingBtn.Location = new System.Drawing.Point(3, 186);
             this.bookingBtn.Name = "bookingBtn";
             this.bookingBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.bookingBtn.Size = new System.Drawing.Size(194, 44);
@@ -87,27 +88,6 @@
             this.bookingBtn.Text = "Booking";
             this.bookingBtn.UseVisualStyleBackColor = true;
             this.bookingBtn.Click += new System.EventHandler(this.bookingBtn_Click);
-            // 
-            // signoutBtn
-            // 
-            this.signoutBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.signoutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.signoutBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.signoutBtn.FlatAppearance.BorderSize = 0;
-            this.signoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.signoutBtn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.signoutBtn.ForeColor = System.Drawing.Color.White;
-            this.signoutBtn.Image = ((System.Drawing.Image)(resources.GetObject("signoutBtn.Image")));
-            this.signoutBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.signoutBtn.Location = new System.Drawing.Point(3, 433);
-            this.signoutBtn.Name = "signoutBtn";
-            this.signoutBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.signoutBtn.Size = new System.Drawing.Size(194, 44);
-            this.signoutBtn.TabIndex = 6;
-            this.signoutBtn.Tag = "Exit";
-            this.signoutBtn.Text = "Exit";
-            this.signoutBtn.UseVisualStyleBackColor = true;
-            this.signoutBtn.Click += new System.EventHandler(this.signoutBtn_Click);
             // 
             // profileBtn
             // 
@@ -120,7 +100,7 @@
             this.profileBtn.ForeColor = System.Drawing.Color.White;
             this.profileBtn.Image = ((System.Drawing.Image)(resources.GetObject("profileBtn.Image")));
             this.profileBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.profileBtn.Location = new System.Drawing.Point(3, 383);
+            this.profileBtn.Location = new System.Drawing.Point(3, 369);
             this.profileBtn.Name = "profileBtn";
             this.profileBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.profileBtn.Size = new System.Drawing.Size(194, 44);
@@ -135,25 +115,69 @@
             this.menuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(169)))), ((int)(((byte)(255)))));
             this.menuPanel.ColumnCount = 1;
             this.menuPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.menuPanel.Controls.Add(this.reportButton, 0, 4);
+            this.menuPanel.Controls.Add(this.signoutBtn, 0, 7);
             this.menuPanel.Controls.Add(this.logoPanel, 0, 0);
-            this.menuPanel.Controls.Add(this.signoutBtn, 0, 6);
-            this.menuPanel.Controls.Add(this.profileBtn, 0, 5);
+            this.menuPanel.Controls.Add(this.profileBtn, 0, 6);
             this.menuPanel.Controls.Add(this.bookingBtn, 0, 3);
             this.menuPanel.Controls.Add(this.flightsBtn, 0, 2);
             this.menuPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.menuPanel.Location = new System.Drawing.Point(0, 0);
             this.menuPanel.Name = "menuPanel";
-            this.menuPanel.RowCount = 7;
+            this.menuPanel.RowCount = 8;
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.menuPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.menuPanel.Size = new System.Drawing.Size(200, 480);
+            this.menuPanel.Size = new System.Drawing.Size(200, 466);
             this.menuPanel.TabIndex = 3;
+            // 
+            // reportButton
+            // 
+            this.reportButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.reportButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.reportButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportButton.FlatAppearance.BorderSize = 0;
+            this.reportButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.reportButton.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportButton.ForeColor = System.Drawing.Color.White;
+            this.reportButton.Image = ((System.Drawing.Image)(resources.GetObject("reportButton.Image")));
+            this.reportButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.reportButton.Location = new System.Drawing.Point(3, 236);
+            this.reportButton.Name = "reportButton";
+            this.reportButton.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.reportButton.Size = new System.Drawing.Size(194, 44);
+            this.reportButton.TabIndex = 9;
+            this.reportButton.Tag = "Report";
+            this.reportButton.Text = "Report";
+            this.reportButton.UseVisualStyleBackColor = true;
+            this.reportButton.Click += new System.EventHandler(this.reportButton_Click);
+            // 
+            // signoutBtn
+            // 
+            this.signoutBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.signoutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.signoutBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.signoutBtn.FlatAppearance.BorderSize = 0;
+            this.signoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.signoutBtn.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.signoutBtn.ForeColor = System.Drawing.Color.White;
+            this.signoutBtn.Image = ((System.Drawing.Image)(resources.GetObject("signoutBtn.Image")));
+            this.signoutBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.signoutBtn.Location = new System.Drawing.Point(3, 419);
+            this.signoutBtn.Name = "signoutBtn";
+            this.signoutBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.signoutBtn.Size = new System.Drawing.Size(194, 44);
+            this.signoutBtn.TabIndex = 9;
+            this.signoutBtn.Tag = "Exit";
+            this.signoutBtn.Text = "Exit";
+            this.signoutBtn.UseVisualStyleBackColor = true;
+            this.signoutBtn.Click += new System.EventHandler(this.signoutBtn_Click);
             // 
             // logoPanel
             // 
@@ -198,7 +222,7 @@
             this.homePanel.Controls.Add(this.signupBtn);
             this.homePanel.Controls.Add(this.loginBtn);
             this.homePanel.Controls.Add(this.welcomeLabel);
-            this.homePanel.Location = new System.Drawing.Point(239, 78);
+            this.homePanel.Location = new System.Drawing.Point(130, 71);
             this.homePanel.Name = "homePanel";
             this.homePanel.Size = new System.Drawing.Size(563, 330);
             this.homePanel.TabIndex = 7;
@@ -264,13 +288,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(242)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(951, 480);
+            this.ClientSize = new System.Drawing.Size(733, 466);
             this.Controls.Add(this.menuPanel);
             this.Controls.Add(this.homePanel);
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
-            this.Load += new System.EventHandler(this.Home_Load);
             this.menuPanel.ResumeLayout(false);
             this.logoPanel.ResumeLayout(false);
             this.homePanel.ResumeLayout(false);
@@ -281,7 +304,6 @@
 
         #endregion
         private System.Windows.Forms.Button profileBtn;
-        private System.Windows.Forms.Button signoutBtn;
         private System.Windows.Forms.Button bookingBtn;
         private System.Windows.Forms.Button flightsBtn;
         private System.Windows.Forms.TableLayoutPanel menuPanel;
@@ -293,5 +315,7 @@
         private System.Windows.Forms.Button loginBtn;
         private System.Windows.Forms.Label userstatusLabel;
         private System.Windows.Forms.Button signupBtn;
+        private System.Windows.Forms.Button reportButton;
+        private System.Windows.Forms.Button signoutBtn;
     }
 }
