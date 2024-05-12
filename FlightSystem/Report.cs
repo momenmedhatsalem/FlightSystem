@@ -23,34 +23,18 @@ namespace FlightSystem
 
         private void InitializeCards()
         {
+            // Saving labels references
             records = new System.Windows.Forms.Label[6];
-
-            // Adding labels
-            this.addLabel(this.panel1, 0);
-            this.addLabel(this.panel2, 1);
-            this.addLabel(this.panel3, 2);
-            this.addLabel(this.panel4, 3);
-            this.addLabel(this.panel5, 4);
-            this.addLabel(this.panel6, 5);
+            records[0] = this.record1;
+            records[1] = this.record2;
+            records[2] = this.record3;
+            records[3] = this.record4;
+            records[4] = this.record5;
+            records[5] = this.record6;
 
             // Data
             pushData();
             
-        }
-
-        private void addLabel(System.Windows.Forms.Panel panel, int i)
-        {
-            records[i] = new System.Windows.Forms.Label();
-            this.records[i].Dock = System.Windows.Forms.DockStyle.Fill;
-            this.records[i].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.records[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.records[i].Location = new System.Drawing.Point(5, 5);
-            this.records[i].Name = "record" + i;
-            this.records[i].Size = new System.Drawing.Size(181, 18);
-            this.records[i].TabIndex = 0;
-            this.records[i].Text = "0";
-            this.records[i].TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            panel.Controls.Add(records[i]);
         }
 
         // Don't forget to close reader
