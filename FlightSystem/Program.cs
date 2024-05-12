@@ -34,7 +34,7 @@ namespace FlightSystem
         public static class AppGlobals
         {
             public static int UserId { get; set; } = 2;
-            public static string connString { get; set; } = "Server=DESKTOP-B78KPU7;Database=FlightDB;Integrated Security=True";
+            public static string connString { get; set; } = "Server=OMC-MEDHAT;Database=Flight;Integrated Security=True";
         }
 
     }
