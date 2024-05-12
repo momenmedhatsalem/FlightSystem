@@ -37,14 +37,14 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(24, 65);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(379, 21);
+            this.comboBox1.Size = new System.Drawing.Size(684, 21);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.Text = "Select one";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(458, 65);
+            this.button1.Location = new System.Drawing.Point(668, 161);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;

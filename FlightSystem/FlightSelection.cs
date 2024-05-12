@@ -33,6 +33,13 @@ namespace FlightSystem
             this.Return = Return;
             this.departureDate = departureDate;
             this.returnDate = returnDate;
+            Console.WriteLine("Departure: " + this.departure);
+            Console.WriteLine("Destination: " + this.destination);
+            Console.WriteLine("Number of Passengers: " + this.numberOfPassengers);
+            Console.WriteLine("Return: " + this.Return);
+            Console.WriteLine("Departure Date: " + this.departureDate);
+            Console.WriteLine("Return Date: " + this.returnDate);
+
             InitializeComponent();
 
         }
@@ -58,7 +65,7 @@ namespace FlightSystem
 
                     string Query = @"
                             SELECT 
-								Airp.AirportName AS departure, Airpo.AirportName AS destination, F.DEPARTUREDATE, F.ARRIVALDATE
+								Airp.AirportName AS departure, Airpo.AirportName AS destination, F.DEPARTUREDATE, F.ARRIVALDATE, F.FLIGHTID
                             FROM 
                                 SCHEMA_1.FLIGHT F
                             INNER JOIN 
@@ -67,7 +74,7 @@ namespace FlightSystem
                                 AIRPORT Airpo ON F.Arrival_AirportID2 = Airpo.AIRPORTID
                             WHERE
 								Airp.AIRPORTID = @departure AND Airpo.AIRPORTID = @destination AND  
-                                AVAIABLESEATS >= @numberOfPassengers AND F.DEPARTUREDATE = @departureDate";
+                                AVAIABLESEATS >= @numberOfPassengers  AND ABS(DATEDIFF(day, DEPARTUREDATE, @departureDate)) <= 3";
 
                     using (SqlCommand Command = new SqlCommand(Query, connection))
 
@@ -82,14 +89,16 @@ namespace FlightSystem
                             
                             while (Reader.Read())
                             {
-                                id.Append((int)Reader["I"]);
                                 string row = Reader["departure"].ToString() + "\t";
                                 row += Reader["destination"].ToString() + "\t";
                                 row += Reader["DEPARTUREDATE"].ToString() + "\t";
                                 row += Reader["ARRIVALDATE"].ToString();
-                                comboBox1.Items.Add(row);
+                               
+                                comboBox1.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["FLIGHTID"])));
                                 Console.WriteLine(row);
                             }
+                            comboBox1.DisplayMember = "Key";
+                            comboBox1.ValueMember = "Value";
                         }
                     }
                 }
@@ -150,7 +159,8 @@ namespace FlightSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            PassengersInfo p = new PassengersInfo(numberOfPassengers, id[0], id[1]);
+            KeyValuePair<string, int> selectedDepartureFlight = (KeyValuePair<string, int>)comboBox1.SelectedItem;
+            PassengersInfo p = new PassengersInfo(numberOfPassengers, selectedDepartureFlight.Value, 0);
             p.Show();
             this.Hide();
         }

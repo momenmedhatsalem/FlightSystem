@@ -10,7 +10,7 @@ namespace FlightSystem
         private int numberOfPassengers;
         private int firstFlightId;
         private int lastFlightId;
-
+        
         public PassengersInfo(int numberOfPassengers, int firstFlightId, int secondFlightId)
         {
             InitializeComponent();
@@ -22,6 +22,7 @@ namespace FlightSystem
 
         private void CreatePassengerInputBoxes()
         {
+            System.Console.WriteLine(firstFlightId);
             // Create input boxes for each passenger
             for (int i = 0; i < numberOfPassengers; i++)
             {

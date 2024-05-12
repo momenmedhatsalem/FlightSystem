@@ -20,8 +20,8 @@ namespace FlightSystem
             //Application.Run(new UserLogin());
             //Application.Run(new AdminHome());
             // Create test data
-            int departure = 4;
-            int destination = 5;
+            int departure = 5;
+            int destination = 4;
             DateTime departureDate = DateTime.Now.Date;
             DateTime returnDate = DateTime.Now.Date.AddDays(7);
             int numberOfPassengers = 2;
@@ -30,7 +30,7 @@ namespace FlightSystem
             // Create an instance of FlightSelection form with test data
             EditFlight f = new EditFlight();
             FlightSelection flightSelectionForm = new FlightSelection(departure, destination, departureDate, returnDate, numberOfPassengers, flightClass, Return);
-            Application.Run(f);
+            Application.Run(flightSelectionForm);
         }
         public static class AppGlobals
         {

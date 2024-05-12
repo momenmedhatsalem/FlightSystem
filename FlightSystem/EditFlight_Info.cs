@@ -44,6 +44,7 @@ namespace FlightSystem
                         int airportID = Convert.ToInt32(reader["AirportID"]);
 
                         // Add data to comboBox1
+                        
                         DepatureID.Items.Add(new KeyValuePair<string, int>(airportName, airportID));
 
                         // Add data to comboBox2
