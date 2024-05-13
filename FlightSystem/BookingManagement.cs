@@ -21,7 +21,12 @@ namespace FlightSystem
             InitializeComponent();
         }
 
-        private void BookingManagement_Load(object sender, EventArgs e)
+        private void BookingManagement_Load(object s, EventArgs e)
+        {
+            refresh();
+        }
+
+        private void refresh()
         {
             try
             {
@@ -117,6 +122,10 @@ namespace FlightSystem
                         if (affectedRows > 0)
                         {
                             MessageBox.Show("The Class Has Been Updated Successfully");
+                            comboBox1.Items.Clear();
+                            comboBox2.Items.Clear();
+                            refresh();
+
                         }
                     }
                 }
@@ -179,6 +188,9 @@ namespace FlightSystem
                         if (affectedRows > 0)
                         {
                             MessageBox.Show("The Flight Has Been Deleted Successfully");
+                            comboBox1.Items.Clear();
+                            comboBox2.Items.Clear();
+                            refresh();
                         }
                     }
                 }
@@ -190,6 +202,11 @@ namespace FlightSystem
                 Console.WriteLine("Error: " + ex.Message);
             }
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
