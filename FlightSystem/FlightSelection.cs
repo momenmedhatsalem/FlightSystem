@@ -120,7 +120,7 @@ namespace FlightSystem
                 MessageBox.Show("Select a fight First");
                 return;
             }
-            selectedDepartureFlight = (KeyValuePair<string, int>)comboBox1.SelectedItem;
+            //selectedDepartureFlight = (KeyValuePair<string, int>)comboBox1.SelectedItem;
             if (Return)
             {
                 // Populate comboBox1 with aircraft IDs
@@ -181,12 +181,6 @@ namespace FlightSystem
                 {
                     Console.WriteLine("Error: " + ex.Message);
                 }
-            }
-            else
-            {
-                PassengersInfo p = new PassengersInfo(numberOfPassengers, selectedDepartureFlight.Value, 0);
-                p.Show();
-                this.Hide();
             }
         }
 
