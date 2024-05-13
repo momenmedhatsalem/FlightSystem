@@ -43,8 +43,6 @@ namespace FlightSystem
 						INNER JOIN 
                             BOOKING B ON R.BOO_BOOKINGID = B.BOOKINGID
 						INNER JOIN
-							TICKET T ON B.BOOKINGID = T.BOO_BOOKINGID
-						INNER JOIN
 							""USER"" U ON B.USE_USERID = U.USERID
 								WHERE U.USERID = @userId";
 
