@@ -16,7 +16,6 @@ namespace FlightSystem
     public partial class BookingManagement : Form
     {
         KeyValuePair<string, int> selectedFlight;
-
         public BookingManagement()
         {
             InitializeComponent();
@@ -52,6 +51,8 @@ namespace FlightSystem
                     using (SqlCommand Command = new SqlCommand(Query, connection))
 
                     {
+                        Command.Parameters.AddWithValue("userId", AppGlobals.UserId);
+
                         //Command.Parameters.AddWithValue("userId", userId);
                         using (SqlDataReader Reader = Command.ExecuteReader())
                         {
