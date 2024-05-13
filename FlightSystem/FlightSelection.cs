@@ -95,7 +95,7 @@ namespace FlightSystem
                                 row += Reader["DEPARTUREDATE"].ToString() + "\t";
                                 row += Reader["ARRIVALDATE"].ToString();
 
-                                comboBox1.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["FLIGHTID"])));
+                                comboBox1.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["FLIGHTID"])).Key);
                                 Console.WriteLine(row);
                             }
                             comboBox1.DisplayMember = "Key";
@@ -124,17 +124,20 @@ namespace FlightSystem
             if (Return)
             {
                 // Populate comboBox1 with aircraft IDs
-                comboBox1.Items.Clear();
                 button1.Enabled = false;
                 button1.Hide();
                 button2.Enabled = true;
                 button2.Show();
+                comboBox1.Hide();
+                comboBox2.Show();
                 MessageBox.Show("Now choose the return flight");
-                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
+                try 
                 {
-                    connection.Open();
+                    using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
+                    {
+                        connection.Open();
 
-                    string Query = @"
+                        string Query = @"
                             SELECT 
 								Airp.AirportName AS departure, Airpo.AirportName AS destination, F.DEPARTUREDATE, F.ARRIVALDATE, F.FLIGHTID
                             FROM 
@@ -147,31 +150,36 @@ namespace FlightSystem
 								Airp.AIRPORTID = @destination AND Airpo.AIRPORTID = @departure AND  
                                 AVAIABLESEATS >= @numberOfPassengers  AND ABS(DATEDIFF(day, DEPARTUREDATE, @returnDate)) <= 3";
 
-                    using (SqlCommand Command = new SqlCommand(Query, connection))
+                        using (SqlCommand Command = new SqlCommand(Query, connection))
 
-                    {
-                        Command.Parameters.AddWithValue("departure", departure);
-                        Command.Parameters.AddWithValue("destination", destination);
-                        Command.Parameters.AddWithValue("numberOfPassengers", numberOfPassengers);
-                        Command.Parameters.AddWithValue("departureDate", departureDate);
-                        Command.Parameters.AddWithValue("returnDate", returnDate);
-                        using (SqlDataReader Reader = Command.ExecuteReader())
                         {
-
-                            while (Reader.Read())
+                            Command.Parameters.AddWithValue("departure", departure);
+                            Command.Parameters.AddWithValue("destination", destination);
+                            Command.Parameters.AddWithValue("numberOfPassengers", numberOfPassengers);
+                            Command.Parameters.AddWithValue("departureDate", departureDate);
+                            Command.Parameters.AddWithValue("returnDate", returnDate);
+                            using (SqlDataReader Reader = Command.ExecuteReader())
                             {
-                                string row = Reader["departure"].ToString() + "\t";
-                                row += Reader["destination"].ToString() + "\t";
-                                row += Reader["DEPARTUREDATE"].ToString() + "\t";
-                                row += Reader["ARRIVALDATE"].ToString();
 
-                                comboBox1.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["FLIGHTID"])));
-                                Console.WriteLine(row);
+                                while (Reader.Read())
+                                {
+                                    string row = Reader["departure"].ToString() + "\t";
+                                    row += Reader["destination"].ToString() + "\t";
+                                    row += Reader["DEPARTUREDATE"].ToString() + "\t";
+                                    row += Reader["ARRIVALDATE"].ToString();
+
+                                    comboBox2.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["FLIGHTID"])));
+                                    Console.WriteLine(row);
+                                }
+                                comboBox2.DisplayMember = "Key";
+                                comboBox2.ValueMember = "Value";
                             }
-                            comboBox1.DisplayMember = "Key";
-                            comboBox1.ValueMember = "Value";
                         }
                     }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
                 }
             }
             else
@@ -184,12 +192,17 @@ namespace FlightSystem
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex < 0)
+            if (comboBox2.SelectedIndex < 0)
             {
                 MessageBox.Show("Select a fight First.");
                 return;
             }
-            selectedDestinationFlight = (KeyValuePair<string, int>)comboBox1.SelectedItem;
+            selectedDestinationFlight = (KeyValuePair<string, int>)comboBox2.SelectedItem;
+            MessageBox.Show("Selected Successfully");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
             PassengersInfo p = new PassengersInfo(numberOfPassengers, selectedDepartureFlight.Value, selectedDestinationFlight.Value);
             p.Show();
             this.Hide();

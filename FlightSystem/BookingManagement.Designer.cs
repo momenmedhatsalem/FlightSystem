@@ -38,10 +38,6 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
-            "Liverpool    Madrid        2/2/2024    Economy    One Way",
-            "Madrid        Liverpool    8/2/2024    First            Return",
-            "Cairo          Alex            9/3/2024    Business     One Way"});
             this.listBox1.Location = new System.Drawing.Point(30, 27);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(743, 160);
@@ -64,6 +60,7 @@
             this.button1.TabIndex = 12;
             this.button1.Text = "Modify";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -74,6 +71,7 @@
             this.button2.TabIndex = 13;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // comboBox1
             // 
