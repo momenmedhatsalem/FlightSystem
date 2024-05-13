@@ -203,9 +203,18 @@ namespace FlightSystem
 
         private void button3_Click(object sender, EventArgs e)
         {
-            PassengersInfo p = new PassengersInfo(numberOfPassengers, selectedDepartureFlight.Value, selectedDestinationFlight.Value);
-            p.Show();
-            this.Hide();
+            if (Return)
+            {
+                PassengersInfo p = new PassengersInfo(numberOfPassengers, selectedDepartureFlight.Value, selectedDestinationFlight.Value);
+                p.Show();
+                this.Hide();
+            }
+            else
+            {
+                PassengersInfo p = new PassengersInfo(numberOfPassengers, selectedDepartureFlight.Value, 0);
+                p.Show();
+                this.Hide();
+            }
         }
     }
 }
