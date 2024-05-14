@@ -16,6 +16,9 @@ namespace FlightSystem
     public partial class BookingManagement : Form
     {
         KeyValuePair<string, int> selectedFlight;
+        string[] selectedclass;
+        int[] ids;
+
         public BookingManagement()
         {
             InitializeComponent();
@@ -30,6 +33,10 @@ namespace FlightSystem
         {
             try
             {
+                comboBox1.Items.Clear();
+                comboBox2.Items.Clear();
+                selectedclass = new string[] {};
+                ids = new int[] {};
                 comboBox1.Items.Add("First");
                 comboBox1.Items.Add("Economy");
                 comboBox1.Items.Add("Business");
@@ -40,7 +47,7 @@ namespace FlightSystem
 
                     string Query = @"
                         SELECT 
-							Airp.AirportName AS departure, Airpo.AirportName AS destination, F.DEPARTUREDATE, F.ARRIVALDATE, T.TICKETCLASS, B.BOOKINGID, PASSENGER.FIRSTNAME
+							Airp.AirportName AS departure, Airpo.AirportName AS destination, F.DEPARTUREDATE, F.ARRIVALDATE, T.TICKETCLASS, B.BOOKINGID, F.FLIGHTID, PASSENGER.FIRSTNAME
 						FROM
 							SCHEMA_1.FLIGHT F  
 						INNER JOIN 
@@ -81,6 +88,8 @@ namespace FlightSystem
 
                                 comboBox2.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["BOOKINGID"])));
                                 Console.WriteLine(row);
+                                ids.Append(Convert.ToInt32(Reader["FLIGHTID"]));
+                                selectedclass.Append(Reader["TICKETCLASS"].ToString());
                             }
                             comboBox2.DisplayMember = "Key";
                             comboBox2.ValueMember = "Value";
@@ -131,8 +140,6 @@ namespace FlightSystem
                         if (affectedRows > 0)
                         {
                             MessageBox.Show("The Class Has Been Updated Successfully");
-                            comboBox1.Items.Clear();
-                            comboBox2.Items.Clear();
                             refresh();
 
                         }
@@ -185,7 +192,17 @@ namespace FlightSystem
                         Command.Parameters.AddWithValue("id", id);
                     }
 
-                     Query = @"
+                    Query = @"
+                         DELETE FROM BOARDING
+							WHERE FLI_FLIGHTID = @id;";
+
+                    using (SqlCommand Command = new SqlCommand(Query, connection))
+
+                    {
+                        Command.Parameters.AddWithValue("id", ids[comboBox2.SelectedIndex]);
+                    }
+
+                    Query = @"
                         DELETE FROM BOOKING
 							WHERE BOOKINGID = @id;";
 
@@ -197,8 +214,6 @@ namespace FlightSystem
                         if (affectedRows > 0)
                         {
                             MessageBox.Show("The Flight Has Been Deleted Successfully");
-                            comboBox1.Items.Clear();
-                            comboBox2.Items.Clear();
                             refresh();
                         }
                     }
@@ -220,7 +235,7 @@ namespace FlightSystem
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            comboBox1.SelectedItem = selectedclass[comboBox2.SelectedIndex];
         }
     }
 }
