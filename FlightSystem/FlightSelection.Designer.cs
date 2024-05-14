@@ -122,9 +122,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.label5.Location = new System.Drawing.Point(20, 27);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(130, 24);
+            this.label5.Size = new System.Drawing.Size(160, 24);
             this.label5.TabIndex = 11;
-            this.label5.Text = "Return Flight";
+            this.label5.Text = "Departure Flight";
             // 
             // FlightSelection
             // 
