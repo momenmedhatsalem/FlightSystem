@@ -22,8 +22,7 @@ namespace FlightSystem
         private bool Return;
         private DateTime departureDate;
         private DateTime returnDate;
-        KeyValuePair<string, int> selectedDepartureFlight;
-        KeyValuePair<string, int> selectedDestinationFlight;
+
         public FlightSelection(int departure, int destination,
             DateTime departureDate, DateTime returnDate,
             int numberOfPassengers, string flightClass, bool Return)
@@ -54,9 +53,28 @@ namespace FlightSystem
         {
 
         }
+        private async void HandleNoFlightsFound()
+        {
+            // Redirect to Booking Form
+            await Task.Delay(1000);
+            MessageBox.Show("No flights were found. Please select a different date.", "No Flights Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Booking bookingForm = new Booking();
+            bookingForm.Show();
+
+            // Wait for the form to load
+
+            // Display message
+            this.Hide();
+        }
+
 
         private void FlightSelection_Load(object sender, EventArgs e)
         {
+            if (!Return)
+            {
+                this.returncomboBx.Hide();
+                this.returnlbl.Hide();
+            }
             try
             {
                 // Populate comboBox1 with aircraft IDs
@@ -87,19 +105,27 @@ namespace FlightSystem
                         Command.Parameters.AddWithValue("returnDate", returnDate);
                         using (SqlDataReader Reader = Command.ExecuteReader())
                         {
-
-                            while (Reader.Read())
+                            if (!Reader.HasRows)
                             {
-                                string row = Reader["departure"].ToString() + "\t";
-                                row += Reader["destination"].ToString() + "\t";
-                                row += Reader["DEPARTUREDATE"].ToString() + "\t";
-                                row += Reader["ARRIVALDATE"].ToString();
-
-                                comboBox1.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["FLIGHTID"])).Key);
-                                Console.WriteLine(row);
+                                // Call the function to handle the scenario when no flights are found
+                                HandleNoFlightsFound();
+                                return;
                             }
-                            comboBox1.DisplayMember = "Key";
-                            comboBox1.ValueMember = "Value";
+                            else
+                            {
+                                while (Reader.Read())
+                                {
+                                    string row = Reader["departure"].ToString() + " - \t";
+                                    row += Reader["destination"].ToString() + " - \t";
+                                    row += Reader["DEPARTUREDATE"].ToString() + " - \t";
+                                    row += Reader["ARRIVALDATE"].ToString();
+
+                                    departurecomboBx.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["FLIGHTID"])).Key);
+                                    Console.WriteLine(row);
+                                }
+                            }
+                            departurecomboBx.DisplayMember = "Key";
+                            departurecomboBx.ValueMember = "Value";
                         }
                     }
                 }
@@ -110,28 +136,10 @@ namespace FlightSystem
                 Console.WriteLine("Error: " + ex.Message);
             }
 
-        }
 
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (comboBox1.SelectedIndex < 0)
-            {
-                MessageBox.Show("Select a fight First");
-                return;
-            }
-            //selectedDepartureFlight = (KeyValuePair<string, int>)comboBox1.SelectedItem;
             if (Return)
             {
-                // Populate comboBox1 with aircraft IDs
-                button1.Enabled = false;
-                button1.Hide();
-                button2.Enabled = true;
-                button2.Show();
-                comboBox1.Hide();
-                comboBox2.Show();
-                MessageBox.Show("Now choose the return flight");
-                try 
+                try
                 {
                     using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                     {
@@ -160,19 +168,30 @@ namespace FlightSystem
                             Command.Parameters.AddWithValue("returnDate", returnDate);
                             using (SqlDataReader Reader = Command.ExecuteReader())
                             {
-
-                                while (Reader.Read())
+                                if (!Reader.HasRows)
                                 {
-                                    string row = Reader["departure"].ToString() + "\t";
-                                    row += Reader["destination"].ToString() + "\t";
-                                    row += Reader["DEPARTUREDATE"].ToString() + "\t";
-                                    row += Reader["ARRIVALDATE"].ToString();
-
-                                    comboBox2.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["FLIGHTID"])));
-                                    Console.WriteLine(row);
+                                    // Call the function to handle the scenario when no flights are found
+                                    
+                                    HandleNoFlightsFound();
+                                    
+                                    return;
                                 }
-                                comboBox2.DisplayMember = "Key";
-                                comboBox2.ValueMember = "Value";
+                                else
+                                {
+
+                                    while (Reader.Read())
+                                    {
+                                        string row = Reader["departure"].ToString() + " - \t";
+                                        row += Reader["destination"].ToString() + " - \t";
+                                        row += Reader["DEPARTUREDATE"].ToString() + " - \t";
+                                        row += Reader["ARRIVALDATE"].ToString();
+
+                                        returncomboBx.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["FLIGHTID"])));
+                                        Console.WriteLine(row);
+                                    }
+                                }
+                                returncomboBx.DisplayMember = "Key";
+                                returncomboBx.ValueMember = "Value";
                             }
                         }
                     }
@@ -182,25 +201,23 @@ namespace FlightSystem
                     Console.WriteLine("Error: " + ex.Message);
                 }
             }
-            else
-            {
-                MessageBox.Show("Selected Successfully");
-            }
+
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (comboBox2.SelectedIndex < 0)
-            {
-                MessageBox.Show("Select a fight First.");
-                return;
-            }
-            selectedDestinationFlight = (KeyValuePair<string, int>)comboBox2.SelectedItem;
-            MessageBox.Show("Selected Successfully");
-        }
+
+
+
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (!validateInfo())
+                return;
+            {
+                
+            }
+            KeyValuePair<string, int> selectedDepartureFlight = (KeyValuePair<string, int>)departurecomboBx.SelectedItem;
+            KeyValuePair<string, int> selectedDestinationFlight = (KeyValuePair<string, int>)returncomboBx.SelectedItem;
+
             if (Return)
             {
                 PassengersInfo p = new PassengersInfo(numberOfPassengers, selectedDepartureFlight.Value, selectedDestinationFlight.Value);
@@ -213,6 +230,28 @@ namespace FlightSystem
                 p.Show();
                 this.Hide();
             }
+        }
+        private bool validateInfo()
+        {
+            // Check if departure is selected
+            if (departurecomboBx.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a departure location.");
+                return false;
+            }
+
+            // Check if destination is selected
+            if (returncomboBx.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a destination location.");
+                return false;
+            }
+            // If all checks pass, return true
+            return true;
+        }
+            private void departurecomboBx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

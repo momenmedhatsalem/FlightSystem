@@ -49,6 +49,7 @@
             this.AvailableSeats.Size = new System.Drawing.Size(70, 20);
             this.AvailableSeats.TabIndex = 40;
             this.AvailableSeats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.AvailableSeats.TextChanged += new System.EventHandler(this.AvailableSeats_TextChanged);
             // 
             // label8
             // 
@@ -56,9 +57,9 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(146, 109);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(124, 20);
+            this.label8.Size = new System.Drawing.Size(103, 20);
             this.label8.TabIndex = 39;
-            this.label8.Text = "Arrival Airport ID";
+            this.label8.Text = "Arrival Airport";
             // 
             // label1
             // 
@@ -66,9 +67,10 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(146, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(153, 20);
+            this.label1.Size = new System.Drawing.Size(132, 20);
             this.label1.TabIndex = 38;
-            this.label1.Text = "Departure Airport ID";
+            this.label1.Text = "Departure Airport";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button1
             // 

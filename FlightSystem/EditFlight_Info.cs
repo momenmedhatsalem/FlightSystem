@@ -226,5 +226,15 @@ namespace FlightSystem
         {
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AvailableSeats_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

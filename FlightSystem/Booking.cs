@@ -19,14 +19,13 @@ namespace FlightSystem
         {
             InitializeComponent();
             rdioOneWay.Checked = true;
-            
+            dateTimePicker2.Visible = false;
 
         }
 
         private void Booking_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'flightDataSet.AIRPORT' table. You can move, or remove it, as needed.
-
+            
             // Connection string
             string connString = "Server=OMC-MEDHAT;Database=Flight;Integrated Security=True";
 
@@ -131,12 +130,12 @@ namespace FlightSystem
 
         private void radioBooking_CheckedChanged(object sender, EventArgs e)
         {
-
+            dateTimePicker2.Visible = false;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-
+            dateTimePicker2.Visible = true;
         }
         private bool validateInfo()
         {

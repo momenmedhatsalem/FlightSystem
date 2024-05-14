@@ -242,7 +242,7 @@ namespace FlightSystem
             }
 
             // Check if arrival date is selected and after departure date
-            if (dateTimePicker2.Value.Date <= dateTimePicker1.Value.Date)
+            if (dateTimePicker2.Value.Date < dateTimePicker1.Value.Date)
             {
                 MessageBox.Show("Arrival date must be after departure date.");
                 return false;
