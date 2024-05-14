@@ -40,15 +40,23 @@ namespace FlightSystem
 
                     string Query = @"
                         SELECT 
-							F.DEPARTURE_AIRPORTID2, F.ARRIVAL_AIRPORTID2, F.DEPARTUREDATE, F.ARRIVALDATE, T.TICKETCLASS, B.BOOKINGID
+							Airp.AirportName AS departure, Airpo.AirportName AS destination, F.DEPARTUREDATE, F.ARRIVALDATE, T.TICKETCLASS, B.BOOKINGID, PASSENGER.FIRSTNAME
 						FROM
 							SCHEMA_1.FLIGHT F  
 						INNER JOIN 
                             RESERVES R ON F.FLIGHTID = R.FLI_FLIGHTID
+                        INNER JOIN 
+                            AIRPORT Airp ON F.Departure_AirportiD2 = Airp.AIRPORTID
+                        INNER JOIN 
+                            AIRPORT Airpo ON F.Arrival_AirportID2 = Airpo.AIRPORTID
 						INNER JOIN 
                             BOOKING B ON R.BOO_BOOKINGID = B.BOOKINGID
 						INNER JOIN
 							TICKET T ON B.BOOKINGID = T.BOO_BOOKINGID
+						INNER JOIN 
+                            BOARDING ON BOARDING.FLI_FLIGHTID = F.FLIGHTID 
+						INNER JOIN 
+                            PASSENGER ON BOARDING.PAS_PASSENGERID = PASSENGER.PASSENGERID
 						INNER JOIN
 							""USER"" U ON B.USE_USERID = U.USERID
 								WHERE U.USERID = @userId";
@@ -64,11 +72,12 @@ namespace FlightSystem
 
                             while (Reader.Read())
                             {
-                                string row = Reader["DEPARTURE_AIRPORTID2"].ToString() + "\t";
-                                row += Reader["ARRIVAL_AIRPORTID2"].ToString() + "\t";
-                                row += Reader["DEPARTUREDATE"].ToString() + "\t";
-                                row += Reader["ARRIVALDATE"].ToString() + "\t";
-                                row += Reader["TICKETCLASS"].ToString();
+                                string row = Reader["departure"].ToString() + " - \t";
+                                row += Reader["destination"].ToString() + " - \t";
+                                row += Reader["DEPARTUREDATE"].ToString() + " - \t";
+                                row += Reader["ARRIVALDATE"].ToString() + " - \t";
+                                row += Reader["TICKETCLASS"].ToString() + " - \t";
+                                row += Reader["FIRSTNAME"].ToString();
 
                                 comboBox2.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["BOOKINGID"])));
                                 Console.WriteLine(row);
