@@ -70,7 +70,7 @@ namespace FlightSystem
                                 row += Reader["ARRIVALDATE"].ToString() + "\t";
                                 row += Reader["TICKETCLASS"].ToString();
 
-                                comboBox2.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["BOOKINGID"])).Key);
+                                comboBox2.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["BOOKINGID"])));
                                 Console.WriteLine(row);
                             }
                             comboBox2.DisplayMember = "Key";
@@ -207,6 +207,11 @@ namespace FlightSystem
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -120,7 +120,7 @@ namespace FlightSystem
                                     row += Reader["DEPARTUREDATE"].ToString() + " - \t";
                                     row += Reader["ARRIVALDATE"].ToString();
 
-                                    departurecomboBx.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["FLIGHTID"])).Key);
+                                    departurecomboBx.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["FLIGHTID"])));
                                     Console.WriteLine(row);
                                 }
                             }

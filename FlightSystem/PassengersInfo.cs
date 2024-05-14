@@ -103,6 +103,7 @@ namespace FlightSystem
             {
                 return;
             }
+
             // Create a new booking for the current user
             string insertBookingQuery = "INSERT INTO BOOKING (USE_USERID, BOOKINGSTATUS, BOOKINGTIME) VALUES (@UserId, 'Confirmed', GETDATE()); SELECT SCOPE_IDENTITY();";
             int bookingId;
@@ -114,9 +115,20 @@ namespace FlightSystem
                 bookingId = Convert.ToInt32(command.ExecuteScalar());
             }
 
-            // Create passengers for each flight
+            string insertReservesQuery = "INSERT INTO RESERVES (BOO_BOOKINGID, FLI_FLIGHTID) VALUES (@BookingId, @FlightId)";
+            // Reserve the flight 
+            using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
+            {
+                SqlCommand command = new SqlCommand(insertReservesQuery, connection);
+                command.Parameters.AddWithValue("@BookingId", bookingId);
+                command.Parameters.AddWithValue("@FlightId", firstFlightId); // Assuming the first flight is reserved
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            // Create passengers for each flight and generate tickets
             string insertPassengerQuery = "INSERT INTO PASSENGER (FirstName, LastName, Phone) VALUES (@FirstName, @LastName, @Phone); SELECT SCOPE_IDENTITY();";
             string insertBoardingQuery = "INSERT INTO BOARDING (FLI_FLIGHTID, PAS_PASSENGERID) VALUES (@FlightId, @PassengerId)";
+            string insertTicketQuery = "INSERT INTO TICKET (BOO_BOOKINGID, SEATNUMBER, TICKETCLASS) VALUES (@BookingId, @SeatNumber, @TicketClass)";
             for (int i = 0; i < numberOfPassengers; i++)
             {
                 int passengerId;
@@ -140,22 +152,35 @@ namespace FlightSystem
                     command.ExecuteNonQuery();
                 }
 
-                // If there is a return flight, add passenger to it as well
+                // Generate ticket for each passenger
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
+                {
+                    SqlCommand command = new SqlCommand(insertTicketQuery, connection);
+                    command.Parameters.AddWithValue("@BookingId", bookingId);
+                    command.Parameters.AddWithValue("@SeatNumber", i + 1); // Assuming seat numbers start from 1
+                    command.Parameters.AddWithValue("@TicketClass", "Economy"); // Assuming ticket class is fixed for now
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+
+
+                // If there is a return flight, reserve it as well
                 if (lastFlightId != 0)
                 {
                     using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                     {
-                        SqlCommand command = new SqlCommand(insertBoardingQuery, connection);
+                        SqlCommand command = new SqlCommand(insertReservesQuery, connection);
+                        command.Parameters.AddWithValue("@BookingId", bookingId);
                         command.Parameters.AddWithValue("@FlightId", lastFlightId);
-                        command.Parameters.AddWithValue("@PassengerId", passengerId);
                         connection.Open();
                         command.ExecuteNonQuery();
                     }
                 }
             }
 
-            MessageBox.Show("Booking and passengers created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Booking, passengers, tickets, and reservations created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
         private bool ValidateInfo()
         {
             for (int i = 0; i < numberOfPassengers; i++)
