@@ -92,15 +92,14 @@ namespace FlightSystem
 
         private void pass_Change(object sender, EventArgs e)
         {
-
-            if (this.passBox.Text.Length != 0)
+            if (this.confirmpassBox.Text.Length != 0)
 
             {
-                this.passBox.BackColor = Color.LightGreen;
+                this.confirmpassBox.BackColor = Color.LightGreen;
             }
             else
             {
-                this.passBox.BackColor = Color.OrangeRed;
+                this.confirmpassBox.BackColor = Color.OrangeRed;
             }
             this.checkState();
         }
@@ -139,6 +138,7 @@ namespace FlightSystem
                                 // Acknowledgement
                                 SystemSounds.Beep.Play();
                                 MessageBox.Show($"User {this.fnameBox.Text} has been updated successfully.", "Success");
+                                this.Close();
                             }
                             else
                             {
@@ -163,7 +163,7 @@ namespace FlightSystem
             using (SHA256 sha256 = SHA256.Create())
             {
                 // Compute hash from password bytes
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(this.passBox.Text));
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(this.confirmpassBox.Text));
 
                 // Convert byte array to a hexadecimal string
                 StringBuilder builder = new StringBuilder();
@@ -190,7 +190,7 @@ namespace FlightSystem
         {
 
 
-            if (this.passBox.BackColor == Color.LightGreen && this.emailBox.BackColor == Color.LightGreen && this.fnameBox.BackColor == Color.LightGreen
+            if (this.confirmpassBox.BackColor == Color.LightGreen && this.emailBox.BackColor == Color.LightGreen && this.fnameBox.BackColor == Color.LightGreen
                 && this.lnameBox.BackColor == Color.LightGreen
                 && this.phoneBox.BackColor == Color.LightGreen) this.submitBtn.Enabled = true;
             else this.submitBtn.Enabled = false;
