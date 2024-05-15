@@ -87,7 +87,7 @@ namespace FlightSystem
                                 row += Reader["FIRSTNAME"].ToString();
 
                                 comboBox2.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["BOOKINGID"])));
-                                Console.WriteLine(row);
+                                Console.WriteLine(Convert.ToInt32(Reader["BOOKINGID"]));
                                 ids.Append(Convert.ToInt32(Reader["FLIGHTID"]));
                                 selectedclass.Append(Reader["TICKETCLASS"].ToString());
                             }
@@ -106,52 +106,53 @@ namespace FlightSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(comboBox2.SelectedIndex < 0)
+            if (comboBox2.SelectedIndex < 0)
             {
                 MessageBox.Show("Select a Flight first");
                 return;
             }
-            if(comboBox1.SelectedIndex < 0)
+            if (comboBox1.SelectedIndex < 0)
             {
-                MessageBox.Show("Seelct a class first");
+                MessageBox.Show("Select a class first");
                 return;
             }
-            selectedFlight = (KeyValuePair<string, int>)comboBox2.SelectedItem;
-            int id = selectedFlight.Value;
-            string ticketClass = comboBox1.SelectedValue.ToString();
+
             try
             {
-                // Populate comboBox1 with aircraft IDs
+                // Retrieve selected flight
+                KeyValuePair<string, int> selectedFlight = (KeyValuePair<string, int>)comboBox2.SelectedItem;
+                int id = selectedFlight.Value;
+                Console.WriteLine("id ",id);
+                // Retrieve selected ticket class
+                string ticketClass = comboBox1.SelectedItem.ToString();
+
+                // Update ticket class in the database
                 using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     connection.Open();
 
                     string Query = @"
-                        UPDATE TICKET
-								SET TICKETCLASS = @ticketClass
-								WHERE BOO_BOOKINGID = @id;";
+                UPDATE TICKET
+                SET TICKETCLASS = @ticketClass
+                WHERE BOO_BOOKINGID = @id;";
 
                     using (SqlCommand Command = new SqlCommand(Query, connection))
-
                     {
-                        Command.Parameters.AddWithValue("tickectClass", ticketClass);
-                        Command.Parameters.AddWithValue("id", id);
+                        Command.Parameters.AddWithValue("@ticketClass", ticketClass);
+                        Command.Parameters.AddWithValue("@id", id);
                         int affectedRows = Command.ExecuteNonQuery();
                         if (affectedRows > 0)
                         {
                             MessageBox.Show("The Class Has Been Updated Successfully");
                             refresh();
-
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -161,55 +162,46 @@ namespace FlightSystem
                 MessageBox.Show("Select a Flight first");
                 return;
             }
-            if (comboBox1.SelectedIndex < 0)
-            selectedFlight = (KeyValuePair<string, int>)comboBox2.SelectedItem;
+
+            // Retrieve selected flight
+            KeyValuePair<string, int> selectedFlight = (KeyValuePair<string, int>)comboBox2.SelectedItem;
             int id = selectedFlight.Value;
+
             try
             {
-                // Populate comboBox1 with aircraft IDs
                 using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     connection.Open();
 
-                    string Query = @"
-                        DELETE FROM TICKET
-							WHERE BOO_BOOKINGID = @id;";
-
+                    // Delete related records from TICKET table
+                    string Query = @"DELETE FROM TICKET WHERE BOO_BOOKINGID = @id;";
                     using (SqlCommand Command = new SqlCommand(Query, connection))
-
                     {
-                        Command.Parameters.AddWithValue("id", id);
-
+                        Command.Parameters.AddWithValue("@id", id);
+                        Command.ExecuteNonQuery();
                     }
 
-                     Query = @"
-                         DELETE FROM RESERVERS
-							WHERE BOO_BOOKINGID = @id;";
-
+                    // Delete related records from RESERVERS table
+                    Query = @"DELETE FROM RESERVES WHERE BOO_BOOKINGID = @id;";
                     using (SqlCommand Command = new SqlCommand(Query, connection))
-
                     {
-                        Command.Parameters.AddWithValue("id", id);
+                        Command.Parameters.AddWithValue("@id", id);
+                        Command.ExecuteNonQuery();
                     }
 
-                    Query = @"
-                         DELETE FROM BOARDING
-							WHERE FLI_FLIGHTID = @id;";
-
+                    // Delete related records from BOARDING table
+                    Query = @"DELETE FROM BOARDING WHERE FLI_FLIGHTID = @id;";
                     using (SqlCommand Command = new SqlCommand(Query, connection))
-
                     {
-                        Command.Parameters.AddWithValue("id", ids[comboBox2.SelectedIndex]);
+                        Command.Parameters.AddWithValue("@id", id);
+                        Command.ExecuteNonQuery();
                     }
 
-                    Query = @"
-                        DELETE FROM BOOKING
-							WHERE BOOKINGID = @id;";
-
+                    // Delete record from BOOKING table
+                    Query = @"DELETE FROM BOOKING WHERE BOOKINGID = @id;";
                     using (SqlCommand Command = new SqlCommand(Query, connection))
-
                     {
-                        Command.Parameters.AddWithValue("id", id);
+                        Command.Parameters.AddWithValue("@id", id);
                         int affectedRows = Command.ExecuteNonQuery();
                         if (affectedRows > 0)
                         {
@@ -218,14 +210,11 @@ namespace FlightSystem
                         }
                     }
                 }
-                
             }
-
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -235,7 +224,30 @@ namespace FlightSystem
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBox1.SelectedItem = selectedclass[comboBox2.SelectedIndex];
+            if (comboBox2.SelectedItem != null)
+            {
+                // Assuming your comboBox items are KeyValuePair<string, int>
+                KeyValuePair<string, int> selectedItem = (KeyValuePair<string, int>)comboBox2.SelectedItem;
+
+                // Extract the ticket class from the selected item
+                string selectedTicketClass = GetTicketClassFromSelectedItem(selectedItem);
+                Console.WriteLine(selectedTicketClass);
+                // Set the selected item in comboBox1 to match the flight class selected in comboBox2
+                comboBox1.SelectedItem = selectedTicketClass;
+            }
+        }
+
+        private string GetTicketClassFromSelectedItem(KeyValuePair<string, int> selectedItem)
+        {
+            // Assuming the ticket class is separated by ' - ' and is at the last position in the string
+            string[] parts = selectedItem.Key.Split(new string[] { " - \t" }, StringSplitOptions.None);
+            return parts[parts.Length - 2].Trim(); // Trim to remove any leading or trailing whitespaces
+        }
+
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

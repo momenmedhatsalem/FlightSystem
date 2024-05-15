@@ -194,6 +194,9 @@ namespace FlightSystem
             }
 
             MessageBox.Show("Booking, passengers, tickets, reservations, and boarding records created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Home h = new Home();
+            h.Show();
+            this.Hide();
         }
 
         private bool ValidateInfo()

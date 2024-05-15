@@ -216,10 +216,10 @@ namespace FlightSystem
                 
             }
             KeyValuePair<string, int> selectedDepartureFlight = (KeyValuePair<string, int>)departurecomboBx.SelectedItem;
-            KeyValuePair<string, int> selectedDestinationFlight = (KeyValuePair<string, int>)returncomboBx.SelectedItem;
 
             if (Return)
             {
+                KeyValuePair<string, int> selectedDestinationFlight = (KeyValuePair<string, int>)returncomboBx.SelectedItem;
                 PassengersInfo p = new PassengersInfo(numberOfPassengers, selectedDepartureFlight.Value, selectedDestinationFlight.Value);
                 p.Show();
                 this.Hide();
@@ -241,7 +241,7 @@ namespace FlightSystem
             }
 
             // Check if destination is selected
-            if (returncomboBx.SelectedItem == null)
+            if (returncomboBx.SelectedItem == null && Return)
             {
                 MessageBox.Show("Please select a destination location.");
                 return false;
