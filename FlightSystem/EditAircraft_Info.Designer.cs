@@ -37,8 +37,8 @@
             this.Model = new System.Windows.Forms.TextBox();
             this.Manufacturer = new System.Windows.Forms.TextBox();
             this.AircraftName = new System.Windows.Forms.TextBox();
-            this.AirportIDs = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Aircrafts = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Capacity
@@ -52,14 +52,14 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(413, 337);
+            this.button1.Location = new System.Drawing.Point(562, 350);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(186, 44);
+            this.button1.Size = new System.Drawing.Size(176, 37);
             this.button1.TabIndex = 20;
             this.button1.Text = "Save Changes";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Check_Status);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label6
             // 
@@ -98,7 +98,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(33, 50);
+            this.label3.Location = new System.Drawing.Point(33, 76);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 17);
@@ -123,40 +123,41 @@
             // 
             // AircraftName
             // 
-            this.AircraftName.Location = new System.Drawing.Point(189, 52);
+            this.AircraftName.Location = new System.Drawing.Point(189, 78);
             this.AircraftName.Margin = new System.Windows.Forms.Padding(2);
             this.AircraftName.Name = "AircraftName";
             this.AircraftName.Size = new System.Drawing.Size(134, 20);
             this.AircraftName.TabIndex = 13;
             // 
-            // AirportIDs
+            // Aircrafts
             // 
-            this.AirportIDs.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AirportIDs.FormattingEnabled = true;
-            this.AirportIDs.Location = new System.Drawing.Point(524, 30);
-            this.AirportIDs.Name = "AirportIDs";
-            this.AirportIDs.Size = new System.Drawing.Size(154, 25);
-            this.AirportIDs.TabIndex = 22;
+            this.Aircrafts.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Aircrafts.FormattingEnabled = true;
+            this.Aircrafts.Location = new System.Drawing.Point(189, 26);
+            this.Aircrafts.Name = "Aircrafts";
+            this.Aircrafts.Size = new System.Drawing.Size(154, 25);
+            this.Aircrafts.TabIndex = 22;
+            this.Aircrafts.SelectedIndexChanged += new System.EventHandler(this.Aircrafts_SelectedIndexChanged);
             // 
-            // button2
+            // label1
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(593, 90);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(186, 30);
-            this.button2.TabIndex = 23;
-            this.button2.Text = "Show";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.check_Ids);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(33, 26);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 17);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Select Aircraft";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // EditAircraft_Info
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.AirportIDs);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Aircrafts);
             this.Controls.Add(this.Capacity);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
@@ -185,7 +186,7 @@
         private System.Windows.Forms.TextBox Model;
         private System.Windows.Forms.TextBox Manufacturer;
         private System.Windows.Forms.TextBox AircraftName;
-        private System.Windows.Forms.ComboBox AirportIDs;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox Aircrafts;
+        private System.Windows.Forms.Label label1;
     }
 }

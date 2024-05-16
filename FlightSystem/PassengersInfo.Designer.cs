@@ -30,6 +30,7 @@
         {
             this.bookFlightbtn = new System.Windows.Forms.Button();
             this.passengerInfolbl = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bookFlightbtn
@@ -52,11 +53,22 @@
             this.passengerInfolbl.TabIndex = 1;
             this.passengerInfolbl.Text = "Please Enter Passengers info";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(17, 388);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(96, 32);
+            this.button3.TabIndex = 21;
+            this.button3.Text = "Back to Home";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // PassengersInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.passengerInfolbl);
             this.Controls.Add(this.bookFlightbtn);
             this.Name = "PassengersInfo";
@@ -71,5 +83,6 @@
 
         private System.Windows.Forms.Button bookFlightbtn;
         private System.Windows.Forms.Label passengerInfolbl;
+        private System.Windows.Forms.Button button3;
     }
 }

@@ -29,19 +29,17 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.passBox = new System.Windows.Forms.TextBox();
-            this.passLabel = new System.Windows.Forms.Label();
             this.fnameBox = new System.Windows.Forms.TextBox();
             this.lnameBox = new System.Windows.Forms.TextBox();
             this.emailBox = new System.Windows.Forms.TextBox();
             this.phoneBox = new System.Windows.Forms.TextBox();
-            this.confirmpassBox = new System.Windows.Forms.TextBox();
+            this.passBox = new System.Windows.Forms.TextBox();
             this.headerLabel = new System.Windows.Forms.Label();
             this.firstnameLabel = new System.Windows.Forms.Label();
             this.lastnameLabel = new System.Windows.Forms.Label();
             this.emailLabel = new System.Windows.Forms.Label();
             this.phoneLabel = new System.Windows.Forms.Label();
-            this.confirmLabel = new System.Windows.Forms.Label();
+            this.passLabel = new System.Windows.Forms.Label();
             this.submitBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -52,19 +50,17 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.passBox, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.passLabel, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.fnameBox, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lnameBox, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.emailBox, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.phoneBox, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.confirmpassBox, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.passBox, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.headerLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.firstnameLabel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.lastnameLabel, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.emailLabel, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.phoneLabel, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.confirmLabel, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.passLabel, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.submitBtn, 0, 9);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 0);
@@ -81,32 +77,9 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(464, 361);
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
-            // 
-            // passBox
-            // 
-            this.passBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.passBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passBox.Location = new System.Drawing.Point(18, 268);
-            this.passBox.Name = "passBox";
-            this.passBox.Size = new System.Drawing.Size(211, 24);
-            this.passBox.TabIndex = 23;
-            this.passBox.UseSystemPasswordChar = true;
-            this.passBox.TextChanged += new System.EventHandler(this.pass_Change);
-            // 
-            // passLabel
-            // 
-            this.passLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.passLabel.AutoSize = true;
-            this.passLabel.ForeColor = System.Drawing.Color.DimGray;
-            this.passLabel.Location = new System.Drawing.Point(18, 248);
-            this.passLabel.Name = "passLabel";
-            this.passLabel.Size = new System.Drawing.Size(126, 13);
-            this.passLabel.TabIndex = 22;
-            this.passLabel.Text = "Enter your new password";
             // 
             // fnameBox
             // 
@@ -150,16 +123,16 @@
             this.phoneBox.TabIndex = 10;
             this.phoneBox.TextChanged += new System.EventHandler(this.phoneBox_Change);
             // 
-            // confirmpassBox
+            // passBox
             // 
-            this.confirmpassBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.confirmpassBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirmpassBox.Location = new System.Drawing.Point(235, 268);
-            this.confirmpassBox.Name = "confirmpassBox";
-            this.confirmpassBox.Size = new System.Drawing.Size(211, 24);
-            this.confirmpassBox.TabIndex = 11;
-            this.confirmpassBox.UseSystemPasswordChar = true;
-            this.confirmpassBox.TextChanged += new System.EventHandler(this.pass_Change);
+            this.passBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.passBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passBox.Location = new System.Drawing.Point(18, 268);
+            this.passBox.Name = "passBox";
+            this.passBox.Size = new System.Drawing.Size(211, 24);
+            this.passBox.TabIndex = 11;
+            this.passBox.UseSystemPasswordChar = true;
+            this.passBox.TextChanged += new System.EventHandler(this.pass_Change);
             // 
             // headerLabel
             // 
@@ -219,27 +192,27 @@
             this.phoneLabel.TabIndex = 18;
             this.phoneLabel.Text = "Phone";
             // 
-            // confirmLabel
+            // passLabel
             // 
-            this.confirmLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.confirmLabel.AutoSize = true;
-            this.confirmLabel.ForeColor = System.Drawing.Color.DimGray;
-            this.confirmLabel.Location = new System.Drawing.Point(235, 248);
-            this.confirmLabel.Name = "confirmLabel";
-            this.confirmLabel.Size = new System.Drawing.Size(113, 13);
-            this.confirmLabel.TabIndex = 20;
-            this.confirmLabel.Text = "Confirm new password";
-            this.confirmLabel.Click += new System.EventHandler(this.passLabel_Click);
+            this.passLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.passLabel.AutoSize = true;
+            this.passLabel.ForeColor = System.Drawing.Color.DimGray;
+            this.passLabel.Location = new System.Drawing.Point(18, 248);
+            this.passLabel.Name = "passLabel";
+            this.passLabel.Size = new System.Drawing.Size(187, 13);
+            this.passLabel.TabIndex = 20;
+            this.passLabel.Text = "Please enter your Password to confirm";
+            this.passLabel.Click += new System.EventHandler(this.passLabel_Click);
             // 
             // submitBtn
             // 
             this.submitBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel1.SetColumnSpan(this.submitBtn, 2);
             this.submitBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.submitBtn.Location = new System.Drawing.Point(178, 315);
+            this.submitBtn.Location = new System.Drawing.Point(178, 314);
             this.submitBtn.Name = "submitBtn";
             this.submitBtn.Padding = new System.Windows.Forms.Padding(3);
-            this.submitBtn.Size = new System.Drawing.Size(108, 30);
+            this.submitBtn.Size = new System.Drawing.Size(108, 33);
             this.submitBtn.TabIndex = 21;
             this.submitBtn.Text = "Update";
             this.submitBtn.UseVisualStyleBackColor = true;
@@ -269,15 +242,13 @@
         private System.Windows.Forms.TextBox lnameBox;
         private System.Windows.Forms.TextBox emailBox;
         private System.Windows.Forms.TextBox phoneBox;
-        private System.Windows.Forms.TextBox confirmpassBox;
+        private System.Windows.Forms.TextBox passBox;
         private System.Windows.Forms.Label headerLabel;
         private System.Windows.Forms.Label firstnameLabel;
         private System.Windows.Forms.Label lastnameLabel;
         private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.Label phoneLabel;
-        private System.Windows.Forms.Label confirmLabel;
-        private System.Windows.Forms.Button submitBtn;
         private System.Windows.Forms.Label passLabel;
-        private System.Windows.Forms.TextBox passBox;
+        private System.Windows.Forms.Button submitBtn;
     }
 }

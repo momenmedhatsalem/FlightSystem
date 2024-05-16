@@ -15,7 +15,7 @@ namespace FlightSystem
 {
     public partial class BookingManagement : Form
     {
-        KeyValuePair<string, int> selectedFlight;
+
         string[] selectedclass;
         int[] ids;
 

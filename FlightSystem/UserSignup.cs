@@ -195,7 +195,9 @@ namespace FlightSystem
 
         private void adminSignupBtn_Click(object sender, EventArgs e)
         {
-            // Empty for now
+            AdminSignup a = new AdminSignup();
+            a.Show();
+            this.Hide();
         }
 
         private void rootPanel_Paint(object sender, PaintEventArgs e)

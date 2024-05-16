@@ -24,7 +24,6 @@ namespace FlightSystem
             
         }
 
-// Events
         
  
 
@@ -58,13 +57,12 @@ namespace FlightSystem
 
         private void submitBtn_Click(object sender, EventArgs e)
         {
-            // Connection
-            string connString = "Server=OMC-MEDHAT;Database=Flight;Integrated Security=True";
+
 
             // SQL Query
             string query = "SELECT UserId FROM [user] WHERE email = @mail AND password = @password";
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
             {
                 // Creating command
                 using (SqlCommand sqlcmd = new SqlCommand(query, connection))
@@ -108,8 +106,6 @@ namespace FlightSystem
         }
 
 
-
-        // Funcs
         private string passwordHash()
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -130,7 +126,7 @@ namespace FlightSystem
         private bool validateInfo()
         {
             // email validation
-            using (SqlConnection connection = new SqlConnection("Server=OMC-MEDHAT;Database=Flight;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
             {
                 // Create SqlCommand with query and connection
                 using (SqlCommand command = new SqlCommand("SELECT * FROM [user] where email=@email", connection))

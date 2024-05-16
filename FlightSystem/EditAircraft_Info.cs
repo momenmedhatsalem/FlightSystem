@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static FlightSystem.Program;
+using System.Runtime.Remoting.Messaging;
 
 namespace FlightSystem
 {
@@ -30,16 +32,16 @@ namespace FlightSystem
             
             InitializeComponent();
         }
-        private const string connString = "Server=DESKTOP-B78KPU7;Database=FlightDB;Integrated Security=True";
+        
 
         private void LoadAircraftIDs(object sender, EventArgs e)
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
                     connection.Open();
-                    string query = "SELECT AIRCRAFTID FROM AIRCRAFT";
+                    string query = "SELECT * FROM AIRCRAFT";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
 
@@ -47,10 +49,19 @@ namespace FlightSystem
                         {
                             while (reader.Read())
                             {
-                                string airportID = reader["AIRCRAFTID"].ToString();
-                                AirportIDs.Items.Add(airportID);
+
+                                string aircraftName = reader["AircraftName"].ToString();
+                                int aircraftID = Convert.ToInt32(reader["AircraftID"]);
+
+                                Aircrafts.Items.Add(new KeyValuePair<string, int>(aircraftName, aircraftID));
+
 
                             }
+                        Aircrafts.DisplayMember = "Key";
+                        Aircrafts.ValueMember = "Value";
+                        // Close data reader and connection
+                        reader.Close();
+                        connection.Close();
                         }
                     }
                 }
@@ -63,7 +74,7 @@ namespace FlightSystem
 
         private void check_Ids(object sender, EventArgs e)
         {
-            if(AirportIDs.SelectedIndex == -1)
+            if(Aircrafts.SelectedIndex == -1)
             {
                 MessageBox.Show("Oops! Looks like you missed to select airport id");
                
@@ -74,23 +85,76 @@ namespace FlightSystem
 
         private void Show_AircraftData(object sender, EventArgs e)
         {
+
+        }
+
+
+        private bool ValidateInfo()
+        {
+            if (string.IsNullOrWhiteSpace(AircraftName.Text))
+            {
+                MessageBox.Show("Oops! Looks like you missed to fill The Aircraft name");
+                return false;
+            }
+            else if (string.IsNullOrWhiteSpace(Manufacturer.Text))
+            {
+                MessageBox.Show("Oops! Looks like you missed to fill The Manufacturer name");
+                return false;
+            }
+            else if (string.IsNullOrWhiteSpace(Model.Text))
+            {
+                MessageBox.Show("Oops! Looks like you missed to fill The Model name");
+                return false;
+            }
+            else if (string.IsNullOrWhiteSpace(Capacity.Text))
+            {
+                MessageBox.Show("Oops! Looks like you missed to fill The Capacity name");
+                return false;
+            }
+            else
+            {
+                if (!int.TryParse(Capacity.Text, out int capacity) || capacity < 0)
+                {
+                    MessageBox.Show("Oops! Looks like you entered an invalid or negative capacity value");
+                    return false;
+                }
+            }
+            return true;
+        }
+        private void EditAircraft_Info_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Aircrafts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // If all information is completed, proceed
+            int aircraftId = 0;
+            if (Aircrafts.SelectedItem != null)
+            {
+                KeyValuePair<string, int> selectedAircraft = (KeyValuePair<string, int>)Aircrafts.SelectedItem;
+                aircraftId = selectedAircraft.Value;
+            }
             try
             {
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
-                    string query = "SELECT   AIRCRAFTNAME , MANUFACTURER , MODEL , CAPACITY " +
-                                   "FROM AIRCRAFT " +
-                                   "WHERE AIRCRAFTID = @AircraftID";
+                    string query = "SELECT * FROM AIRCRAFT WHERE AIRCRAFTID = @AircraftID";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@AircraftID", AircraftID);
+                        command.Parameters.AddWithValue("@AircraftID", aircraftId); // corrected parameter name
                         connection.Open();
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)
                             {
-                                reader.Read(); 
+                                reader.Read();
                                 AircraftName.Text = reader["AIRCRAFTNAME"].ToString();
                                 Manufacturer.Text = reader["MANUFACTURER"].ToString();
                                 Model.Text = reader["MODEL"].ToString();
@@ -104,85 +168,70 @@ namespace FlightSystem
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("SQL Error: " + ex.Message);
+            }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
         }
 
-        private void UpdateValues()
+        private void button1_Click(object sender, EventArgs e)
         {
+            if (!ValidateInfo())
+            {
+                return;
+            }
             try
             {
-                using (SqlConnection connection = new SqlConnection(connString))
+                KeyValuePair<string, int> selectedAircraft = (KeyValuePair<string, int>)Aircrafts.SelectedItem;
+                int aircraftId = selectedAircraft.Value;
+
+                string aircraftName = AircraftName.Text;
+                string manufacturer = Manufacturer.Text;
+                string model = Model.Text;
+                int capacity = int.Parse(Capacity.Text);
+                using (SqlConnection connection = new SqlConnection(AppGlobals.connString))
                 {
-                    connection.Open();
-                    string aircraftName = AircraftName.Text;
-                    string model = Model.Text;
-                    string manufacturer = Manufacturer.Text;
-                    int capacity;
-                    capacity = int.Parse(Capacity.Text);
                     string query = "UPDATE AIRCRAFT " +
-                                    "SET AIRCRAFTNAME = @aircraftName , MANUFACTURER =@manufacturer , MODEL =@model , CAPACITY=@capacity " +
-                                    "WHERE AIRCRAFTID =@AircraftID";
+                                   "SET AIRCRAFTNAME = @AircraftName, MANUFACTURER = @Manufacturer, MODEL = @Model, CAPACITY = @Capacity " +
+                                   "WHERE AIRCRAFTID = @AircraftID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@AIRCRAFTNAME", aircraftName);
-                        command.Parameters.AddWithValue("@MANUFACTURER", manufacturer);
-                        command.Parameters.AddWithValue("@MODEL", model);
-                        command.Parameters.AddWithValue("@CAPACITY", capacity);
-                        command.Parameters.AddWithValue("@AircraftID", AircraftID);
+                        command.Parameters.AddWithValue("@AircraftID", aircraftId);
+                        command.Parameters.AddWithValue("@AircraftName", aircraftName);
+                        command.Parameters.AddWithValue("@Manufacturer", manufacturer);
+                        command.Parameters.AddWithValue("@Model", model);
+                        command.Parameters.AddWithValue("@Capacity", capacity);
+
+                        connection.Open();
                         int rowsAffected = command.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Rows updated successfully.");
+                            MessageBox.Show("Aircraft details updated successfully!");
+                            AdminHome a = new AdminHome();
+                            a.Show();
+                            this.Hide();
                         }
                         else
                         {
-                            MessageBox.Show("No rows were updated.");
+                            MessageBox.Show("Failed to update aircraft details. No rows affected.");
                         }
-
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("SQL Error: " + ex.Message);
+            }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
-        }
-        private void Check_Status(object sender, EventArgs e)
-        {
-
-
-            if(AircraftName.Text == "")
-            {
-                MessageBox.Show("Oops! Looks like you missed to fill The Aircraft name");
-            } else if(Manufacturer.Text == "")
-            {
-                MessageBox.Show("Oops! Looks like you missed to fill The Manufacturer name");
-            }
-            else if(Model.Text == "")
-            {
-                MessageBox.Show("Oops! Looks like you missed to fill The Model name");
-            }
-            else if(Capacity.Text == "")
-            {
-                MessageBox.Show("Oops! Looks like you missed to fill The Capacity name");
-            }
-            else
-            {
-                int capacity;
-                capacity = int.Parse(Capacity.Text);
-                if(capacity < 0) {
-                    MessageBox.Show("Oops! Looks like you enter a value less than 1 which is not available");
-                }
-            }
-            UpdateValues();
-        }
-        private void EditAircraft_Info_Load(object sender, EventArgs e)
-        {
 
         }
     }

@@ -55,7 +55,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(118, 71);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(134, 20);
             this.textBox2.TabIndex = 2;
@@ -64,7 +64,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(118, 108);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(134, 20);
             this.textBox3.TabIndex = 3;
@@ -73,7 +73,7 @@
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(118, 150);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(134, 20);
             this.textBox4.TabIndex = 4;
@@ -129,7 +129,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(247, 262);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(95, 28);
             this.button1.TabIndex = 11;
@@ -140,7 +140,7 @@
             // maskedTextBox1
             // 
             this.maskedTextBox1.Location = new System.Drawing.Point(118, 189);
-            this.maskedTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.maskedTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(134, 20);
             this.maskedTextBox1.TabIndex = 12;
@@ -160,7 +160,7 @@
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddAirCraftForm";
             this.Text = "AddAirCraftForm";
             this.Load += new System.EventHandler(this.AddAirCraftForm_Load);

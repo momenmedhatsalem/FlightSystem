@@ -76,6 +76,9 @@ namespace FlightSystem
                     connection.Open();
                     int rowsAffected = command.ExecuteNonQuery();
                     MessageBox.Show(rowsAffected + " row(s) inserted successfully.");
+                    AdminHome a = new AdminHome();
+                    a.Show();
+                    this.Hide();
                 }
                 catch (Exception ex)
                 {
