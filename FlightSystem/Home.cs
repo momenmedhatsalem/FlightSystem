@@ -50,8 +50,14 @@ namespace FlightSystem
                 {
                     btn.Text = btn.Tag.ToString();
                     btn.ImageAlign = ContentAlignment.MiddleLeft;
-                    btn.Padding = new Padding(10, 0, 10, 0);
                 }
+
+                // Padding
+                this.bookingBtn.Padding = new System.Windows.Forms.Padding(10, 0, 60, 0);
+                this.updateInfoBtn.Padding = new System.Windows.Forms.Padding(10, 0, 30, 0);
+                this.reportButton.Padding = new System.Windows.Forms.Padding(10, 0, 66, 0);
+                this.profileBtn.Padding = new System.Windows.Forms.Padding(10, 0, 66, 0);
+                this.signoutBtn.Padding = new System.Windows.Forms.Padding(10, 0, 82, 0);
             }
         }
 
@@ -94,6 +100,7 @@ namespace FlightSystem
                 this.userstatusLabel.Text = "You're NOT logged in\r\nPlease consider logging in or signing up for a new account";
                 this.loginBtn.Visible = true;
                 this.signupBtn.Visible = true;
+                this.updateInfoBtn.Hide();
             }
         }
 
@@ -174,6 +181,12 @@ namespace FlightSystem
         {
             Report report = new Report();
             report.Show();
+        }
+
+        private void updateInfoBtn_Click(object sender, EventArgs e)
+        {
+            UpdateUser win = new UpdateUser();
+            win.Show();
         }
     }
 }
