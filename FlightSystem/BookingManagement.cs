@@ -219,7 +219,9 @@ namespace FlightSystem
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Home h = new Home();
+            h.Show();
+            this.Hide();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)

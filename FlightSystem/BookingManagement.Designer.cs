@@ -51,22 +51,22 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(157, 216);
+            this.button1.Location = new System.Drawing.Point(179, 218);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(131, 23);
             this.button1.TabIndex = 12;
-            this.button1.Text = "Modify";
+            this.button1.Text = "Update Selected Flight";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.SystemColors.Control;
-            this.button2.Location = new System.Drawing.Point(157, 276);
+            this.button2.Location = new System.Drawing.Point(657, 127);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(100, 40);
             this.button2.TabIndex = 13;
-            this.button2.Text = "Delete";
+            this.button2.Text = "Delete Selected Flight";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -134,11 +134,11 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(375, 267);
+            this.button3.Location = new System.Drawing.Point(661, 357);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(96, 32);
             this.button3.TabIndex = 20;
-            this.button3.Text = "Close";
+            this.button3.Text = "Back to Home";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
