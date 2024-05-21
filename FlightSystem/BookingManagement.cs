@@ -47,7 +47,7 @@ namespace FlightSystem
 
                     string Query = @"
                         SELECT 
-							Airp.AirportName AS departure, Airpo.AirportName AS destination, F.DEPARTUREDATE, F.ARRIVALDATE, T.TICKETCLASS, B.BOOKINGID, F.FLIGHTID, PASSENGER.FIRSTNAME
+							Airp.AirportName AS departure, Airpo.AirportName AS destination, F.DEPARTUREDATE, F.ARRIVALDATE, T.TICKETCLASS, B.BOOKINGID, F.FLIGHTID
 						FROM
 							SCHEMA_1.FLIGHT F  
 						INNER JOIN 
@@ -60,10 +60,6 @@ namespace FlightSystem
                             BOOKING B ON R.BOO_BOOKINGID = B.BOOKINGID
 						INNER JOIN
 							TICKET T ON B.BOOKINGID = T.BOO_BOOKINGID
-						INNER JOIN 
-                            BOARDING ON BOARDING.FLI_FLIGHTID = F.FLIGHTID 
-						INNER JOIN 
-                            PASSENGER ON BOARDING.PAS_PASSENGERID = PASSENGER.PASSENGERID
 						INNER JOIN
 							""USER"" U ON B.USE_USERID = U.USERID
 								WHERE U.USERID = @userId";
@@ -84,7 +80,7 @@ namespace FlightSystem
                                 row += Reader["DEPARTUREDATE"].ToString() + " - \t";
                                 row += Reader["ARRIVALDATE"].ToString() + " - \t";
                                 row += Reader["TICKETCLASS"].ToString() + " - \t";
-                                row += Reader["FIRSTNAME"].ToString();
+                                
 
                                 comboBox2.Items.Add(new KeyValuePair<string, int>(row, Convert.ToInt32(Reader["BOOKINGID"])));
                                 Console.WriteLine(Convert.ToInt32(Reader["BOOKINGID"]));

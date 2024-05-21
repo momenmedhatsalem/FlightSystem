@@ -165,6 +165,9 @@ namespace FlightSystem
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Flight added successfully!");
+                            Home h = new Home();
+                            h.Show();
+                            this.Hide();
                         }
                         else
                         {

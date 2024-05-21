@@ -116,6 +116,11 @@ namespace FlightSystem
         {
             this.Close();
         }
+
+        private void gridPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
         
 }

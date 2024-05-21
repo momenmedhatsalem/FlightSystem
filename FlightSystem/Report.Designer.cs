@@ -31,24 +31,24 @@
             this.okBtn = new System.Windows.Forms.Button();
             this.gridPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.record1 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.record2 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.record3 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.record4 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.record5 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.record6 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.headerLabel = new System.Windows.Forms.Label();
-            this.record1 = new System.Windows.Forms.Label();
-            this.record2 = new System.Windows.Forms.Label();
-            this.record3 = new System.Windows.Forms.Label();
-            this.record4 = new System.Windows.Forms.Label();
-            this.record5 = new System.Windows.Forms.Label();
-            this.record6 = new System.Windows.Forms.Label();
             this.gridPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -102,6 +102,7 @@
             this.gridPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.gridPanel.Size = new System.Drawing.Size(689, 411);
             this.gridPanel.TabIndex = 11;
+            this.gridPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.gridPanel_Paint);
             // 
             // panel1
             // 
@@ -114,6 +115,17 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(15);
             this.panel1.Size = new System.Drawing.Size(210, 124);
             this.panel1.TabIndex = 11;
+            // 
+            // record1
+            // 
+            this.record1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.record1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.record1.Location = new System.Drawing.Point(15, 33);
+            this.record1.Name = "record1";
+            this.record1.Size = new System.Drawing.Size(180, 76);
+            this.record1.TabIndex = 1;
+            this.record1.Text = "No records";
+            this.record1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -140,6 +152,17 @@
             this.panel2.Size = new System.Drawing.Size(210, 124);
             this.panel2.TabIndex = 12;
             // 
+            // record2
+            // 
+            this.record2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.record2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.record2.Location = new System.Drawing.Point(15, 38);
+            this.record2.Name = "record2";
+            this.record2.Size = new System.Drawing.Size(180, 71);
+            this.record2.TabIndex = 2;
+            this.record2.Text = "No records";
+            this.record2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -165,6 +188,17 @@
             this.panel3.Size = new System.Drawing.Size(211, 124);
             this.panel3.TabIndex = 13;
             // 
+            // record3
+            // 
+            this.record3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.record3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.record3.Location = new System.Drawing.Point(15, 38);
+            this.record3.Name = "record3";
+            this.record3.Size = new System.Drawing.Size(181, 71);
+            this.record3.TabIndex = 2;
+            this.record3.Text = "No records";
+            this.record3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -188,6 +222,17 @@
             this.panel4.Padding = new System.Windows.Forms.Padding(15);
             this.panel4.Size = new System.Drawing.Size(210, 124);
             this.panel4.TabIndex = 14;
+            // 
+            // record4
+            // 
+            this.record4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.record4.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.record4.Location = new System.Drawing.Point(15, 38);
+            this.record4.Name = "record4";
+            this.record4.Size = new System.Drawing.Size(180, 71);
+            this.record4.TabIndex = 2;
+            this.record4.Text = "0";
+            this.record4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
@@ -213,6 +258,17 @@
             this.panel5.Size = new System.Drawing.Size(210, 124);
             this.panel5.TabIndex = 15;
             // 
+            // record5
+            // 
+            this.record5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.record5.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.record5.Location = new System.Drawing.Point(15, 38);
+            this.record5.Name = "record5";
+            this.record5.Size = new System.Drawing.Size(180, 71);
+            this.record5.TabIndex = 2;
+            this.record5.Text = "0";
+            this.record5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label5
             // 
             this.label5.Dock = System.Windows.Forms.DockStyle.Top;
@@ -236,6 +292,17 @@
             this.panel6.Padding = new System.Windows.Forms.Padding(15);
             this.panel6.Size = new System.Drawing.Size(211, 124);
             this.panel6.TabIndex = 16;
+            // 
+            // record6
+            // 
+            this.record6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.record6.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.record6.Location = new System.Drawing.Point(15, 38);
+            this.record6.Name = "record6";
+            this.record6.Size = new System.Drawing.Size(181, 71);
+            this.record6.TabIndex = 2;
+            this.record6.Text = "0";
+            this.record6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
             // 
@@ -261,72 +328,6 @@
             this.headerLabel.TabIndex = 17;
             this.headerLabel.Text = "Airport Report";
             this.headerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // record1
-            // 
-            this.record1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.record1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.record1.Location = new System.Drawing.Point(15, 33);
-            this.record1.Name = "record1";
-            this.record1.Size = new System.Drawing.Size(180, 76);
-            this.record1.TabIndex = 1;
-            this.record1.Text = "No records";
-            this.record1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // record2
-            // 
-            this.record2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.record2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.record2.Location = new System.Drawing.Point(15, 38);
-            this.record2.Name = "record2";
-            this.record2.Size = new System.Drawing.Size(180, 71);
-            this.record2.TabIndex = 2;
-            this.record2.Text = "No records";
-            this.record2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // record3
-            // 
-            this.record3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.record3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.record3.Location = new System.Drawing.Point(15, 38);
-            this.record3.Name = "record3";
-            this.record3.Size = new System.Drawing.Size(181, 71);
-            this.record3.TabIndex = 2;
-            this.record3.Text = "No records";
-            this.record3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // record4
-            // 
-            this.record4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.record4.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.record4.Location = new System.Drawing.Point(15, 38);
-            this.record4.Name = "record4";
-            this.record4.Size = new System.Drawing.Size(180, 71);
-            this.record4.TabIndex = 2;
-            this.record4.Text = "0";
-            this.record4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // record5
-            // 
-            this.record5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.record5.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.record5.Location = new System.Drawing.Point(15, 38);
-            this.record5.Name = "record5";
-            this.record5.Size = new System.Drawing.Size(180, 71);
-            this.record5.TabIndex = 2;
-            this.record5.Text = "0";
-            this.record5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // record6
-            // 
-            this.record6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.record6.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.record6.Location = new System.Drawing.Point(15, 38);
-            this.record6.Name = "record6";
-            this.record6.Size = new System.Drawing.Size(181, 71);
-            this.record6.TabIndex = 2;
-            this.record6.Text = "0";
-            this.record6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Report
             // 
