@@ -75,17 +75,6 @@ A Windows Forms–based **flight reservation and management system** developed i
 
    * Press `F5` or use the `Start` button in Visual Studio
 
----
-
-### 📸 Screenshots (Optional)
-
-You can add images from:
-
-```
-FlightSystem/Resources/*.png
-```
-
-to show the UI (e.g. `home.png`, `flight.png`, `ticket.png`, etc.)
 
 ---
 
